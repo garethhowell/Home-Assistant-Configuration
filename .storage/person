@@ -1,0 +1,14 @@
+{
+    "data": {
+        "persons": [
+            {
+                "device_trackers": [],
+                "id": "2d40612f72064d69b961f80ad13a7fc5",
+                "name": "Gareth Howell",
+                "user_id": "a1b902f0eeba49c3a5a77ae308f55f1d"
+            }
+        ]
+    },
+    "key": "person",
+    "version": 1
+}

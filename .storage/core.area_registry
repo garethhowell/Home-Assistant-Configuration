@@ -1,0 +1,52 @@
+{
+    "data": {
+        "areas": [
+            {
+                "id": "a2c5f6c773bf47aca40cc4d185855106",
+                "name": "Living Room"
+            },
+            {
+                "id": "5a34a9f987b745008de255fde85338b2",
+                "name": "Kitchen"
+            },
+            {
+                "id": "7ba0904345ee44999d30309bd5f90632",
+                "name": "Bedroom 3"
+            },
+            {
+                "id": "2569f2cc82fc4e5485140ce2f1af1524",
+                "name": "Den"
+            },
+            {
+                "id": "0ebb775cab9241768d722c3a3a6b48f5",
+                "name": "Shack"
+            },
+            {
+                "id": "0c40d5232a9d40e9a84d7c24eba9838f",
+                "name": "Bedroom 2"
+            },
+            {
+                "id": "05bef6bc97bd40bbaa467e55cd564ce6",
+                "name": "Bedroom 1"
+            },
+            {
+                "id": "dca86c3b615a4cf0839fb34b88d4c7d3",
+                "name": "Landing"
+            },
+            {
+                "id": "19e1ca7706704de3957062530ee09fa9",
+                "name": "Hallway"
+            },
+            {
+                "id": "fd818d6f1fdb42cf8225fbedc509bb60",
+                "name": "Garden - Front"
+            },
+            {
+                "id": "26a61d4a560e484fa25cf191678e39f6",
+                "name": "Garden - Back"
+            }
+        ]
+    },
+    "key": "core.area_registry",
+    "version": 1
+}

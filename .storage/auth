@@ -1,0 +1,93 @@
+{
+    "data": {
+        "credentials": [
+            {
+                "auth_provider_id": null,
+                "auth_provider_type": "homeassistant",
+                "data": {
+                    "username": "garethhowell"
+                },
+                "id": "0bbbb47afdef4275b9594e8d565bd998",
+                "user_id": "a1b902f0eeba49c3a5a77ae308f55f1d"
+            }
+        ],
+        "groups": [
+            {
+                "id": "system-admin",
+                "name": "Administrators"
+            },
+            {
+                "id": "system-users",
+                "name": "Users"
+            },
+            {
+                "id": "system-read-only",
+                "name": "Read Only"
+            }
+        ],
+        "refresh_tokens": [
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": null,
+                "client_name": null,
+                "created_at": "2019-08-09T15:28:32.763242+00:00",
+                "id": "89e2656603b74c7895fd11a8889fe587",
+                "jwt_key": "d59ad8e35ff40b0aeb902d21a0ffd047ac3cb16bcfb50d99582038eda6d4ffdef3591108fd276d2e70d35262873ab630e2789c6e11888472455b861fabef66b2",
+                "last_used_at": "2019-08-09T16:04:03.024455+00:00",
+                "last_used_ip": "172.30.32.2",
+                "token": "91ac7aaf8408b73d5588226fe5eb69f88da41d556cc57da8dd5cbc2560fe7f67d5805adfd4f96064fc8cb1ae7952bc9c8c4e890c549ee151e40a4de344b964cd",
+                "token_type": "system",
+                "user_id": "09b4b9c9f4c7468c8cbdd06db7497083"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "http://hassio.local:8123/",
+                "client_name": null,
+                "created_at": "2019-08-09T15:39:11.528687+00:00",
+                "id": "6f69c657896445418f0559f093ae7286",
+                "jwt_key": "0cf988d3ddca188c148c48bb89683fce982502fbde26414145aeb4c1cb78a8fc351cb074b6437940ab424a5cf3ddbd44cc43b5193cc4ab97861f89e5cc1e336d",
+                "last_used_at": "2019-08-09T16:11:22.430294+00:00",
+                "last_used_ip": "172.29.12.179",
+                "token": "c2b4ec8bf2fe527046a22efcbb0be69edcd7d345e911dd7a3aba6c80dce8a84eb6360725963b7300e68f6a896cbafcf97b13d07135ed18be1c33d2579be71df2",
+                "token_type": "normal",
+                "user_id": "a1b902f0eeba49c3a5a77ae308f55f1d"
+            }
+        ],
+        "users": [
+            {
+                "group_ids": [
+                    "system-admin"
+                ],
+                "id": "59f1230f8e844acf8cb6d7e771215ad2",
+                "is_active": true,
+                "is_owner": false,
+                "name": "Home Assistant Cloud",
+                "system_generated": true
+            },
+            {
+                "group_ids": [
+                    "system-admin"
+                ],
+                "id": "09b4b9c9f4c7468c8cbdd06db7497083",
+                "is_active": true,
+                "is_owner": false,
+                "name": "Hass.io",
+                "system_generated": true
+            },
+            {
+                "group_ids": [
+                    "system-admin"
+                ],
+                "id": "a1b902f0eeba49c3a5a77ae308f55f1d",
+                "is_active": true,
+                "is_owner": true,
+                "name": "Gareth Howell",
+                "system_generated": false
+            }
+        ]
+    },
+    "key": "auth",
+    "version": 1
+}

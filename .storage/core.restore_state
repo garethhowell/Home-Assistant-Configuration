@@ -1,0 +1,26 @@
+{
+    "data": [
+        {
+            "last_seen": "2019-08-09T16:32:30.006618+00:00",
+            "state": {
+                "attributes": {
+                    "editable": true,
+                    "friendly_name": "Gareth Howell",
+                    "id": "2d40612f72064d69b961f80ad13a7fc5",
+                    "user_id": "a1b902f0eeba49c3a5a77ae308f55f1d"
+                },
+                "context": {
+                    "id": "8012e1fe01d44a058029113bddc97ba7",
+                    "parent_id": null,
+                    "user_id": null
+                },
+                "entity_id": "person.gareth_howell",
+                "last_changed": "2019-08-09T15:32:26.951382+00:00",
+                "last_updated": "2019-08-09T15:32:26.951382+00:00",
+                "state": "unknown"
+            }
+        }
+    ],
+    "key": "core.restore_state",
+    "version": 1
+}
