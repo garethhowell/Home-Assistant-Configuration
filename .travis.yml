@@ -1,24 +1,15 @@
-#
-# Travis CI configuration
-#
-# Simply tests that Home Assistant configuration is valid.
-#
-# @link https://home-assistant.io/docs/ecosystem/backup/backup_github/#step-7-configuration-file-testing
-#
-
 language: python
-
 python:
-  - "3.6"
-
+- '3.6'
 before_install:
-  - cp secrets_dummy.yaml secrets.yaml
-  - touch home-assistant_v2.db
-  - touch home-assistant.log
-  - sudo apt-get install -y libudev-dev
-
+- cp secrets_dummy.yaml secrets.yaml
+- touch home-assistant_v2.db
+- touch home-assistant.log
+- sudo apt-get install -y libudev-dev
 install:
-  - pip3 install homeassistant
-
+- pip3 install homeassistant
 script:
 - hass --script check_config -c . -f
+notifications:
+  slack:
+    secure: vghAo+OZARGAR7lp5hC0p0stZIHULUDZg4ceJ5S+uPKFNByWi+gro40BITx4yWj9T46zwcUzrls8eBY4TzeY9G/hgiNYlWYXGp8hn+bAcH2YWmDPG4n1kQqbyj1g2Cg+Ri0GrGpI/fu54lbPi09maZJci1ZscWm8ljaOs9PnBe6jGr/8fP4R1KsVEFSkNjt7lhedHv9t7k/hnyHYdcA5vvA0tkn8CGPZN+2GPDt5TQlu25RDmV/S4cul/qWAXng1nbNsUasvRfNJQGthsKjlMx1KyBTZ9vNDq0PidenUf1sFrN9HnC3JxDmRQSg1Xml4kyQXi3CitI7kbwBp+twFOUTwnW4LSEzrlE/8+3YyDUYAdO1jHQ2KRnln4WEbiFt59rCAN71VSyeuzrMtL1iB9o1Q3gqCKHLcgFd0xEIEskq7kmcbLVEUZpxRLwqKG7Kt/o7BKysjwxX/i+Anf7nLa1jvmWaKPeweNXjyiPCkFxoMqAMIecdOVfqil9kKex7cX0mZaAyTa5FILtsf9hGNdRj8QBpR19F2G9EsVMD+3qvs2WQ7DI9pdjFS5QMrE3OosuPSEMGyQFEudJY+8Gdb25fIrd/QAXb+ywZyhNeKl1Tly+2TljQeTI3gHm2U/FaDUw+yK16s4I45429uDEvyjIiCDWFX2rbtad0iiSJXxC0=
