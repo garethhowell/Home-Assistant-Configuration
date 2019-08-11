@@ -22,8 +22,13 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
-mqtt:
-  broker: mqtt.agdon.net
+# MQTT
+# https://www.home-assistant.io/docs/mqtt/
+mqtt: !include config/mqtt.yaml
+
+# Recorder
+# https://www.home-assistant.io/components/recorder/
+recorder: !include config/recorder.yaml
 
 # configuration.yaml entry
 hello_mqtt:

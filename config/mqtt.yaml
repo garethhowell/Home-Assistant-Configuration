@@ -1,0 +1,16 @@
+# MQTT
+# https://www.home-assistant.io/docs/mqtt/
+
+broker: mqtt.agdon.net
+discovery: true
+discovery_prefix: homeassistant
+birth_message:
+    topic: "hass/status"
+    payload: "online"
+    qos: 1
+    retain: true
+will_message:
+  topic: "hass/status"
+  payload: "offline"
+  qos: 1
+  retain: true
