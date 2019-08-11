@@ -1,9 +1,6 @@
 # Git Ignore File
-# A * ensures that everything will be ignored.
-
 
 # Do not ignore
-!*.yaml
 !.gitignore
 !.travis.yml
 !*.md
