@@ -1,10 +1,18 @@
+# Main Configuration
 
-# Configure a default setup of Home Assistant (frontend, api, etc)
-default_config:
+# Main Settings
+# https://www.home-assistant.io/docs/configuration/basic/
+homeassistant:
+    name: Howell Home
+    latitude: !secrets home_latitude
+    longitude: !secrets home_longitude
+    elevation: !secrets home_elevation
+    unit_system: metric
+    temperature_unit: C
+    time_zone: Europe/London
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
+    auth_providers:
+        - type: homeassistant
 
 # Text to speech
 tts:
@@ -16,3 +24,7 @@ script: !include scripts.yaml
 
 mqtt:
   broker: mqtt.agdon.net
+
+# configuration.yaml entry
+hello_mqtt:
+  topic: some_mqtt/topic/here

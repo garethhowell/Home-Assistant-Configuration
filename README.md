@@ -1,0 +1,2 @@
+Howell Home Assistant configuration
+===================================
