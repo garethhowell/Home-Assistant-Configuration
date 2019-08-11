@@ -28,3 +28,5 @@ mqtt:
 # configuration.yaml entry
 hello_mqtt:
   topic: some_mqtt/topic/here
+
+  
