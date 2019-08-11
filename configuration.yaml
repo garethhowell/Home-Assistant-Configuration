@@ -1,4 +1,5 @@
 # Main Configuration
+default_config:
 
 # Main Settings
 # https://www.home-assistant.io/docs/configuration/basic/
