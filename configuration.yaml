@@ -4,9 +4,9 @@
 # https://www.home-assistant.io/docs/configuration/basic/
 homeassistant:
     name: Howell Home
-    latitude: !secrets home_latitude
-    longitude: !secrets home_longitude
-    elevation: !secrets home_elevation
+    latitude: !secret home_latitude
+    longitude: !secret home_longitude
+    elevation: !secret home_elevation
     unit_system: metric
     temperature_unit: C
     time_zone: Europe/London
@@ -28,5 +28,3 @@ mqtt:
 # configuration.yaml entry
 hello_mqtt:
   topic: some_mqtt/topic/here
-
-  
