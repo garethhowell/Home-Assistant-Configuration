@@ -27,6 +27,9 @@ system_health:
 # https://www.home-assistant.io/components/map/
 map:
 
+# Sun
+sun:
+
 # Life360
 # https://www.home-assistant.io/components/life360/
 life360:
