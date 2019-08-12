@@ -24,6 +24,7 @@ known_devices.yaml
 *.conf
 *.db
 *.uuid
+*.mp3
 cameras.yaml
 
 # Node-Red
