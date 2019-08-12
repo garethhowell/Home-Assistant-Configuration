@@ -1,7 +1,5 @@
-# Main Configuration
-default_config:
-
 # Main Settings
+config:
 # https://www.home-assistant.io/docs/configuration/basic/
 homeassistant:
     name: Howell Home
@@ -14,6 +12,16 @@ homeassistant:
 
     auth_providers:
         - type: homeassistant
+
+# Lovelace UI
+# https://www.home-assistant.io/lovelace/
+# https://www.home-assistant.io/lovelace/yaml-mode/
+#lovelace:
+#    mode: yaml
+
+# System Health
+# https://www.home-assistant.io/components/system_health/
+system_health:
 
 # Text to speech
 tts:
