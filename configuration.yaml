@@ -37,7 +37,7 @@ life360:
     include:
       family
   driving_speed: 30.0
-  
+
 
 # Text to speech
 tts:
@@ -58,3 +58,9 @@ recorder: !include config/recorder.yaml
 # configuration.yaml entry
 hello_mqtt:
   topic: some_mqtt/topic/here
+
+# Uptime Robot
+# https://www.home-assistant.io/components/uptimerobot/
+binary_sensor:
+    - platform: uptimerobot
+    api_key: ur609438-2c8feda30f74730295871996
