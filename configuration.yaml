@@ -23,6 +23,22 @@ homeassistant:
 # https://www.home-assistant.io/components/system_health/
 system_health:
 
+# Google Map
+# https://www.home-assistant.io/components/map/
+map:
+
+# Life360
+# https://www.home-assistant.io/components/life360/
+life360:
+  accounts:
+    username: !secret life360_username
+    password: !secret life360_password
+  circles:
+    include:
+      family
+  driving_speed: 30.0
+  
+
 # Text to speech
 tts:
   - platform: google_translate
