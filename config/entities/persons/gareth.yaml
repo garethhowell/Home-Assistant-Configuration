@@ -1,0 +1,6 @@
+---
+name: Gareth
+id: garethhowell
+user_id: !secret user_id_gareth
+device_trackers:
+  - device_tracker.iphone_gareth

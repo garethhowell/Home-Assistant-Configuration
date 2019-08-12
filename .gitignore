@@ -18,7 +18,7 @@ deps/
 **/__pycache__
 
 # Ignored Files
-secrets.yaml
+config/secrets.yaml
 ip_bans.yaml
 known_devices.yaml
 *.conf

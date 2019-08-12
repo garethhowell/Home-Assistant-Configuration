@@ -1,0 +1,7 @@
+---
+# Uptime Robot
+# https://www.home-assistant.io/components/uptimerobot/
+
+platform: uptimerobot
+name: uptimerobot
+api_key: ur609438-2c8feda30f74730295871996
