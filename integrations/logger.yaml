@@ -2,3 +2,6 @@
 # Logger
 
 logger:
+  default: warning
+  logs:
+    homeassistant.components.hacs: debug
