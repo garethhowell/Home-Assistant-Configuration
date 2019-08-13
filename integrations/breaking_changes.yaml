@@ -1,0 +1,7 @@
+---
+# Get a warning of any impending breaking changes
+# https://github.com/custom-components/breaking_changes
+
+breaking_changes:
+  name: Potential Breaking changes
+  scan_interval: 60
