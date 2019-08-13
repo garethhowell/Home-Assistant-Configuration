@@ -3,5 +3,4 @@
 # https://www.home-assistant.io/components/uptimerobot/
 
 platform: uptimerobot
-name: uptimerobot
 api_key: !secret uptimerobot_api_key
