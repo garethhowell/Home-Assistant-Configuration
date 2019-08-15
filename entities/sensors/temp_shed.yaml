@@ -1,0 +1,4 @@
+platform: mqtt
+state_topic: 'home/sensor/530/temp'
+name: 'Shed Temp'
+unit_of_measurement: '°C'

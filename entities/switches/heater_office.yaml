@@ -1,0 +1,8 @@
+platform: mqtt
+name: "Office Heater"
+command_topic: "home/switch/245/power"
+state_topic: "home/switch/245/state"
+payload_on: "On"
+payload_off: "Off"
+qos: 1
+retain: true

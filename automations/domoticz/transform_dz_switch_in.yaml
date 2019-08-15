@@ -1,0 +1,13 @@
+alias: "transform DZ switch input"
+trigger:
+  - platform: mqtt
+    topic: 'domoticz/out'
+condition:
+  condition: template
+  value_template: '{{ trigger.payload_json.dtype == "Light/Switch" }}'
+action:
+  - service: mqtt.publish
+    data_template:
+      topic: 'home/switch/{{ trigger.payload_json.idx }}/state'
+      payload_template: '{% if trigger.payload_json.nvalue == 1 %} On {% else %} Off {% endif %}'
+      

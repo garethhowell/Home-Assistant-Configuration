@@ -7,12 +7,12 @@ mqtt:
   discovery: true
   discovery_prefix: homeassistant
   birth_message:
-    topic: "hass/status"
+    topic: "home/status"
     payload: "online"
     qos: 1
     retain: true
   will_message:
-    topic: "hass/status"
+    topic: "home/status"
     payload: "offline"
     qos: 1
     retain: true

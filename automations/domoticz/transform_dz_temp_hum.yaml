@@ -1,0 +1,20 @@
+alias: 'transform DZ temp+humidity'
+trigger:
+  - platform: mqtt
+    topic: 'domoticz/out'
+condition:
+  condition: template
+  value_template: '{{ trigger.payload_json.dtype == "Temp + Humidity" }}'
+action:
+  - service: mqtt.publish
+    data_template:
+      topic: 'home/sensor/{{ trigger.payload_json.idx }}/temp'
+      payload_template: '{{ trigger.payload_json.svalue1 }}'
+  - service: mqtt.publish
+    data_template:
+      topic: 'home/sensor/{{ trigger.payload_json.idx }}/hum'
+      payload_template: '{{ trigger.payload_json.svalue2 }}'
+  - service: mqtt.publish
+    data_template:
+      topic: 'home/sensor/{{ trigger.payload_json.idx }}/dew_point'
+      payload_template: '{{ trigger.payload_json.svalue3 }}'
