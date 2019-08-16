@@ -1,0 +1,8 @@
+platform: mqtt
+name: "Shed Heater"
+command_topic: "home/switch/183/power"
+state_topic: "home/switch/183/state"
+payload_on: "On"
+payload_off: "Off"
+qos: 1
+retain: true
