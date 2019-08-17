@@ -1,0 +1,17 @@
+---
+# Shack thermostat
+
+platform: generic_thermostat
+name: "Shack Thermostat"
+heater: switch.shack_heater
+target_sensor: sensor.shack_temperature
+min_temp: 10
+max_temp: 25
+target_temp: 15
+ac_mode: false
+min_cycle_duration:
+  seconds: 15
+cold_tolerance: 0.5
+hot_tolerance: 0.5
+initial_hvac_mode: "off"
+away_temp: 10

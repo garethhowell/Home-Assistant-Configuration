@@ -1,0 +1,4 @@
+---
+# Climate control
+
+climate: !include_dir_merge_named ../entities/climate
