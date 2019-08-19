@@ -23,6 +23,8 @@ ip_bans.yaml
 known_devices.yaml
 *.conf
 *.db
+*.db-shm
+*.db-wal
 *.uuid
 *.mp3
 cameras.yaml
