@@ -1,0 +1,4 @@
+platform: mqtt
+state_topic: 'home/sensor/499/hum'
+name: 'External Humidity'
+unit_of_measurement: '%'
