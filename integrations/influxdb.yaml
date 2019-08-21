@@ -35,11 +35,11 @@ influxdb:
 #  include:
 #      entities:
 
-
-  entities: !include_dir_merge_list ../influxdb
+  include:
+    entities: !include_dir_merge_list ../influxdb
 
   component_config_glob:
-      sensor.*humidity:
-          override_measurement: humidity
-      sensor.*temperature:
-          override_measurement: temperature
+    sensor.*humidity:
+      override_measurement: humidity
+    sensor.*temperature:
+      override_measurement: temperature
