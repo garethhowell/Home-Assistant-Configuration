@@ -1,0 +1,7 @@
+---
+# Speedtest sensors to track in influxdb
+#
+
+- sensor.speedtest_download
+- sensor.speedtest_ping
+- sensor.speedtest_upload

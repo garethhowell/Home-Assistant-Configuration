@@ -1,5 +1,5 @@
 platform: mqtt
-name: "Shack Heater"
+name: "Shack Lights"
 command_topic: "home/switch/70/power"
 state_topic: "home/switch/70/state"
 payload_on: "On"

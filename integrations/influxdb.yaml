@@ -32,14 +32,11 @@ influxdb:
 
   # I like to specify (whitelist) each thing I'd like to put
   # into InfluxDB, to keep the database as clean as possible.
-  include:
-      entities:
-        - sensor.external_temperature
-        - sensor.office_humidity
-        - sensor.office_temperature
-        - sensor.shed_temperature
+#  include:
+#      entities:
 
-#    entities: !include_dir_merge_list ../influxdb
+
+  entities: !include_dir_merge_list ../influxdb
 
   component_config_glob:
       sensor.*humidity:

@@ -1,0 +1,16 @@
+---
+# Shack thermostat
+
+platform: generic_thermostat
+name: "Shed Thermostat High Temp"
+heater: switch.shed_fan
+target_sensor: sensor.shed_temperature
+min_temp: 5
+max_temp: 30
+target_temp: 23
+ac_mode: true
+min_cycle_duration:
+  seconds: 15
+cold_tolerance: 0.5
+hot_tolerance: 0.5
+initial_hvac_mode: "off"

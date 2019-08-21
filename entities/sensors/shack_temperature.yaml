@@ -1,4 +1,4 @@
 platform: mqtt
 state_topic: 'home/sensor/509/temp'
-name: 'Office Temperature'
+name: 'Shack Temperature'
 unit_of_measurement: '°C'

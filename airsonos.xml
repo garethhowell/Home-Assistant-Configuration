@@ -35,9 +35,3 @@
 <mac>bb:bb:29:35:80:81</mac>
 <enabled>1</enabled>
 </device>
-<device>
-<udn>uuid:4D454930-0100-1000-8001-80C755543627</udn>
-<name>43FX650_Series+</name>
-<mac>bb:bb:2d:36:a6:1f</mac>
-<enabled>1</enabled>
-</device>

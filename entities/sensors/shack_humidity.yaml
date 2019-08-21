@@ -1,4 +1,4 @@
 platform: mqtt
 state_topic: 'home/sensor/509/hum'
-name: 'Office Humidity'
+name: 'Shack Humidity'
 unit_of_measurement: '%'
