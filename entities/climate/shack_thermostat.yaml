@@ -1,5 +1,5 @@
 ---
-# Shack thermostat
+# Shack thermostat - heating
 
 platform: generic_thermostat
 name: "Shack Thermostat"

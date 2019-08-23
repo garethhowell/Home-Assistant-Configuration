@@ -1,5 +1,5 @@
 ---
-# Shack thermostat
+# Shed thermostat - heating
 
 platform: generic_thermostat
 name: "Shed Thermostat Low Temp"

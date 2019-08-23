@@ -1,5 +1,5 @@
 ---
-# Shack thermostat
+# Shed thermostat - cooling
 
 platform: generic_thermostat
 name: "Shed Thermostat High Temp"

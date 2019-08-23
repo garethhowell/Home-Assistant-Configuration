@@ -23,6 +23,9 @@ influxdb:
   # Max number of retries in case of a failure.
   max_retries: 3
 
+  # Measurement name to use when an entity doesn’t have a unit.
+  default_measurement: state
+
   # The list of attribute names which should be reported as tags
   # and not fields to InfluxDB.
   # I've added `device_class` tag and the Z-Wave `node_id`.
