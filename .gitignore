@@ -27,6 +27,7 @@ known_devices.yaml
 *.db-wal
 *.uuid
 *.mp3
+airsonos.xml
 cameras.yaml
 
 # Node-Red
