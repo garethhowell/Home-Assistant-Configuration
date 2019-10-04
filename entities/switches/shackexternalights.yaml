@@ -1,0 +1,8 @@
+platform: mqtt
+name: "Shack External Lights"
+command_topic: "homeassistant/shackexternallights/37/1/0/set"
+state_topic: "homeassistant/shackexternallights/37/1/0"
+payload_on: "true"
+payload_off: "false"
+qos: 1
+retain: true

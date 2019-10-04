@@ -1,8 +1,8 @@
 platform: mqtt
 name: "Living Room Lights"
-command_topic: "home/switch/37/power"
-state_topic: "home/switch/37/state"
-payload_on: "On"
-payload_off: "Off"
+command_topic: "homeassistant/livingroomlights/37/1/0/set"
+state_topic: "homeassistant/livingroomlights/37/1/0"
+payload_on: "true"
+payload_off: "false"
 qos: 1
 retain: true
