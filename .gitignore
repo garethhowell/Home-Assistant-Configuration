@@ -29,6 +29,7 @@ known_devices.yaml
 *.mp3
 airsonos.xml
 cameras.yaml
+.pip_progress
 
 # Node-Red
 node-red
