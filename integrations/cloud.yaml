@@ -3,3 +3,11 @@
 # https://www.home-assistant.io/cloud/
 
 cloud:
+  alexa:
+    filter:
+      include_entities: switch.shackexternallights
+      include_domains: switch
+    entity_config:
+      switch.shackexternallights:
+        name: Shack Lights
+        description: The light in the shack
