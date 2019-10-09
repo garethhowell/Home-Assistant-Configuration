@@ -5,9 +5,9 @@
 cloud:
   alexa:
     filter:
-      include_entities: switch.shackexternallights
+      include_entities: switch.shack_external_lights
       include_domains: switch
     entity_config:
-      switch.shackexternallights:
-        name: Shack Lights
-        description: The light in the shack
+      switch.shack_external_lights:
+        name: Shack External Lights
+        description: The lights outside the shack

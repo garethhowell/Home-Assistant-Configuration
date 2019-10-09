@@ -6,4 +6,4 @@ trigger:
     at: "23:00:00"
 action:
   service: switch.turn_off
-  entity_id: switch.living_room_lights
+  entity_id: switch.livingroom_standard_lights

@@ -1,0 +1,7 @@
+---
+# Group all lights so they can be automated
+#
+main_livingroom_lights:
+  name: Living Room Lights
+  entities:
+    - switch.livingroom_standard_lights

@@ -1,5 +1,5 @@
 platform: mqtt
-name: "Living Room Lights"
+name: livingroom_standard_lights
 command_topic: "homeassistant/livingroomlights/37/1/0/set"
 state_topic: "homeassistant/livingroomlights/37/1/0"
 payload_on: "true"

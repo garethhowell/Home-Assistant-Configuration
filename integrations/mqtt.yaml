@@ -5,7 +5,7 @@
 mqtt:
   broker: mqtt.agdon.net
   discovery: true
-  discovery_prefix: homeassistant
+  discovery_prefix: zwave2mqtt
   birth_message:
     topic: "hass/status"
     payload: "online"

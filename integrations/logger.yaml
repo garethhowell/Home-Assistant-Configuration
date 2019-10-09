@@ -2,4 +2,4 @@
 # Logger
 
 logger:
-  default: warning
+  default: info
