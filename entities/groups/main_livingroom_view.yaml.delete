@@ -1,7 +1,0 @@
----
-#
-main_livingroom_view:
-  name: Living Room
-  view: yes
-  entities:
-    - group.main_livingroom_lights

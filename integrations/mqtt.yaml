@@ -4,8 +4,9 @@
 
 mqtt:
   broker: mqtt.agdon.net
+  client_id: hassio
   discovery: true
-  discovery_prefix: zwave2mqtt
+  discovery_prefix: hassio_2
   birth_message:
     topic: "hass/status"
     payload: "online"

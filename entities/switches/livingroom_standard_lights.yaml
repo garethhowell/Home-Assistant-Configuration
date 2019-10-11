@@ -1,8 +1,8 @@
 platform: mqtt
 name: livingroom_standard_lights
-command_topic: "homeassistant/livingroomlights/37/1/0/set"
-state_topic: "homeassistant/livingroomlights/37/1/0"
-payload_on: "true"
-payload_off: "false"
+state_topic: hassio_2/switch/tkb_home_tz88_smart_energy_plug_in_switch_switch/state
+command_topic: hassio_2/switch/tkb_home_tz88_smart_energy_plug_in_switch_switch/command
+payload_on: "on"
+payload_off: "off"
 qos: 1
 retain: true

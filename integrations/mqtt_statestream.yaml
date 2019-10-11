@@ -1,8 +1,0 @@
----
-#
-# mqtt_statestream
-# https://www.home-assistant.io/integrations/mqtt_eventstream/
-#
-mqtt_eventstream:
-  publish_topic: master/topic
-  subscribe_topic: slaves/#

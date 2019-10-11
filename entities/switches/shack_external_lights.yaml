@@ -1,8 +1,8 @@
 platform: mqtt
 name: "Shack External Lights"
-command_topic: "homeassistant/nodeID_6/37/1/0/set"
-state_topic: "homeassistant/nodeID_6/37/1/0"
-payload_on: "true"
-payload_off: "false"
+command_topic: "hassio_2/switch/tkb_home_tz88_smart_energy_plug_in_switch_switch_3/command"
+state_topic: "hassio_2/switch/tkb_home_tz88_smart_energy_plug_in_switch_switch_3/state"
+payload_on: "on"
+payload_off: "off"
 qos: 1
 retain: true

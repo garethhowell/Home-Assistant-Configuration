@@ -1,8 +1,0 @@
-platform: mqtt
-name: "Shed Fan"
-command_topic: "home/switch/441/power"
-state_topic: "home/switch/441/state"
-payload_on: "On"
-payload_off: "Off"
-qos: 1
-retain: true

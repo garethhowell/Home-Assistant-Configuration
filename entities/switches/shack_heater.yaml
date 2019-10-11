@@ -1,8 +1,8 @@
 platform: mqtt
 name: "Shack Heater"
-command_topic: "home/switch/245/power"
-state_topic: "home/switch/245/state"
-payload_on: "On"
-payload_off: "Off"
+command_topic: "hassio_2/switch/tkb_home_tz88_smart_energy_plug_in_switch_switch_2/command"
+state_topic: "hassio_2/switch/tkb_home_tz88_smart_energy_plug_in_switch_switch_2/state"
+payload_on: "on"
+payload_off: "off"
 qos: 1
 retain: true
