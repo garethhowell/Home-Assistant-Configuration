@@ -1,0 +1,14 @@
+---
+#
+# input_select to set the state of the heating in the house
+# Setting mode to "home-day" only applies to the current day.
+# It is reset to "normal" at midnight.
+# To prevent this, set input_select.home_tomorrow to True
+#
+heating_mode:
+  name: Heating Mode
+  options:
+    - normal
+    - home-day
+    - away
+  icon: mdi:flame

@@ -13,5 +13,11 @@
 # The configuration.yaml is only used to bootstrap the system.
 #
 homeassistant:
+  name: home
+  latitude: !secret zone_home_latitude
+  longitude: !secret zone_home_longitude
+  time_zone: Europe/London
+  unit_system: metric
+
   # Load packages
   packages: !include_dir_named integrations

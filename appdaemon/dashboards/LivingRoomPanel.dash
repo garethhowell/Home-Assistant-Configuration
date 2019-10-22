@@ -1,0 +1,41 @@
+#
+# Main arguments, all optional
+#
+title: Living Room
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+  namespace: default
+
+
+label_lights:
+  widget_type: label
+  text: Lights
+
+label_rads:
+  widget_type: label
+  text: Radiators
+
+label_temps:
+  widget_type: label
+  text: Temps
+
+label_blank:
+  widget_type: label
+  text: ""
+
+livingroom_standard_lights:
+  widget_type: light
+  title: Standard Lights
+  entity: switch.livingroom_standard_lights
+
+
+layout:
+  - include: top_panel
+  - label_lights(2x1),      label_rads(2x1), label_blank(4x1)
+  - livingroom_standard_lights(2x1), label_blank(4x1)

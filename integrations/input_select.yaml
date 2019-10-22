@@ -1,0 +1,8 @@
+---
+# Input_Selects are UI controls that can be used by automations.
+#
+# This loads up my input_select configurations
+#
+# https://www.home-assistant.io/integrations/input_select/
+#
+sensor: !include_dir_list ../entities/input_selects

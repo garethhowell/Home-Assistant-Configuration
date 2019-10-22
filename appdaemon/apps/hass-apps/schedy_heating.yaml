@@ -4,12 +4,22 @@ schedy_heating:  # This is our app instance name.
 
   actor_type: thermostat
 
+  expression_environment: |
+    def heating_mode():
+        return state("input_select.heating_mode")
+
+    def home_tomorrow():
+        return state("input_select.home_tomorrow")
+
+  schedule_snippets:
+    
+
   # default rule to apply if no other matches
   schedule_append:
     - v: "OFF"
 
   rooms:
-#    living_room:
+#    living:
 #      actors: # controlled devices
 #        climate.living_1:
 #      schedule:
@@ -34,7 +44,7 @@ schedy_heating:  # This is our app instance name.
 
     shack:
       actors:
-        climate.shack:
+        climate.shack_thermostat:
           # 19 when it's occupied, 15 if not
           - { v: 19, start: "09:00", end: "22:00" }
           - { v: 15 }

@@ -1,0 +1,17 @@
+ext_temperature:
+  widget_type: sensor
+  title: External Temp
+  units: "&deg;C"
+  precision: 0
+  entity: sensor.External_Temperature
+
+label_blank:
+  widget_type: label
+  text: "     "
+
+weather:
+  widget_type: weather
+  units: "&deg;C"
+
+layout:
+  - clock.clock(2x2), label_blank(4x2), weather(2x2)

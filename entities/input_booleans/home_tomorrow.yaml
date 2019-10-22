@@ -1,0 +1,10 @@
+---
+#
+# input_select to indicate that we are home tomorrow
+# This is used to set the state of input_select.heating_mode tomorrow,
+# otherwise, heating_mode will be reset back to "normal" tomorrow.
+#
+home_tomorrow:
+  name: Home Tomorrow?
+  initial: off
+  icon: mdi:home

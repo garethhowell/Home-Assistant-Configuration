@@ -1,0 +1,19 @@
+---
+# Switch on living room lights if it is raining outside
+# From https://www.home-assistant.io/cookbook/automation_for_rainy_days/
+#
+alias: 'Rainy Day'
+trigger:
+  - platform: state
+    entity_id: sensor.dark_sky_precip_intensity
+    to: 'rain'
+condition:
+  - condition: state
+    entity_id: device_tracker.life360_gareth
+    state: 'home'
+  - condition: time
+    after: '14:00'
+    before: '23:00'
+action:
+  service: light.turn_on
+  entity_id: group.living_room_lights
