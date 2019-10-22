@@ -5,4 +5,4 @@
 #
 # https://www.home-assistant.io/integrations/input_boolean/
 #
-sensor: !include_dir_list ../entities/input_booleans
+input_boolean: !include_dir_list ../entities/input_booleans

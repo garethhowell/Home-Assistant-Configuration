@@ -5,4 +5,4 @@
 #
 # https://www.home-assistant.io/integrations/input_select/
 #
-sensor: !include_dir_list ../entities/input_selects
+input_select: !include_dir_list ../entities/input_selects
