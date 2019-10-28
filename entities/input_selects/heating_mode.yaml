@@ -10,5 +10,4 @@ heating_mode:
   options:
     - normal
     - home-day
-    - away
   icon: mdi:flame

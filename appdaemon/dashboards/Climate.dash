@@ -1,7 +1,7 @@
 #
 # Main arguments, all optional
 #
-title: Living Room
+title: Climate
 widget_dimensions: [120, 120]
 widget_size: [1, 1]
 widget_margins: [5, 5]
@@ -15,5 +15,5 @@ global_parameters:
 
 layout:
     - include: top_panel
-    - include: living_middle_panel
+    - include: climate_middle_panel
     - include: bottom_panel

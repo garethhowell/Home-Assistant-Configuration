@@ -2,16 +2,47 @@ ext_temperature:
   widget_type: sensor
   title: External Temp
   units: "&deg;C"
+  precision: 1
+  entity: sensor.dark_sky_temperature
+
+ext_humidity:
+  widget_type: sensor
+  title: External Humidity
   precision: 0
-  entity: sensor.External_Temperature
+  entity: sensor.dark_sky_humidity
+
+gareth_presence:
+  widget_type: device_tracker
+  title: Gareth
+  device: life360_gareth
+  enable: 1
+  icon_on: fa-male
+  icon_off: fa-male
+  icon_style_active: "color: #4bcdea"
+
+varina_presence:
+  widget_type: device_tracker
+  title: Varina
+  device: life360_varina
+  enable: 1
+  icon_on: fa-female
+  icon_off: fa-female
+  icon_style_active: "color: #ea4b82"
 
 label_blank:
   widget_type: label
-  text: "     "
+  text: a
+
+mode:
+  widget_type: sensor
+  title: House Mode
+  text_style: "text-transform: uppercase;font-size: 300%"
+  entity: input_select.house_mode
 
 weather:
   widget_type: weather
   units: "&deg;C"
 
 layout:
-  - clock.clock(2x2), label_blank(4x2), weather(2x2)
+  - clock.clock(2x1), weather(2x2), ext_temperature, ext_humidity, gareth_presence, varina_presence
+  - mode(2x1), spacer(2x1)

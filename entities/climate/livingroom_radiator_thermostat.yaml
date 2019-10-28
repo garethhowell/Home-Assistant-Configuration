@@ -1,0 +1,11 @@
+---
+# Livingroom Radiator thermostat - heating
+
+platform: mqtt
+name: "Livingroom Rad Thermostat"
+modes:
+  - "off"
+  - "heat"
+temperature_command_topic: hassio_2/climate/danfoss_z_thermostat_014g0013_heating_1_3/command
+temperature_state_topic: hassio_2/climate/danfoss_z_thermostat_014g0013_heating_1_3/temperature
+precision: 1.0

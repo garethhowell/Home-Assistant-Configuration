@@ -1,0 +1,14 @@
+load_main_panel:
+  widget_type: navigate
+  title: Living Room
+  icon_inactive: fa-home
+  dashboard: LivingRoomPanel
+
+load_climate_panel:
+  widget_type: navigate
+  title: Climate
+  icon_inactive: fa-dashboard
+  dashboard: ClimatePanel
+
+layout:
+  - load_main_panel, load_climate_panel

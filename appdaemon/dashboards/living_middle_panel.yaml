@@ -1,0 +1,24 @@
+label_lights:
+  widget_type: label
+  text: Lights
+
+label_rads:
+  widget_type: label
+  text: Radiators
+
+label_temps:
+  widget_type: label
+  text: Temps
+
+label_blank:
+  widget_type: label
+  text: ""
+
+livingroom_lights:
+  widget_type: light
+  title: Standard Lights
+  entity: switch.livingroom_standard_lights
+
+layout:
+  - livingroom_lights(2x1)
+  -

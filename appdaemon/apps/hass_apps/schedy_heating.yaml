@@ -1,0 +1,46 @@
+schedy_heating:  # This is our app instance name.
+  module: hass_apps_loader
+  class: SchedyApp
+
+  debug: false
+
+  actor_type: thermostat
+
+  expression_environment: |
+    def heating_mode():
+        return state("input_select.heating_mode")
+
+    def home_tomorrow():
+        return state("input_boolean.home_tomorrow")
+
+    def house_mode():
+        return state("input_select.house_mode")
+
+  schedule_snippets:
+
+  watched_entities:
+    - input_boolean.home_tomorrow
+    - input_select.heating_mode
+    - input_select.house_mode
+
+
+  # default rule to apply if no other matches
+  schedule_append:
+    - v: 15
+
+  rooms:
+    shack:
+      rescheduling_delay: 120
+      actors:
+        climate.shack_thermostat:
+      schedule:
+        - x: "10 if house_mode() == 'away' else Next()"
+        - v: 19
+          rules:
+            - { start: "09:00", end: "22:00" }
+
+  statistics:
+    shack_temp_delta:
+      type: temp_delta
+      rooms:
+        shack:
