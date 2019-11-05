@@ -20,9 +20,4 @@ homeassistant:
   unit_system: metric
 
   # Load packages
-  packages: !include_dir_named integrations
-
-zwave:
-  usb_path: /dev/ttyACM0
-  polling_interval: 60000
-  debug: true
+  packages: !include_dir_named packages

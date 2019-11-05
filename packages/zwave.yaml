@@ -1,0 +1,9 @@
+---
+# Z-Wave integrations
+#
+# https://www.home-assistant.io/integrations/zwave
+#
+zwave:
+  usb_path: /dev/ttyACM0
+  polling_interval: 60000
+  debug: true
