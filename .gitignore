@@ -27,6 +27,7 @@ known_devices.yaml
 *.db-wal
 *.uuid
 *.mp3
+*.delete
 airsonos.xml
 cameras.yaml
 .pip_progress

@@ -1,9 +1,0 @@
-alias: "transform DZ switch output"
-trigger:
-  - platform: mqtt
-    topic: 'home/thermostat/+/setpoint'
-action:
-  - service: mqtt.publish
-    data_template:
-      topic: 'domoticz/in'
-      payload_template: '{"command": "thermostat", "idx": {{ trigger.topic.split("/")[-2] }}, "setpoint": "{{ trigger.payload }}" }'

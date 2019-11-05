@@ -1,8 +1,0 @@
-platform: mqtt
-name: "Shed Heater"
-command_topic: "hassio_2/switch/tkb_home_tz68_on_off_switch_socket_switch/command"
-state_topic: "hassio_2/switch/tkb_home_tz68_on_off_switch_socket_switch/state"
-payload_on: "on"
-payload_off: "off"
-qos: 1
-retain: true

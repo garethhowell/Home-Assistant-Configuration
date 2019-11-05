@@ -1,8 +1,0 @@
-platform: mqtt
-name: livingroom_standard_lights
-state_topic: hassio_2/switch/tkb_home_tz88_smart_energy_plug_in_switch_switch/state
-command_topic: hassio_2/switch/tkb_home_tz88_smart_energy_plug_in_switch_switch/command
-payload_on: "on"
-payload_off: "off"
-qos: 1
-retain: true
