@@ -30,6 +30,9 @@ known_devices.yaml
 airsonos.xml
 cameras.yaml
 .pip_progress
+OZW_Log.txt
+pyozw.sqlite
+
 
 # Node-Red
 node-red

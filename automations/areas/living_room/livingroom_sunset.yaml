@@ -9,4 +9,4 @@ trigger:
     offset: '-00:30:00'
 action:
   service: switch.turn_on
-  entity_id: switch.livingroom_standard_lights
+  entity_id: switch.tkb_home_tz88_smart_energy_plug_in_switch_switch
