@@ -1,6 +1,5 @@
 platform: mqtt
 state_topic: 'domoticz/out'
 name: 'Shack Temperature'
-value_template:
 unit_of_measurement: '°C'
 device_class: temperature
