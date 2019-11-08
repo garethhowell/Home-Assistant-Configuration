@@ -4,4 +4,4 @@
 main_livingroom_lights:
   name: Living Room Lights
   entities:
-    - switch.livingroom_standard_lights
+    - switch.livingroom_standard_lamps

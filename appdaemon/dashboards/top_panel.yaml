@@ -35,8 +35,7 @@ label_blank:
 
 mode:
   widget_type: sensor
-  title: House Mode
-  text_style: "text-transform: uppercase;font-size: 300%"
+  text_style: "text-transform: uppercase;font-size: 200%"
   entity: input_select.house_mode
 
 weather:

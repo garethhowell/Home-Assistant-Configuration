@@ -4,12 +4,11 @@ schedy_heating:  # This is our app instance name.
 
   debug: false
 
+  reset_at_startup: false
+
   actor_type: thermostat
 
   expression_environment: |
-    def heating_mode():
-        return state("input_select.heating_mode")
-
     def home_tomorrow():
         return state("input_boolean.home_tomorrow")
 
@@ -20,24 +19,69 @@ schedy_heating:  # This is our app instance name.
 
   watched_entities:
     - input_boolean.home_tomorrow
-    - input_select.heating_mode
     - input_select.house_mode
 
+
+  schedule_prepend:
+    - x: "10 if house_mode() == 'Away' else Next()"
 
   # default rule to apply if no other matches
   schedule_append:
     - v: 15
 
   rooms:
+    bedroom_1:
+      rescheduling_delay: 60
+      actors:
+        climate.bedroom_1_radiator_thermostat:
+      schedule:
+        - v: 21
+          rules:
+            - { start: "07:00", end: "09:00" }
+        - v: 19
+          rules:
+            - { start: "19:00", end: "22:00" }
+
+    bedroom_2:
+      rescheduling_delay: 0
+      actors:
+        climate.bedroom_2_radiator_thermostat:
+      schedule:
+        - v: 21
+          rules:
+            - { start: "07:00", end: "09:00" }
+        - v: 21
+          rules:
+            - { start: "17:00", end: "22:00" }
+
+    landing:
+      actors:
+        climate.landing_radiator_thermostat:
+      schedule:
+        - v: 19
+
+    livingroom:
+      rescheduling_delay: 60
+      replicate_changes: true
+      actors:
+        climate.livingroom_radiator_thermostat:
+        climate.diningroom_radiator_thermostat:
+      schedule:
+        - v: 21
+          rules:
+            - { start: "07:00", end: "09:00" }
+        - v: 19
+          rules:
+            - { start: "19:00", end: "22:00" }
+
     shack:
-      rescheduling_delay: 120
+      allow_manual_changes: true
       actors:
         climate.shack_thermostat:
       schedule:
-        - x: "10 if house_mode() == 'away' else Next()"
         - v: 19
           rules:
-            - { start: "09:00", end: "22:00" }
+            - { start: "08:30", end: "22:00" }
 
   statistics:
     shack_temp_delta:

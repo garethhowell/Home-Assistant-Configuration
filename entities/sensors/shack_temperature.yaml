@@ -1,5 +1,6 @@
 platform: mqtt
-state_topic: 'hassio_2/climate/horstmann_secure_meters_hrt4_zw_thermostat_transmitter_heating_1_2/current_temperature'
+state_topic: 'domoticz/out'
 name: 'Shack Temperature'
+value_template:
 unit_of_measurement: '°C'
 device_class: temperature

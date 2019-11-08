@@ -21,6 +21,7 @@ deps/
 secrets.yaml
 ip_bans.yaml
 known_devices.yaml
+.HA_VERSION
 *.conf
 *.db
 *.db-shm

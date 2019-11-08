@@ -1,0 +1,8 @@
+---
+# rfxtrx
+#
+# https://www.home-assistant.io/integrations/rfxtrx/
+#
+rfxtrx:
+  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1XETXVE-if00-port0
+  
