@@ -20,7 +20,7 @@ automation:
     trigger:
       - platform: event
         event_type: signal_received
-        event_data: {"entity_id": "sensor.front_door_sound"}
+        event_data: {"entity_id": "sensor.front_door_bell"}
     action:
       - service: notify.pushover
         data:
