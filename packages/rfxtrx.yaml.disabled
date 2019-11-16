@@ -8,19 +8,22 @@ rfxtrx:
 
 sensor:
   platform: rfxtrx
-  automatic_add: false
-  devices:
-    07160062003d0150:
-      name: Front Door
-      data_type:
-        - Sound
+  automatic_add: true
+
+switch:
+  platform: rfxtrx
+  automatic_add: true
+#  devices:
+#    "07160009003d0140":
+#      name: Front Door Bell
+#      fire_event: true #Because the state doesn't reset
 
 automation:
   - alias: "Doorbell pressed"
     trigger:
       - platform: event
-        event_type: signal_received
-        event_data: {"entity_id": "sensor.front_door_bell"}
+        event_type: state_changed
+        event_data: {"entity_id": "switch.front_door_bell"}
     action:
       - service: notify.pushover
         data:
