@@ -1,0 +1,11 @@
+alias: set_house_vacant
+trigger:
+  - condition: state
+    entity_id: device_tracker.life360_gareth
+    state: 'not_home'
+  - condition: state
+    entity_id: device_tracker.life360_varina
+    state: 'not_home'
+action:
+  service: input_boolean.turn_on
+  entity_id: house_vacant
