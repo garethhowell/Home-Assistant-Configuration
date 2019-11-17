@@ -7,7 +7,7 @@ input_boolean:
     initial: off
     icon: mdi:home
 
-automations:
+automation:
   alias: set_house_vacant
   trigger:
     - condition: state
