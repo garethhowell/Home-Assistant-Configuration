@@ -6,3 +6,21 @@ input_boolean:
     name: "House Vacant?"
     initial: off
     icon: mdi:home
+
+automation:
+  - alias: 'Set House Vacant'
+    trigger:
+      platform: state
+      entity_id: device_tracker.life360_gareth, device_tracker.life360_varina
+      to: 'not_home'
+      for: "01:00:00"
+    condition:
+      - condition: state
+        entity_id: 'device_tracker.life360_gareth'
+        state: 'not_home'
+      - condition: state
+        entity_id: 'device_tracker.life360_varina'
+        state: 'not_home'
+    action:
+      service: input_boolean.turn_on
+      entity_id: input_boolean.house_vacant
