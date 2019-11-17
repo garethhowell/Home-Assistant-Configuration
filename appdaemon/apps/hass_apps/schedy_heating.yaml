@@ -39,7 +39,7 @@ schedy_heating:  # This is our app instance name.
       schedule:
         - v: 19
           rules:
-            - x: "Add(-3) if is_on('input_boolean.house_vacant') else Next()"
+            - x: "17 if is_on('input_boolean.house_vacant') else Next()"
             - { start: "07:00", end: "09:00" }
             - { start: "19:00", end: "22:00" }
 
@@ -53,24 +53,24 @@ schedy_heating:  # This is our app instance name.
             - weekdays: 1-5
               rules:
               - rules:
-                - x: "Add(-3) if state('device_tracker.life360_varina') == 'not_home' else Next()"
+                - x: "17 if state('device_tracker.life360_varina') == 'not_home' else Next()"
                 - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
                 - { start: "07:00", end: "09:00" }
                 - { start: "17:00", end: "22:00" }
               - rules:
-                - x: "Add(-3) if state('device_tracker.life360_varina') == 'not_home' else Next()"
+                - x: "17 if state('device_tracker.life360_varina') == 'not_home' else Next()"
                 - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
                 - { start: "08:00", end: "22:00" }
             - weekdays: 6-7
               rules:
-                - x: "Add(-3) if state('device_tracker.life360_varina') == 'not_home' else Next()"
+                - x: "17 if state('device_tracker.life360_varina') == 'not_home' else Next()"
                 - { start: "08:00", end: "22:00" }
 
     landing:
       actors:
         climate.landing_radiator_thermostat:
       schedule:
-        - x: "Add(-3) if is_on('input_boolean.house_vacant') else Next()"
+        - x: "17 if is_on('input_boolean.house_vacant') else Next()"
         - v: 19
 
     livingroom:
@@ -85,17 +85,17 @@ schedy_heating:  # This is our app instance name.
             - weekdays: 1-5
               rules:
               - rules:
-                - x: "Add(-3) if is_on('input_boolean.house_vacant') else Next()"
+                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
                 - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
                 - { start: "07:00", end: "09:00" }
                 - { start: "17:00", end: "22:00" }
               - rules:
-                - x: "Add(-3) if is_on('input_boolean.house_vacant') else Next()"
+                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
                 - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
                 - { start: "08:00", end: "22:00" }
             - weekdays: 6-7
               rules:
-                - x: "Add(-3) if is_on('input_boolean.house_vacant') else Next()"
+                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
                 - { start: "08:00", end: "22:00" }
 
     shack:
@@ -105,7 +105,7 @@ schedy_heating:  # This is our app instance name.
       schedule:
         - v: 21
           rules:
-            - x: "Add(-3) if state('device_tracker.life360_gareth') == 'not_home' else Next()"
+            - x: "17 if state('device_tracker.life360_gareth') == 'not_home' or is_on('input_boolean.house_vacant') else Next()"
             - { start: "08:30", end: "22:00" }
 
   statistics:
