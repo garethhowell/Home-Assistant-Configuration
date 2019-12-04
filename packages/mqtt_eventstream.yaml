@@ -1,8 +1,0 @@
----
-#
-# mqtt_eventtream
-# https://www.home-assistant.io/integrations/mqtt_eventstream/
-#
-#mqtt_eventstream:
-#  publish_topic: hassio
-#  subscribe_topic: hassio_2

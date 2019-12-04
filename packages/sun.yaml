@@ -1,3 +1,0 @@
-# Sun
-sun:
-  elevation: !secret zone_home_elevation

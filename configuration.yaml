@@ -1,17 +1,6 @@
 ---
 # Welcome to my Home Assistant configuration!
 #
-# The layour has been heavily based on that used by @frenk
-# See https://github.com/frenck/home-assistant-config for more info
-#
-# My system is very modular and very differently structured
-# compared to other configurations you'll find online.
-#
-# Basically, each file in the repository does 1 (one, uno, eins)
-# thing only! Click through it, you'll get it pretty fast.
-#
-# The configuration.yaml is only used to bootstrap the system.
-#
 homeassistant:
   name: home
   latitude: !secret zone_home_latitude
@@ -19,5 +8,123 @@ homeassistant:
   time_zone: Europe/London
   unit_system: metric
 
-  # Load packages
+  # Lets me customize individual entities
+  customize: !include_dir_merge_named ../customizations/entities
+
+  # Lets me custimize all entities in a domain
+  customize_domain: !include_dir_merge_named ../customizations/domains
+
+  # Lets me custimize entities based on a matching pattern
+  customize_glob: !include_dir_merge_named ../customizations/globs
+
+  # All complex integrations are contained in packages
   packages: !include_dir_named packages
+
+  # Simple integrations are retained in here.
+
+  # Get a warning of any impending breaking changes
+  # https://github.com/custom-components/breaking_changes
+  #
+  breaking_changes:
+    name: Potential Breaking changes
+    scan_interval: 60
+
+  # The config component enables a set of additional capabilities to manage and
+  # configure certain parts of Home Assistant straight from the frontend.
+  #
+  # https://www.home-assistant.io/components/config/
+  #
+  config:
+
+  # Discover new devices
+  # https://www.home-assistant.io/integrations/discovery/
+  #
+  discovery:
+
+  # Home Assistant Community Store
+  # https://custom-components.github.io/hacs/
+
+  hacs:
+    token: !secret hacs_token
+
+  # This enables the Hass.io panel in the Home Assistant frontend
+  hassio:
+
+  # The history component will track everything that is going on within
+  # Home Assistant and allows the user to browse through it.
+  #
+  # https://www.home-assistant.io/components/history/
+  #
+  history:
+
+  # The Home Assistant for iOS app offers a companion app for iOS which
+  # is deeply integrated into both Home Assistant and iOS.
+  #
+  # https://www.home-assistant.io/components/ios/
+  # https://www.home-assistant.io/docs/ecosystem/ios/
+  #
+  ios:
+
+  # The logbook component provides a different perspective on the history of
+  # your house by showing all the changes that happened to your house in
+  # reverse chronological order.
+  #
+  # https://www.home-assistant.io/components/logbook/
+  #
+  logbook:
+
+  # Logger
+
+  logger:
+    default: info
+
+  # Lovelace UI
+  # https://www.home-assistant.io/lovelace/
+  # https://www.home-assistant.io/lovelace/yaml-mode/
+  #lovelace:
+  #    mode: yaml
+
+  # Google Map
+  # https://www.home-assistant.io/components/map/
+  map:
+
+  #
+  # The Mobile App component allows Home Assistant mobile apps to easily
+  # integrate with Home Assistant.
+  #
+  # https://www.home-assistant.io/components/mobile_app/
+  #
+  mobile_app:
+
+  # The recorder component is storing details in a database which
+  # then are handled by the history component.
+  #
+  # https://www.home-assistant.io/components/recorder/
+  #
+  recorder:
+    # The number of days of history to keep in the recorder database
+    purge_keep_days: 3
+
+    # How often (in days) the purge task runs
+    purge_interval: 1
+
+  # The speedtestdotnet integration uses the Speedtest.net
+  # web service to measure network bandwidth performance.
+  #
+  # https://www.home-assistant.io/components/speedtestdotnet/
+  #
+  speedtestdotnet:
+    scan_interval:
+      minutes: 15
+
+  # Sun
+  sun:
+    elevation: !secret zone_home_elevation
+
+  # The System Health component provides an API to offer information
+  # on the system and its components.
+  #
+  # https://www.home-assistant.io/components/system_health/
+  #
+  system_health:
+  
