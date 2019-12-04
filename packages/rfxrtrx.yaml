@@ -25,4 +25,4 @@ automation:
     action:
       - service: notify.pushover
         data:
-          message: "Ding, Dong!"
+          message: "Ding, Dong! Front Doorbell"
