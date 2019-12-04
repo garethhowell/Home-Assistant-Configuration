@@ -25,9 +25,9 @@ homeassistant:
   # Get a warning of any impending breaking changes
   # https://github.com/custom-components/breaking_changes
   #
-  breaking_changes:
-    name: Potential Breaking changes
-    scan_interval: 60
+breaking_changes:
+  name: Potential Breaking changes
+  scan_interval: 60
 
   # The config component enables a set of additional capabilities to manage and
   # configure certain parts of Home Assistant straight from the frontend.
@@ -127,4 +127,3 @@ homeassistant:
   # https://www.home-assistant.io/components/system_health/
   #
   system_health:
-  
