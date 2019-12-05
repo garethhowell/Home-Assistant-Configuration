@@ -23,6 +23,6 @@ automation:
         event_data:
           entity_id: sensor.doorbell_sound
     action:
-      - service: notify.pushover
+      - service: notify.pushover_door
         data:
           message: "Ding, Dong! Front Doorbell"
