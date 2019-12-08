@@ -1,11 +1,3 @@
-#
-# tracks whether the house is occupied or not
-#
-input_boolean:
-  house_vacant:
-    name: "House Vacant?"
-    initial: off
-    icon: mdi:home
 
 automation:
   - alias: 'Set House Vacant'
