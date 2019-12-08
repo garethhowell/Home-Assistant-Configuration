@@ -1,7 +1,0 @@
----
-#
-all_lights:
-  name: All House Lights
-  entities:
-    - switch.livingroom_standard_lamps
-    - switch.shack_external_lights

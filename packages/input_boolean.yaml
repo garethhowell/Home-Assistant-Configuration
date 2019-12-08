@@ -1,8 +1,0 @@
----
-# Input_Booleans are UI controls that can be used by automations.
-#
-# This loads up my input_boolean configurations
-#
-# https://www.home-assistant.io/integrations/input_boolean/
-#
-input_boolean: !include_dir_merge_named ../entities/input_booleans

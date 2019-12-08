@@ -1,3 +1,21 @@
+group:
+  all_lights:
+    name: All House Lights
+    entities:
+      - switch.livingroom_standard_lamps
+      - switch.shack_external_lights
+
+  christmas_lights:
+    name: Christmas Lights
+    entities:
+      - switch.livingroom_standard_lamps
+      - switch.shack_external_lights
+
+  main_livingroom_lights:
+    name: Living Room Lights
+    entities:
+      - switch.livingroom_standard_lamps
+
 automation:
   # When it gets dark outside
   #
