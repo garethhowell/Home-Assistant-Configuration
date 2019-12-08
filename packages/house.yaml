@@ -2,11 +2,11 @@
 # tracks whether the house is occupied or not
 #
 input_boolean:
-  - house_vacant:
+  house_vacant:
     name: "House Vacant?"
     initial: off
     icon: mdi:home
-  - home_tomorrow:
+  home_tomorrow:
     name: Home Tomorrow?
     initial: off
     icon: mdi:home
@@ -17,7 +17,7 @@ input_select:
   # This is used to set the state of input_select.heating_mode tomorrow,
   # otherwise, heating_mode will be reset back to "normal" tomorrow.
   #
-  - house_mode:
+  house_mode:
     name: House Mode?
     options:
       - Home - Normal Day
