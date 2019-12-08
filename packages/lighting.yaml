@@ -4,12 +4,7 @@ group:
     entities:
       - switch.livingroom_standard_lamps
       - switch.shack_external_lights
-
-  christmas_lights:
-    name: Christmas Lights
-    entities:
-      - switch.livingroom_standard_lamps
-      - switch.shack_external_lights
+      - switch.shed_heater
 
   main_livingroom_lights:
     name: Living Room Lights
@@ -27,17 +22,17 @@ automation:
       offset: '-00:30:00'
     action:
       service: switch.turn_on
-      entity_id: switch.livingroom_standard_lamps
+      entity_id: switch.all_house_lights
 
 
-  - alias: living_room_lights_out
+  - alias: lights_out
     # Switch lights off at 11PM
     trigger:
       platform: time
       at: "23:00:00"
     action:
       service: switch.turn_off
-      entity_id: switch.livingroom_standard_lamps
+      entity_id: switch.all_house_lights
 
   # Switch on living room lights if it is raining outside
   # From https://www.home-assistant.io/cookbook/automation_for_rainy_days/
