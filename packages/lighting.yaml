@@ -10,21 +10,21 @@ group:
       - switch.livingroom_standard_lamps
 
 scene:
-  - name: Evening
+  - name: Normal Evening
     entities: 
-      - switch.livingroom_standard_lamps: on
+      switch.livingroom_standard_lamps: on
 
-  - name: Christmas
+  - name: Christmas Evening
     entities:
-      - switch.livingroom_standard_lamps: on
-      - switch.shack_external_lights: on
-      - switch.shed_heater: on
+      switch.livingroom_standard_lamps: on
+      switch.shack_external_lights: on
+      switch.shed_heater: on
 
   - name: Goodnight
     entities:
-      - switch.livingroom_standard_lamps: off
-      - switch.shack_external_lights: off
-      - switch.shed_heater: off
+      switch.livingroom_standard_lamps: off
+      switch.shack_external_lights: off
+      switch.shed_heater: off
 
 automation:
   # When it gets dark outside
@@ -37,7 +37,7 @@ automation:
       offset: '-00:30:00'
     action:
       service: scene.turn_on
-      entity_id: scene.christmas
+      entity_id: scene.christmas_evening
 
   - alias: lights_out
     # Switch lights off at 11PM
