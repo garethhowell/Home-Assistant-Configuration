@@ -37,8 +37,10 @@ automation:
       offset: '-00:30:00'
     condition:
       - condition: state
-        entity_id: input_boolean.house_vacant
-        state: 'off'
+        entity_id: input_select.house_mode
+        state:
+          - 'Home - Normal Day'
+          - 'Home - Home Day'
     action:
       service: scene.turn_on
       entity_id: scene.christmas_evening
@@ -51,8 +53,8 @@ automation:
       offset: '-00:30:00'
     condition:
       - condition: state
-        entity_id: input_boolean.house_vacant
-        state: 'on'
+        entity_id: input_select.house_mode
+        state: 'Away'
     action:
       service: scene.turn_on
       entity_id: scene.normal_evening
