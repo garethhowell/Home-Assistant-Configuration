@@ -36,11 +36,14 @@ automation:
       event: sunset
       offset: '-00:30:00'
     condition:
-      - condition: state
-        entity_id: input_select.house_mode
-        state:
-          - 'Home - Normal Day'
-          - 'Home - Home Day'
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.house_mode
+          state: 'Home - Normal Day'
+        - condition: state
+          entity_id: input_select.house_mode
+          state: 'Home - Normal Day'
     action:
       service: scene.turn_on
       entity_id: scene.christmas_evening
