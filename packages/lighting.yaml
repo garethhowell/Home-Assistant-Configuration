@@ -36,8 +36,9 @@ automation:
       event: sunset
       offset: '-00:30:00'
     condition:
-      entity_id: input_boolean.house_vacant
-      state: "off"
+      - condition: state
+        entity_id: input_boolean.house_vacant
+        state: 'off'
     action:
       service: scene.turn_on
       entity_id: scene.christmas_evening
@@ -49,8 +50,9 @@ automation:
       event: sunset
       offset: '-00:30:00'
     condition:
-      entity_id: input_boolean.house_vacant
-      state: "on"
+      - condition: state
+        entity_id: input_boolean.house_vacant
+        state: 'on'
     action:
       service: scene.turn_on
       entity_id: scene.normal_evening
