@@ -29,15 +29,31 @@ scene:
 automation:
   # When it gets dark outside
   #
-  - alias: living_room_sunset
-  # Lights on 30 minutes before sunset
+  - alias: Christmas lights at sunset
+  # Christmas Lights on 30 minutes before sunset if house is not vacant
     trigger:
       platform: sun
       event: sunset
       offset: '-00:30:00'
+    condition:
+      entity_id: input_boolean.house_vacant
+      state: "off"
     action:
       service: scene.turn_on
       entity_id: scene.christmas_evening
+
+  - alias: Normal lights at sunset
+  # Normal Lights on 30 minutes before sunset if house is vacant
+    trigger:
+      platform: sun
+      event: sunset
+      offset: '-00:30:00'
+    condition:
+      entity_id: input_boolean.house_vacant
+      state: "on"
+    action:
+      service: scene.turn_on
+      entity_id: scene.normal_evening
 
   - alias: lights_out
     # Switch lights off at 11PM
