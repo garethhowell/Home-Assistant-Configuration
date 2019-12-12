@@ -4,23 +4,24 @@
 # https://www.home-assistant.io/integrations/darksky/
 #
 ---
-platform: darksky
-api_key: !secret darksky_api_key
-forecast:
-  - 0
-  - 1
-#hourly_forecast:
-#  - 0
-#  - 1
-monitored_conditions:
-  - icon
-  - precip_type
-  - precip_intensity
-  - precip_probability
-  - temperature
-  - apparent_temperature
-  - dew_point
-  - humidity
-  - wind_speed
-  - wind_bearing
-  - pressure
+sensor:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    forecast:
+      - 0
+      - 1
+#    hourly_forecast:
+#      - 0
+#      - 1
+    monitored_conditions:
+      - icon
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - dew_point
+      - humidity
+      - wind_speed
+      - wind_bearing
+      - pressure
