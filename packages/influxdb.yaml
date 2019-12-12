@@ -14,7 +14,7 @@ influxdb:
   port: 8086
 
   # The database name to store all the metrics in.
-  database: homeassistant
+  database: home_assistant
 
   # Authentication credentials.
   username: !secret influxdb_username

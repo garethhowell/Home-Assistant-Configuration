@@ -35,32 +35,32 @@ automation:
       platform: sun
       event: sunset
       offset: '-00:30:00'
-    condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: input_select.house_mode
-          state: 'Home - Normal Day'
-        - condition: state
-          entity_id: input_select.house_mode
-          state: 'Home - Normal Day'
+#    condition:
+#      condition: or
+#      conditions:
+#        - condition: state
+#          entity_id: input_select.house_mode
+#          state: 'Home - Home Day'
+#        - condition: state
+#          entity_id: input_select.house_mode
+#          state: 'Home - Normal Day'
     action:
       service: scene.turn_on
       entity_id: scene.christmas_evening
 
-  - alias: Normal lights at sunset
-  # Normal Lights on 30 minutes before sunset if house is vacant
-    trigger:
-      platform: sun
-      event: sunset
-      offset: '-00:30:00'
-    condition:
-      - condition: state
-        entity_id: input_select.house_mode
-        state: 'Away'
-    action:
-      service: scene.turn_on
-      entity_id: scene.normal_evening
+#  - alias: Normal lights at sunset
+#  # Normal Lights on 30 minutes before sunset if house is vacant
+#    trigger:
+#      platform: sun
+#      event: sunset
+#      offset: '-00:30:00'
+#    condition:
+#      - condition: state
+#        entity_id: input_select.house_mode
+#        state: 'Away'
+#    action:
+#      service: scene.turn_on
+#      entity_id: scene.normal_evening
 
   - alias: lights_out
     # Switch lights off at 11PM
