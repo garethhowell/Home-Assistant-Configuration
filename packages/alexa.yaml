@@ -15,10 +15,10 @@ cloud:
         - scene
         
     entity_config:
-      climate.livingroom_radiator_thermostat
+      climate.livingroom_radiator_thermostat:
         name: Livingroom temperature
         
-      climate.diningroom_radiator_thermostat
+      climate.diningroom_radiator_thermostat:
         name: Diningroom temperature
 
       scene.christmas_evening:
