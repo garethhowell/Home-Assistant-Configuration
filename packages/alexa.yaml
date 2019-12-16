@@ -1,0 +1,29 @@
+---
+# Home Assistant Cloud
+# https://www.home-assistant.io/cloud/
+
+cloud:
+  alexa:
+    filter:
+      include_entities: 
+        - input_boolean.home_tomorrow
+        - switch.shack_external_lights
+      include_domains: 
+        - binary_sensor
+        - climate
+        - input_select
+        - scene
+        
+    entity_config:
+      climate.livingroom_radiator_thermostat
+        name: Livingroom temperature
+        
+      climate.diningroom_radiator_thermostat
+        name: Diningroom temperature
+
+      scene.christmas_evening:
+        name: Christmas Lights
+        description: All the decorative Christmas lights
+        
+      scene.goodnight:
+        name: Lights Out

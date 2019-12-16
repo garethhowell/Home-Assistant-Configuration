@@ -1,7 +1,3 @@
-label_blank:
-  widget_type: label
-  text: ""
-
 livingroom_lights:
   widget_type: light
   title: Standard Lights
@@ -15,6 +11,13 @@ diningroom_rad:
   widget_type: climate
   entity: climate.diningroom_radiator_thermostat
 
+shack_therm:
+  widget_type: climate
+  title: Shack
+  entity: climate.shack_thermostat
+  step: 1
+  units: C
+
 layout:
-  - livingroom_lights(2x1), livingroom_rad(2x2), diningroom_rad(2x2)
-  -
+  - shack_therm(2x2), spacer(6x2)
+  - 

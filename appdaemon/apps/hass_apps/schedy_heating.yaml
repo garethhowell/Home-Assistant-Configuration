@@ -37,14 +37,14 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.bedroom_1_radiator_thermostat:
       schedule:
-        - v: 19
+        - v: 21
           rules:
             - x: "17 if is_on('input_boolean.house_vacant') else Next()"
             - { start: "07:00", end: "09:00" }
             - { start: "19:00", end: "22:00" }
 
     bedroom_2:
-      allow_manual_changes: true
+      rescheduling_delay: 0
       actors:
         climate.bedroom_2_radiator_thermostat:
       schedule:
@@ -71,10 +71,26 @@ schedy_heating:  # This is our app instance name.
         climate.landing_radiator_thermostat:
       schedule:
         - x: "17 if is_on('input_boolean.house_vacant') else Next()"
-        - v: 19
+        - v: 22
+          rules:
+            - weekdays: 1-5
+              rules:
+              - rules:
+                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+                - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
+                - { start: "07:00", end: "09:00" }
+                - { start: "17:00", end: "22:00" }
+              - rules:
+                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+                - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
+                - { start: "07:00", end: "22:00" }
+            - weekdays: 6-7
+              rules:
+                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+                - { start: "07:00", end: "22:00" }
 
     livingroom:
-      rescheduling_delay: 120
+      rescheduling_delay: 0
       replicate_changes: true
       actors:
         climate.livingroom_radiator_thermostat:
@@ -99,11 +115,11 @@ schedy_heating:  # This is our app instance name.
                 - { start: "07:00", end: "22:00" }
 
     shack:
-      allow_manual_changes: true
+      rescheduling_delay: 0
       actors:
         climate.shack_thermostat:
       schedule:
-        - v: 19
+        - v: 20
           rules:
             - x: "17 if state('device_tracker.life360_gareth') == 'not_home' or is_on('input_boolean.house_vacant') else Next()"
             - { start: "08:30", end: "22:00" }

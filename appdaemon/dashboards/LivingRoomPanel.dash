@@ -1,4 +1,5 @@
 #
+#
 # Main arguments, all optional
 #
 title: Living Room
@@ -14,6 +15,6 @@ global_parameters:
   namespace: default
 
 layout:
-    - include: top_panel
-    - include: living_middle_panel
-    - include: bottom_panel
+  - include: top_panel
+  - include: living_middle_panel
+  - include: bottom_panel
