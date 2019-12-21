@@ -4,16 +4,7 @@
 
 mqtt:
   broker: mqtt.agdon.net
+  username: !secret mqtt_username
+  password: !secret mqtt_password
   client_id: hassio
   discovery: true
-  discovery_prefix: hassio_2
-  birth_message:
-    topic: "hass/status"
-    payload: "online"
-    qos: 1
-    retain: true
-  will_message:
-    topic: "hass/status"
-    payload: "offline"
-    qos: 1
-    retain: true
