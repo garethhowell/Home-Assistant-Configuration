@@ -1,28 +1,28 @@
 group:
-  all_lights:
-    name: All House Lights
+  christmas_lights:
+    name: Christmas Lights
     entities:
-      - switch.livingroom_standard_lamps
+      - group.livingroom_lights
+      - switch.shack_external_lights
+      - switch.shed_heater
 
-  main_livingroom_lights:
+  livingroom_lights:
     name: Living Room Lights
     entities:
       - switch.livingroom_standard_lamps
 
 scene:
   - name: Normal Evening
-    entities: 
-      switch.livingroom_standard_lamps: on
+    entities:
+      switch.livingroom_lights: on
 
   - name: Christmas Evening
     entities:
-      switch.livingroom_standard_lamps: on
-      switch.shack_external_lights: on
-      switch.shed_heater: on
+      group.christmas_lights: on
 
   - name: Goodnight
     entities:
-      switch.livingroom_standard_lamps: off
+      group.livingroom_lights: off
       switch.shack_external_lights: off
       switch.shed_heater: off
 
