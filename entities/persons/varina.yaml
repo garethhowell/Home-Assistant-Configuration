@@ -1,6 +1,0 @@
----
-name: Varina
-id: varina1955
-user_id: !secret user_id_varina
-device_trackers:
-  - device_tracker.iphone_varina

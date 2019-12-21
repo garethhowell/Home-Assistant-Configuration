@@ -1,3 +1,16 @@
+person:
+  - name: Gareth
+    id: gareth1953
+    user_id: !secret user_id_gareth
+    device_trackers:
+      - device_tracker.iphone_gareth
+
+  - name: Varina
+    id: varina1955
+    user_id: !secret user_id_varina
+    device_trackers:
+      - device_tracker.iphone_varina
+
 
 automation:
   - alias: 'Set House Vacant'

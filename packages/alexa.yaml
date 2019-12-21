@@ -1,20 +1,21 @@
----
 # Home Assistant Cloud
 # https://www.home-assistant.io/cloud/
-
+---
 cloud:
   alexa:
     filter:
       include_entities: 
         - input_boolean.home_tomorrow
-        - switch.shack_external_lights
-      include_domains: 
-        - binary_sensor
+        - sensor.doorbell_sound
+      include_domains:
         - climate
-        - input_select
         - scene
         
     entity_config:
+      sensor.doorbell_sound:
+        name: Front Door Bell
+        display_categories: doorbell
+        
       climate.livingroom_radiator_thermostat:
         name: Livingroom temperature
         

@@ -37,7 +37,7 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.bedroom_1_radiator_thermostat:
       schedule:
-        - v: 21
+        - v: 20
           rules:
             - x: "17 if is_on('input_boolean.house_vacant') else Next()"
             - { start: "07:00", end: "09:00" }

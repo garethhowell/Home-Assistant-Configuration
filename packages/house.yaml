@@ -10,6 +10,10 @@ input_boolean:
     name: Home Tomorrow?
     initial: off
     icon: mdi:home
+  visitors:
+    name: Have we visitors?
+    initial: off
+    icon: mdi:human-male-female
 
 input_select:
   #
