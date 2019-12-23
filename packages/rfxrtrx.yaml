@@ -10,7 +10,7 @@ sensor:
   platform: rfxtrx
   automatic_add: true
   devices:
-    "07160063003d0150":
+    "07160018005c0170":
       name: doorbell
       data_type: Sound
       fire_event: true #Because the state doesn't reset
