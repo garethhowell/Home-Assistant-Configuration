@@ -15,6 +15,13 @@ sensor:
       data_type: Sound
       fire_event: true #Because the state doesn't reset
 
+   "0a520902dd0002652b0159":
+      name: Shack Temp
+      entity_id: sensor.shack_temperature
+      data_type: 
+        - Temperature
+        - Humidity
+
 automation:
   - alias: "Doorbell pressed"
     trigger:
