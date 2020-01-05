@@ -10,14 +10,13 @@ sensor:
   platform: rfxtrx
   automatic_add: true
   devices:
-    - "07160018005c0170":
+    "07160018005c0170":
       name: doorbell
       data_type: Sound
       fire_event: true #Because the state doesn't reset
 
-    - "0a520902dd0002652b0159":
+    "0a520902dd0002652b0159":
       name: Shack Temp
-      entity_id: sensor.shack_temperature
       data_type: 
         - Temperature
         - Humidity
