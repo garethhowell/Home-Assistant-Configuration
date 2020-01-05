@@ -1,66 +1,30 @@
 group:
-  christmas_lights:
-    name: Christmas Lights
-    entities:
-      - group.livingroom_lights
-      - switch.shack_external_lights
-      - switch.shed_heater
-
-  livingroom_lights:
-    name: Living Room Lights
+  evening_lights:
+    name: Lights that come on automatically in the evening
     entities:
       - switch.livingroom_standard_lamps
 
 scene:
-  - name: Normal Evening
+  - name: Evening
     entities:
-      switch.livingroom_lights: on
-
-  - name: Christmas Evening
-    entities:
-      group.christmas_lights: on
+      switch.evening_lights: on
 
   - name: Goodnight
     entities:
-      group.livingroom_lights: off
-      switch.shack_external_lights: off
-      switch.shed_heater: off
-
+      group.evening_lights: off
+      
 automation:
   # When it gets dark outside
   #
-  - alias: Christmas lights at sunset
-  # Christmas Lights on 30 minutes before sunset if house is not vacant
+  - alias: Lights on at sunset
+  # Lights on 30 minutes before sunset if house is not vacant
     trigger:
       platform: sun
       event: sunset
       offset: '-00:30:00'
-#    condition:
-#      condition: or
-#      conditions:
-#        - condition: state
-#          entity_id: input_select.house_mode
-#          state: 'Home - Home Day'
-#        - condition: state
-#          entity_id: input_select.house_mode
-#          state: 'Home - Normal Day'
     action:
       service: scene.turn_on
-      entity_id: scene.christmas_evening
-
-#  - alias: Normal lights at sunset
-#  # Normal Lights on 30 minutes before sunset if house is vacant
-#    trigger:
-#      platform: sun
-#      event: sunset
-#      offset: '-00:30:00'
-#    condition:
-#      - condition: state
-#        entity_id: input_select.house_mode
-#        state: 'Away'
-#    action:
-#      service: scene.turn_on
-#      entity_id: scene.normal_evening
+      entity_id: scene.evening
 
   - alias: lights_out
     # Switch lights off at 11PM
@@ -87,5 +51,5 @@ automation:
         after: '14:00'
         before: '23:00'
     action:
-      service: light.turn_on
-      entity_id: group.living_room_lights
+      service: scene.turn_on
+      entity_id: scene.evening
