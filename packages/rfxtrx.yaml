@@ -6,9 +6,10 @@
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1XETXVE-if00-port0
 
-customize:
-  sensor.shack_environment:
-    friendly_name: Shack
+homeassistant:
+  customize:
+    sensor.shack_environment:
+      friendly_name: Shack
 
 sensor:
   platform: rfxtrx
