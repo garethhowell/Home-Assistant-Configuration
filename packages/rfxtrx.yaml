@@ -6,6 +6,10 @@
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1XETXVE-if00-port0
 
+customize:
+  sensor.shack_environment:
+    friendly_name: Shack
+
 sensor:
   platform: rfxtrx
   automatic_add: true
@@ -16,7 +20,7 @@ sensor:
       fire_event: true #Because the state doesn't reset
 
     "0a520902dd0002652b0159":
-      name: Shack Temp
+      name: Shack Environment
       data_type: 
         - Temperature
         - Humidity
