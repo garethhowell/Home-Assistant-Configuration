@@ -7,7 +7,7 @@ group:
 scene:
   - name: Evening
     entities:
-      switch.evening_lights: on
+      group.evening_lights: on
 
   - name: Goodnight
     entities:

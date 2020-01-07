@@ -12,19 +12,28 @@ homeassistant:
       friendly_name: Shack
 
 sensor:
-  platform: rfxtrx
-  automatic_add: true
-  devices:
-    "07160018005c0170":
-      name: doorbell
-      data_type: Sound
-      fire_event: true #Because the state doesn't reset
+  - platform: rfxtrx
+    automatic_add: true
+    devices:
+      "07160018005c0170":
+        name: doorbell
+        data_type: Sound
+        fire_event: true #Because the state doesn't reset
 
-    "0a520902dd0002652b0159":
-      name: Shack Environment
-      data_type: 
-        - Temperature
-        - Humidity
+      "0a520902dd0002652b0159":
+        name: Shack Environment
+        data_type: 
+          - Temperature
+          - Humidity
+  
+  - platform: template
+    sensors:
+      shack_temp:
+        friendly_name: "Shack Temp"
+        entity_id: shack_environment_temperature # react only to this entity's changes
+        unit_of_measurement: "C"
+        value_template: 
+          "{{ states('sensor.shack_environment_temperature')| float - 42.0 }}"
 
 automation:
   - alias: "Doorbell pressed"

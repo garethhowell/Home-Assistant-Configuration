@@ -76,7 +76,7 @@ logbook:
 # Logger
 
 logger:
-  default: info
+  default: error
 
 # Lovelace UI
 # https://www.home-assistant.io/lovelace/
