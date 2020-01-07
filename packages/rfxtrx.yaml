@@ -30,7 +30,7 @@ sensor:
     sensors:
       shack_temp:
         friendly_name: "Shack Temp"
-        entity_id: shack_environment_temperature # react only to this entity's changes
+        entity_id: sensor.shack_environment_temperature # react only to this entity's changes
         unit_of_measurement: "C"
         value_template: 
           "{{ states('sensor.shack_environment_temperature')| float - 42.0 }}"
