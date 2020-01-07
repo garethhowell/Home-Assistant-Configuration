@@ -96,7 +96,7 @@ schedy_heating:  # This is our app instance name.
         climate.livingroom_radiator_thermostat:
         climate.diningroom_radiator_thermostat:
       schedule:
-        - v: 21
+        - v: 20
           rules:
             - weekdays: 1-5
               rules:
