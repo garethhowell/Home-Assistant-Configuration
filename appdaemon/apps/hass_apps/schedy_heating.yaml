@@ -71,7 +71,7 @@ schedy_heating:  # This is our app instance name.
         climate.landing_radiator_thermostat:
       schedule:
         - x: "17 if is_on('input_boolean.house_vacant') else Next()"
-        - v: 22
+        - v: 20
           rules:
             - weekdays: 1-5
               rules:
@@ -96,7 +96,7 @@ schedy_heating:  # This is our app instance name.
         climate.livingroom_radiator_thermostat:
         climate.diningroom_radiator_thermostat:
       schedule:
-        - v: 20
+        - v: 19
           rules:
             - weekdays: 1-5
               rules:
@@ -124,8 +124,3 @@ schedy_heating:  # This is our app instance name.
             - x: "17 if state('device_tracker.life360_gareth') == 'not_home' or is_on('input_boolean.house_vacant') else Next()"
             - { start: "08:30", end: "22:00" }
 
-  statistics:
-    shack_temp_delta:
-      type: temp_delta
-      rooms:
-        shack:
