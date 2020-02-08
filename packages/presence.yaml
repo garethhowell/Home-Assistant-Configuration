@@ -16,17 +16,17 @@ automation:
   - alias: 'Set House Vacant'
     trigger:
       - platform: state
-        entity_id: device_tracker.life360_gareth, device_tracker.life360_varina
+        entity_id: device_tracker.life360_gareth #, device_tracker.life360_varina
         to: 'not_home'
     condition:
       - condition: state
         entity_id: 'device_tracker.life360_gareth'
         state: 'not_home'
         for: "01:00:00"
-      - condition: state
-        entity_id: 'device_tracker.life360_varina'
-        state: 'not_home'
-        for: "01:00:00"
+#      - condition: state
+#        entity_id: 'device_tracker.life360_varina'
+#        state: 'not_home'
+#        for: "01:00:00"
     action:
       service: input_boolean.turn_on
       entity_id: input_boolean.house_vacant
@@ -34,7 +34,7 @@ automation:
   - alias: 'Unset House Vacant'
     trigger:
       - platform: state
-        entity_id: device_tracker.life360_gareth, device_tracker.life360_varina
+        entity_id: device_tracker.life360_gareth #, device_tracker.life360_varina
         to: 'home'
     action:
       service: input_boolean.turn_off
