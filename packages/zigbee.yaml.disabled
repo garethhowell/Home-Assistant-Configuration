@@ -1,0 +1,8 @@
+
+# Zigbee
+# https://www.home-assistant.io/integrations/zha/
+#
+zha:
+  usb_path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2149889-if00
+  database_path: /usr/share/hassio/homeassistant/zigbee.db
+
