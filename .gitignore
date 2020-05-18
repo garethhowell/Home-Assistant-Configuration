@@ -36,6 +36,7 @@ cameras.yaml
 .pip_progress
 OZW_Log.txt
 pyozw.sqlite
+zwcfg*.xml
 
 
 # Node-Red
