@@ -15,12 +15,19 @@ schedy_heating:  # This is our app instance name.
     def house_mode():
         return state("input_select.house_mode")
 
+    def house_vacant():
+        return state("input_boolean.house_vacant")
+    
+    def season():
+        return state("input_select.season")
+
   schedule_snippets:
 
   watched_entities:
     - input_boolean.home_tomorrow
     - input_boolean.house_vacant
     - input_select.house_mode
+    - input_select.season
     - device_tracker.life360_gareth
     - device_tracker.life360_varina
 
@@ -37,9 +44,9 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.bedroom_1_radiator_thermostat:
       schedule:
-        - v: 20
+        - v: "20 if season() == 'Winter' else 17"
           rules:
-            - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+            - x: "17 if house_vacant() else Next()"
             - { start: "07:00", end: "09:00" }
             - { start: "19:00", end: "22:00" }
 
@@ -48,7 +55,7 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.bedroom_2_radiator_thermostat:
       schedule:
-        - v: 21
+        - v: "22 if season() == 'Winter' else 17"
           rules:
             - weekdays: 1-5
               rules:
@@ -70,23 +77,23 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.landing_radiator_thermostat:
       schedule:
-        - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+        - x: "17 if house_vacant() or season() == "Summer" else Next()"
         - v: 20
           rules:
             - weekdays: 1-5
               rules:
               - rules:
-                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+                - x: "17 if house_vacant() else Next()"
                 - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
                 - { start: "07:00", end: "09:00" }
                 - { start: "17:00", end: "22:00" }
               - rules:
-                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+                - x: "17 if house_vacant() else Next()"
                 - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
                 - { start: "07:00", end: "22:00" }
             - weekdays: 6-7
               rules:
-                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+                - x: "17 if house_vacant() else Next()"
                 - { start: "07:00", end: "22:00" }
 
     livingroom:
@@ -96,22 +103,22 @@ schedy_heating:  # This is our app instance name.
         climate.livingroom_radiator_thermostat:
         climate.diningroom_radiator_thermostat:
       schedule:
-        - v: 19
+        - v: "19 if season() == 'Winter' else 17"
           rules:
             - weekdays: 1-5
               rules:
               - rules:
-                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+                - x: "17 ifhouse_vacant() else Next()"
                 - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
                 - { start: "07:00", end: "09:00" }
                 - { start: "17:00", end: "22:00" }
               - rules:
-                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+                - x: "17 if house_vacant() else Next()"
                 - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
                 - { start: "07:00", end: "22:00" }
             - weekdays: 6-7
               rules:
-                - x: "17 if is_on('input_boolean.house_vacant') else Next()"
+                - x: "17 if house_vacant() else Next()"
                 - { start: "07:00", end: "22:00" }
 
     shack:
@@ -121,6 +128,6 @@ schedy_heating:  # This is our app instance name.
       schedule:
         - v: 20
           rules:
-            - x: "17 if state('device_tracker.life360_gareth') == 'not_home' or is_on('input_boolean.house_vacant') else Next()"
+            - x: "17 if state('device_tracker.life360_gareth') == 'not_home' or house_vacant() else Next()"
             - { start: "08:30", end: "22:00" }
 

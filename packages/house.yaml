@@ -28,3 +28,12 @@ input_select:
       - Home - Home Day
       - Away
     icon: mdi:flame
+
+  # input select to indicate which season we are in.
+  # Used by Schedy to set climate controls
+  #
+  season:
+    name: Season?
+    options:
+      - Winter
+      - Summer
