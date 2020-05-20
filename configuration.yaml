@@ -34,6 +34,12 @@ breaking_changes:
 #
 # https://www.home-assistant.io/components/config/
 #
+
+# Climate control
+
+climate:
+  - platform: zwave
+
 config:
 
 # Discover new devices
@@ -57,14 +63,26 @@ hassio:
 #
 history:
 
+
 # The Home Assistant for iOS app offers a companion app for iOS which
 # is deeply integrated into both Home Assistant and iOS.
 #
 # https://www.home-assistant.io/components/ios/
 # https://www.home-assistant.io/docs/ecosystem/ios/
 #
-  
+
 ios:
+
+# Life360
+# https://www.home-assistant.io/components/life360/
+life360:
+  accounts:
+    username: !secret life360_username
+    password: !secret life360_password
+  circles:
+    include:
+      family
+  driving_speed: 30.0
 
 # The logbook component provides a different perspective on the history of
 # your house by showing all the changes that happened to your house in
@@ -99,20 +117,45 @@ map:
 #
 mobile_app:
 
+# Moon sensor
+# https://www.home-assistant.io/components/moon/
+
+platform: moon
+
+# MQTT
+# https://www.home-assistant.io/docs/mqtt/
+
+mqtt:
+  broker: mqtt.agdon.net
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  client_id: hassio
+  discovery: true
+
 # The recorder component is storing details in a database which
 # then are handled by the history component.
 #
 # https://www.home-assistant.io/components/recorder/
 #
+
+
 recorder:
   # The location of the database
   db_url: mysql://hassio:hassio@mariadb.agdon.net/hassio?charset=utf8
-  
+
   # The number of days of history to keep in the recorder database
   purge_keep_days: 7
 
   # How often (in days) the purge task runs
   purge_interval: 1
+
+# rfxtrx
+#
+# https://www.home-assistant.io/integrations/rfxtrx/
+#
+rfxtrx:
+  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1XETXVE-if00-port0
+
 
 # The speedtestdotnet integration uses the Speedtest.net
 # web service to measure network bandwidth performance.

@@ -1,4 +1,1 @@
-platform: mqtt
-state_topic: 'home/sensor/484/hum'
-name: 'Front Door Bell'
-unit_of_measurement: '°C'
+

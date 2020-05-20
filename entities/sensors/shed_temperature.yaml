@@ -1,6 +1,1 @@
-platform: mqtt
-state_topic: 'tel/19c/shed/temp'
-name: 'Shed Temperature'
-unit_of_measurement: '°C'
-device_class: temperature
-value_template: '{{ value_json.sValue }}'
+

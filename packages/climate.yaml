@@ -1,5 +1,51 @@
 ---
-# Climate control
+homeassistant:
+  customize:
+    sensor.shack_environment:
+      hidden: true
 
-climate:
-  - platform: zwave
+sensor:
+  - platform: mqtt
+    state_topic: 'home/sensor/499/hum'
+    name: 'External Humidity'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    state_topic: 'home/sensor/499/temp'
+    name: 'External Temperature'
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    state_topic: 'home/sensor/509/hum'
+    name: 'Shack Humidity'
+    unit_of_measurement: '%'
+  - platform: mqtt
+    state_topic: 'tel/19c/shed/temp'
+    name: 'Shed Temperature'
+    unit_of_measurement: '°C'
+    device_class: temperature
+    value_template: '{{ value_json.sValue }}'
+  - platform: rfxtrx
+    automatic_add: true
+    devices:
+      "0a520902dd0002652b0159":
+        name: Shack Environment
+        data_type:
+          - Temperature
+          - Humidity
+
+  - platform: template
+    sensors:
+      shack_temp:
+        friendly_name: "Shack Temp"
+        entity_id: sensor.shack_environment_temperature # react only to this entity's changes
+        unit_of_measurement: "C"
+        value_template:
+          "{{ states('sensor.shack_environment_temperature')| float - 41.0 }}"
+
+  - platform: template
+    sensors:
+      shack_humidity:
+        friendly_name: "Shack Humidity"
+        entity_id: sensor.shack_environment_humidity # react only to this entity's changes
+        unit_of_measurement: "%"
+        value_template:
+          "{{ states('sensor.shack_environment_humidity')| float }}"

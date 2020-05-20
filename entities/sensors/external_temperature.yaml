@@ -1,4 +1,1 @@
-platform: mqtt
-state_topic: 'home/sensor/499/temp'
-name: 'External Temperature'
-unit_of_measurement: '°C'
+
