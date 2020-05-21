@@ -39,10 +39,6 @@ input_select:
       - Summer
 
 sensor:
-  - platform: mqtt
-    state_topic: 'home/sensor/484/hum'
-    name: 'Front Door Bell'
-    unit_of_measurement: '°C'
 
   # The time and date (time_date) sensor platform.
   # Has the time in various formats, the date, or both.
@@ -62,7 +58,7 @@ sensor:
       #- 'beat'
 
   # The version sensor platform is displaying the
-  # available version online.
+  # available and current version online.
   #
   # https://www.home-assistant.io/components/sensor.version/
   #
@@ -70,11 +66,5 @@ sensor:
     name: version_available
     source: hassio
     image: raspberrypi3
-
-  # The version sensor platform is displaying the
-  # current version.
-  #
-  # https://www.home-assistant.io/components/sensor.version/
-  #
   - platform: version
     name: version_current
