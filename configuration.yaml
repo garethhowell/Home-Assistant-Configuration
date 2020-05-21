@@ -120,7 +120,8 @@ mobile_app:
 # Moon sensor
 # https://www.home-assistant.io/components/moon/
 
-platform: moon
+sensor:
+  - platform: moon
 
 # MQTT
 # https://www.home-assistant.io/docs/mqtt/
