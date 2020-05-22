@@ -19,6 +19,10 @@ homeassistant:
 
   # All complex integrations are contained in packages
   packages: !include_dir_named packages
+  
+  # Use totp Multi-Factor Authentication (MFA)
+  auth_mfa_modules:
+    - type: totp
 
 # Simple integrations are retained in here.
 
