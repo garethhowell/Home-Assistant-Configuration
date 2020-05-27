@@ -2,20 +2,15 @@
 # Welcome to my Home Assistant configuration!
 #
 homeassistant:
-  name: home
-  latitude: !secret zone_home_latitude
-  longitude: !secret zone_home_longitude
-  time_zone: Europe/London
-  unit_system: metric
 
   # Lets me customize individual entities
-  customize: !include_dir_merge_named ../customizations/entities
+  #  customize: !include_dir_merge_named ../customizations/entities
 
   # Lets me custimize all entities in a domain
-  customize_domain: !include_dir_merge_named ../customizations/domains
+  #customize_domain: !include_dir_merge_named ../customizations/domains
 
   # Lets me custimize entities based on a matching pattern
-  customize_glob: !include_dir_merge_named ../customizations/globs
+  #customize_glob: !include_dir_merge_named ../customizations/globs
 
   # All complex integrations are contained in packages
   packages: !include_dir_named packages
@@ -32,6 +27,11 @@ homeassistant:
 breaking_changes:
   name: Potential Breaking changes
   scan_interval: 60
+
+# Recorder
+#
+recorder:
+  db_url: mysql://homeassistant:IsThisAStrongPassword?@core-mariadb/homeassistant?charset=utf8
 
 # The config component enables a set of additional capabilities to manage and
 #  # configure certain parts of Home Assistant straight from the frontend.
@@ -60,13 +60,7 @@ hacs:
 # This enables the Hass.io panel in the Home Assistant frontend
 hassio:
 
-# The history component will track everything that is going on within
-# Home Assistant and allows the user to browse through it.
-#
-# https://www.home-assistant.io/components/history/
-#
 history:
-
 
 # The Home Assistant for iOS app offers a companion app for iOS which
 # is deeply integrated into both Home Assistant and iOS.
@@ -75,18 +69,8 @@ history:
 # https://www.home-assistant.io/docs/ecosystem/ios/
 #
 
-ios:
 
-# Life360
-# https://www.home-assistant.io/components/life360/
-life360:
-  accounts:
-    username: !secret life360_username
-    password: !secret life360_password
-  circles:
-    include:
-      family
-  driving_speed: 30.0
+ios:
 
 # The logbook component provides a different perspective on the history of
 # your house by showing all the changes that happened to your house in
@@ -130,29 +114,26 @@ sensor:
 # MQTT
 # https://www.home-assistant.io/docs/mqtt/
 
-mqtt:
-  broker: mqtt.agdon.net
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  client_id: hassio
-  discovery: true
+    #mqtt:
+    #  broker: mqtt.agdon.net
+    #  username: !secret mqtt_username
+    #  password: !secret mqtt_password
+    #  client_id: hassio
+    #  discovery: true
 
-# The recorder component is storing details in a database which
-# then are handled by the history component.
+# The notify component allows us to send messages using Pushover
 #
-# https://www.home-assistant.io/components/recorder/
+# https://www.home-assistant.io/integrations/pushover/
 #
-
-
-recorder:
-  # The location of the database
-  db_url: mysql://hassio:hassio@mariadb.agdon.net/hassio?charset=utf8
-
-  # The number of days of history to keep in the recorder database
-  purge_keep_days: 7
-
-  # How often (in days) the purge task runs
-  purge_interval: 1
+notify:
+  - name: Pushover
+    platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key
+  - name: Pushover_Door
+    platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_door_user_key
 
 # rfxtrx
 #
@@ -186,7 +167,7 @@ system_health:
 #
 # https://www.home-assistant.io/integrations/zwave
 #
-zwave:
-  usb_path: /dev/serial/by-id/usb-0658_0200-if00
-  polling_interval: 60000
-  debug: true
+#zwave:
+#  usb_path: /dev/serial/by-id/usb-0658_0200-if00
+#  polling_interval: 60000
+#  debug: true
