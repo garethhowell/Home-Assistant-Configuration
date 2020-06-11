@@ -3,15 +3,6 @@
 #
 homeassistant:
 
-  # Lets me customize individual entities
-  #  customize: !include_dir_merge_named ../customizations/entities
-
-  # Lets me custimize all entities in a domain
-  #customize_domain: !include_dir_merge_named ../customizations/domains
-
-  # Lets me custimize entities based on a matching pattern
-  #customize_glob: !include_dir_merge_named ../customizations/globs
-
   # All complex integrations are contained in packages
   packages: !include_dir_named packages
   
@@ -39,11 +30,6 @@ recorder:
 # https://www.home-assistant.io/components/config/
 #
 
-# Climate control
-
-climate:
-  - platform: zwave
-
 config:
 
 # Discover new devices
@@ -51,26 +37,20 @@ config:
 #
 discovery:
 
-# Home Assistant Community Store
-# https://custom-components.github.io/hacs/
-
-hacs:
-  token: !secret hacs_token
-
 # This enables the Hass.io panel in the Home Assistant frontend
 hassio:
 
 history:
 
-# The Home Assistant for iOS app offers a companion app for iOS which
-# is deeply integrated into both Home Assistant and iOS.
-#
-# https://www.home-assistant.io/components/ios/
-# https://www.home-assistant.io/docs/ecosystem/ios/
-#
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
 
-
-ios:
 
 # The logbook component provides a different perspective on the history of
 # your house by showing all the changes that happened to your house in
@@ -83,9 +63,10 @@ logbook:
 # Logger
 
 logger:
-  default: error
-#  logs:
-#    homeassistant.components.zwave: debug
+  default: info
+  logs:
+    #homeassistant.components.zwave: debug
+    homeassistant.components.rfxtrx: debug
 
 # Lovelace UI
 # https://www.home-assistant.io/lovelace/
@@ -97,29 +78,12 @@ logger:
 # https://www.home-assistant.io/components/map/
 map:
 
-#
-# The Mobile App component allows Home Assistant mobile apps to easily
-# integrate with Home Assistant.
-#
-# https://www.home-assistant.io/components/mobile_app/
-#
-mobile_app:
 
 # Moon sensor
 # https://www.home-assistant.io/components/moon/
 
 sensor:
   - platform: moon
-
-# MQTT
-# https://www.home-assistant.io/docs/mqtt/
-
-    #mqtt:
-    #  broker: mqtt.agdon.net
-    #  username: !secret mqtt_username
-    #  password: !secret mqtt_password
-    #  client_id: hassio
-    #  discovery: true
 
 # The notify component allows us to send messages using Pushover
 #
@@ -141,6 +105,8 @@ notify:
 #
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1XETXVE-if00-port0
+  debug: true
+
 
 
 # The speedtestdotnet integration uses the Speedtest.net
@@ -163,11 +129,3 @@ sun:
 #
 system_health:
 
-# Z-Wave integrations
-#
-# https://www.home-assistant.io/integrations/zwave
-#
-#zwave:
-#  usb_path: /dev/serial/by-id/usb-0658_0200-if00
-#  polling_interval: 60000
-#  debug: true

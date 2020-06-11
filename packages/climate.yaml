@@ -25,12 +25,12 @@ sensor:
     value_template: '{{ value_json.sValue }}'
   - platform: rfxtrx
     automatic_add: true
-    devices:
-      "0a520902dd0002652b0159":
-        name: Shack Environment
-        data_type:
-          - Temperature
-          - Humidity
+    #devices:
+    #  "a520900d30002a61a0279":
+    #    name: Shack Environment
+    #    data_type:
+    #      - Temperature
+    #      - Humidity
 
   - platform: template
     sensors:
@@ -51,47 +51,31 @@ sensor:
           "{{ states('sensor.shack_environment_humidity')| float }}"
 
 automation:
-  # Turn on shed fan if temp exceeds 22C
-  #
- # - alias: 'Turn on shed fan'
- #   trigger:
- #     - platform:
- #       entity_id: sensor.shed_temperature
- #       above: 21
- #   condition: 
- #     - condition: template
- #       value_template: "{{ state_attr('switch.shed_fan', 'state') == 'off' }}"
- #   action:
- #     - service: switch.turn_on
- #       entity_id: switch.shed_fan
-
-  # Turn on shed fan if temp exceeds 22C
-  #
-#  - alias: 'Turn off shed fan'
-#    trigger:
-#      - platform: numeric_state
-#        entity_id: sensor.shed_temperature
-#        below: 20
-#    condition: 
-#      - condition: template
-#        value_template: "{{ state_attr('switch.shed_fan', 'state') == 'on' }}"
-#    action:
-#      - service: switch.turn_off
-#        entity_id: switch.shed_fan
-
-  - alias: turn on switch when temperature exceeds 22
-    description: ''
+  - alias: 'Turn on Shed Fan'
+    description: 'Turn on Shed Fan when temp goes above 22C'
     trigger:
       - above: 22
-        domain: sensor
         entity_id: sensor.shed_temperature
-        platform: device
-        type: temperature
+        platform: numeric_state
     condition:
       - condition: state
         entity_id: switch.shed_fan
         state: 'off'
     action:
-      - domain: switch
+      - service: switch.turn_on
         entity_id: switch.shed_fan
-        type: turn_on
+
+  - alias: 'Turn off Shed Fan'
+    description: 'Turn off Shed Fan when temp drops below 20C'
+    trigger:
+      - below: 20
+        entity_id: sensor.shed_temperature
+        platform: numeric_state
+    condition:
+      - condition: state
+        entity_id: switch.shed_fan
+        state: 'on'
+    action:
+      - service: switch.turn_off
+        entity_id: switch.shed_fan
+        

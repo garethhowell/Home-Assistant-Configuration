@@ -1,27 +1,22 @@
 
 # Weather
-# DarkSky sensor
-# https://www.home-assistant.io/integrations/darksky/
+# https://www.home-assistant.io/integrations/sensor.metoffice/
 #
 ---
 sensor:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    forecast:
-      - 0
-      - 1
-#    hourly_forecast:
-#      - 0
-#      - 1
+  - platform: metoffice
+    api_key: !secret metoffice_api_key
     monitored_conditions:
-      - icon
-      - precip_type
-      - precip_intensity
-      - precip_probability
+      - weather
       - temperature
-      - apparent_temperature
-      - dew_point
       - humidity
+      - uv
+      - visibility
+      - visibility_distance
       - wind_speed
-      - wind_bearing
-      - pressure
+      - wind_direction
+      - precipitation
+
+weather:
+  - platform: metoffice
+    api_key: !secret metoffice_api_key
