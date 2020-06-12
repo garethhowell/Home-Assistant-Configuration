@@ -9,20 +9,24 @@ sensor:
     state_topic: 'home/sensor/499/hum'
     name: 'External Humidity'
     unit_of_measurement: '%'
+
   - platform: mqtt
     state_topic: 'home/sensor/499/temp'
     name: 'External Temperature'
     unit_of_measurement: '°C'
+
   - platform: mqtt
     state_topic: 'home/sensor/509/hum'
     name: 'Shack Humidity'
     unit_of_measurement: '%'
+
   - platform: mqtt
     state_topic: 'tel/19c/shed/temp'
     name: 'Shed Temperature'
     unit_of_measurement: '°C'
     device_class: temperature
     value_template: '{{ value_json.sValue }}'
+
   - platform: rfxtrx
     automatic_add: true
     #devices:
@@ -35,7 +39,7 @@ sensor:
   - platform: template
     sensors:
       shack_temp:
-        friendly_name: "Shack Temp"
+        friendly_name: "Shack Temperature"
         entity_id: sensor.shack_environment_temperature # react only to this entity's changes
         unit_of_measurement: "C"
         value_template:
@@ -49,6 +53,22 @@ sensor:
         unit_of_measurement: "%"
         value_template:
           "{{ states('sensor.shack_environment_humidity')| float }}"
+
+influxdb:
+  include:
+    entities:
+      - sensor.external_temperature
+      - sensor.external_humidity
+
+      - sensor.shed_temperature
+      - switch.shed_heater
+      - switch.shed_fan
+
+      - climate.shack_thermostat
+      - sensor.shack_temperature
+      - sensor.shack_humidity
+      - switch.shack_heater
+      - switch.shack_lights
 
 automation:
   - alias: 'Turn on Shed Fan'
@@ -78,4 +98,3 @@ automation:
     action:
       - service: switch.turn_off
         entity_id: switch.shed_fan
-        

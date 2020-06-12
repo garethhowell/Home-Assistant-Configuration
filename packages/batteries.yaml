@@ -1,0 +1,10 @@
+
+influxdb:
+  include:
+    entities:
+      - sensor.rad1_battery_level
+      - sensor.rad2_battery_level
+      - sensor.rad3_battery_level
+      - sensor.rad4_battery_level
+      - sensor.rad5_battery_level
+      - sensor.shack_thermostat_battery_level

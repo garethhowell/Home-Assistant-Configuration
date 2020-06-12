@@ -7,23 +7,19 @@
 # https://github.com/hassio-addons/addon-grafana
 # https://www.home-assistant.io/components/influxdb/
 #
+# InfluxDB
+# Store time-series data in an external database for analysis.
+# This avoids overloading HA's own database
+#
+# https://www.home-assistant.io/integrations/influxdb/
+#
 influxdb:
-
-  # This is the Hass.io add-on slug, allowing a direct connection to the addon.
-  host: influxdb.agdon.net
+  host: a0d7b954-influxdb
   port: 8086
-
-  # The database name to store all the metrics in.
   database: home_assistant
-
-  # Authentication credentials.
   username: !secret influxdb_username
   password: !secret influxdb_password
-
-  # Max number of retries in case of a failure.
   max_retries: 3
-
-  # Measurement name to use when an entity doesn’t have a unit.
   default_measurement: state
 
   # The list of attribute names which should be reported as tags
@@ -38,11 +34,10 @@ influxdb:
 #  include:
 #      entities:
 
-  include:
-    entities: !include_dir_merge_list ../influxdb
-
   component_config_glob:
     sensor.*humidity:
       override_measurement: humidity
     sensor.*temperature:
+      override_measurement: temperature
+    sensor.*temp:
       override_measurement: temperature

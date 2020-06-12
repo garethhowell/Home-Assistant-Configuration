@@ -1,0 +1,136 @@
+type: picture-elements
+image: /local/homeassistant/homeassistant.png
+style:
+  '#root > bar-card':
+    $: |
+      ha-card {
+        background: none;
+        box-shadow: none;
+      }
+      bar-card-name {
+        color: white;
+        font-size: 100%;
+        font-weight: normal;
+        margin: 4px;
+      }
+      bar-card-currentbar {
+        border-radius: 7pt;
+      }
+      bar-card-backgroundbar {
+        border-shadow: 2pt;
+        margin-top: -2pt;
+        margin-left: -2pt;
+        border-radius: 7pt;
+        border-style: solid;
+        background: rgba(255, 0, 0, 0.8);
+      }
+      bar-card-value {
+        font-size: 125%;
+        color: white;
+        font-weight: bold;
+        margin: 4px;
+      }
+
+elements:
+  - entity: sensor.rpi_last_boot_macro
+    prefix: 'Last boot: '
+    style:
+      color: white
+      font-size: 90%
+      left: 65%
+      top: 25%
+    title: text
+    type: state-label
+
+  - type: custom:bar-card
+    animation:
+      state: 'on'
+    columns: 5
+    direction: up
+    width: 10px
+    height: 90px
+    positions:
+      icon: 'off'
+      indicator: 'off'
+      minmax: 'off'
+      title: outside
+      value: outside
+      name: outside
+    style:
+      left: 50%
+      top: 68%
+      width: 100%
+      scale: 100%
+    entities:
+      - entity: sensor.processor_use
+        max: 100
+        min: 0
+        name: Cpu
+        severity:
+          - color: '#40bf40'
+            from: 0
+            to: 40
+          - color: '#ffde00'
+            from: 41
+            to: 80
+          - color: '#fd0000'
+            from: 81
+            to: 100
+      - entity: sensor.cpu_temperature
+        max: 100
+        min: 0
+        name: Temperature
+        decimal: 0
+        severity:
+          - color: '#40bf40'
+            from: 0
+            to: 40
+          - color: '#ffde00'
+            from: 41
+            to: 75
+          - color: '#fd0000'
+            from: 75
+            to: 100
+      - entity: sensor.memory_use
+        max: 4096
+        min: 0
+        name: Memory
+        decimal: 0
+        severity:
+          - color: '#40bf40'
+            from: 0
+            to: 1280
+          - color: '#ffde00'
+            from: 1280
+            to: 2500
+          - color: '#fd0000'
+            from: 2500
+            to: 4096
+      - entity: sensor.disk_use_home
+        max: 64
+        min: 0
+        name: Disk
+        decimal: 0
+        severity:
+          - color: '#40bf40'
+            from: 0
+            to: 25
+          - color: '#ffde00'
+            from: 25
+            to: 50
+          - color: '#fd0000'
+            from: 50
+      - entity: sensor.swap_use
+        max: 1024
+        min: 0
+        name: Swap
+        decimal: 0
+        severity:
+          - color: '#40bf40'
+            from: 0
+            to: 640
+          - color: '#ffde00'
+            from: 640
+            to: 768
+          - color: '#fd0000'
+            from: 768

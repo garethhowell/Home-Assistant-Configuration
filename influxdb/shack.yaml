@@ -1,9 +1,3 @@
 ---
 # The list of entities in the shack that I wish to track in InfluxDB
 #
-
-- climate.shack_thermostat
-- sensor.shack_temperature
-- sensor.shack_humidity
-- switch.shack_heater
-- switch.shack_lights

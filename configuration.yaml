@@ -5,7 +5,7 @@ homeassistant:
 
   # All complex integrations are contained in packages
   packages: !include_dir_named packages
-  
+
   # Use totp Multi-Factor Authentication (MFA)
   auth_mfa_modules:
     - type: totp
@@ -20,6 +20,8 @@ breaking_changes:
   scan_interval: 60
 
 # Recorder
+# Store data in MariaDB instead of HA's SQLite database
+# to get better performance
 #
 recorder:
   db_url: mysql://homeassistant:IsThisAStrongPassword?@core-mariadb/homeassistant?charset=utf8
@@ -29,7 +31,6 @@ recorder:
 #
 # https://www.home-assistant.io/components/config/
 #
-
 config:
 
 # Discover new devices
@@ -38,19 +39,12 @@ config:
 discovery:
 
 # This enables the Hass.io panel in the Home Assistant frontend
+#
 hassio:
 
+# This tells HA to keep a history of the data
+#
 history:
-
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: !secret influxdb_username
-  password: !secret influxdb_password
-  max_retries: 3
-  default_measurement: state
-
 
 # The logbook component provides a different perspective on the history of
 # your house by showing all the changes that happened to your house in
@@ -61,7 +55,8 @@ influxdb:
 logbook:
 
 # Logger
-
+# Control what gets logged in HA (to keep the noise level down)
+#
 logger:
   default: info
   logs:
@@ -78,15 +73,13 @@ logger:
 # https://www.home-assistant.io/components/map/
 map:
 
-
 # Moon sensor
 # https://www.home-assistant.io/components/moon/
-
+#
 sensor:
   - platform: moon
 
 # The notify component allows us to send messages using Pushover
-#
 # https://www.home-assistant.io/integrations/pushover/
 #
 notify:
@@ -105,18 +98,7 @@ notify:
 #
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1XETXVE-if00-port0
-  debug: true
-
-
-
-# The speedtestdotnet integration uses the Speedtest.net
-# web service to measure network bandwidth performance.
-#
-# https://www.home-assistant.io/components/speedtestdotnet/
-#
-speedtestdotnet:
-  scan_interval:
-    minutes: 15
+  debug: false
 
 # Sun
 sun:
@@ -128,4 +110,3 @@ sun:
 # https://www.home-assistant.io/components/system_health/
 #
 system_health:
-
