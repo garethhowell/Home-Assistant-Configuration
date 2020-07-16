@@ -24,7 +24,7 @@ sensor:
       - temperature
       - humidity
       - wind_speed
-      - wind_direction
+      - wind_bearing
       - pressure
       - clouds
       - rain
