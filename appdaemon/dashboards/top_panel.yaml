@@ -23,6 +23,7 @@ mode:
 
 weather:
   widget_type: weather
+  entity: weather.openweathermap
   units: "&deg;C"
 
 layout:

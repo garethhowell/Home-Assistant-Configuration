@@ -46,6 +46,9 @@ hassio:
 #
 history:
 
+# IOS
+ios:
+
 # The logbook component provides a different perspective on the history of
 # your house by showing all the changes that happened to your house in
 # reverse chronological order.
@@ -59,9 +62,10 @@ logbook:
 #
 logger:
   default: info
-  logs:
-    #homeassistant.components.zwave: debug
-    homeassistant.components.rfxtrx: debug
+  #logs:
+    #homeassistant.components.ozw: debug
+    #homeassistant.components.rfxtrx: debug
+    #homeassistant.components.mqtt: debug
 
 # Lovelace UI
 # https://www.home-assistant.io/lovelace/
@@ -78,6 +82,15 @@ map:
 #
 sensor:
   - platform: moon
+
+
+# MQTT
+mqtt:
+  broker: mqtt.agdon.net
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  discovery: true
+  discovery_prefix: homeassistant
 
 # The notify component allows us to send messages using Pushover
 # https://www.home-assistant.io/integrations/pushover/
@@ -110,3 +123,5 @@ sun:
 # https://www.home-assistant.io/components/system_health/
 #
 system_health:
+
+zeroconf:

@@ -19,5 +19,5 @@ shack_therm:
   units: C
 
 layout:
-  - shack_therm(2x2), spacer(6x2)
+  - livingroom_lights(2x2), spacer(6x2)
   - 
