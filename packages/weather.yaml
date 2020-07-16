@@ -23,12 +23,13 @@ sensor:
       - weather
       - temperature
       - humidity
-      - uv
-      - visibility
-      - visibility_distance
       - wind_speed
       - wind_direction
-      - precipitation
+      - pressure
+      - clouds
+      - rain
+      - snow
+      - weather_code
         
 
 weather:
