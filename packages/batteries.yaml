@@ -10,30 +10,25 @@ influxdb:
       - sensor.shack_thermostat_battery_level
 
 group:
-  rad_batteries:
+  batteries:
     entities:
       - sensor.rad1_battery_level
       - sensor.rad2_battery_level
       - sensor.rad3_battery_level
       - sensor.rad4_battery_level
       - sensor.rad5_battery_level
-  thermostat_batteries:
-    entities:
       - sensor.shack_thermostat_battery_level
    
 binary_sensor:
   - platform: template
     sensors:
       low_battery_alarm:
-        friendly_name: "Low Batteries"
+        friendly_name: "Low Battery Alarm"
         entity_id: sensor.time
         value_template: >-
-          {% set entities = expand('group.batteries') %}
-          {% for x in entities %}
-            {% if states(x)|int < 30 %}
-              {% set y = True %}
-            {% endif %}
-          {% endfor %}
+          {% if states(input_boolean.low_batteries) == True %}
+            {% set y = True %}
+          {% endif %}
           {{ y }}
 
   - platform: template
