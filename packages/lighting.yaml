@@ -12,6 +12,7 @@ scene:
   - name: Goodnight
     entities:
       group.evening_lights: off
+      switch.central_heating_boiler_ch: off
       
 automation:
   # When it gets dark outside

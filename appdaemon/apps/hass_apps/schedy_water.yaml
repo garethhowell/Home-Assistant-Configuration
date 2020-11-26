@@ -1,0 +1,36 @@
+schedy_water:  # This is our app instance name.
+  module: hass_apps_loader
+  class: SchedyApp
+
+  debug: true
+
+  reset_at_startup: false
+
+  actor_type: thermostat
+
+  expression_environment: |
+    def house_mode():
+      return state("input_select.house_mode")
+
+  schedule_snippets:
+
+  watched_entities:
+    - input_select.house_mode
+
+  schedule_prepend:
+
+  # default rule to apply if no other matches
+  schedule_append:
+
+
+  rooms:
+    hot_water:
+      rescheduling_delay: 60
+      actors:
+        climate.hot_water:
+      schedule:
+        - x: "0 if house_mode() == 'Away' else Next()"
+        - v: 35
+          rules:
+            - { start: "07:00", end: "09:00" }
+        - v: 0

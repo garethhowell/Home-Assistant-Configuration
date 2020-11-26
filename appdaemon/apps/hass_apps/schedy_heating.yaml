@@ -2,7 +2,7 @@ schedy_heating:  # This is our app instance name.
   module: hass_apps_loader
   class: SchedyApp
 
-  debug: false
+  debug: true
 
   reset_at_startup: false
 
@@ -21,11 +21,11 @@ schedy_heating:  # This is our app instance name.
     def season():
       return state("input_select.season")
 
-    def gareth_away():
-      return (state('device_tracker.life360_gareth') == 'not_home')
+    def gareth_location():
+      return (state('device_tracker.life360_gareth'))
 
-    def varina_away():
-      return (state('device_tracker.life360_varina') == 'not_home')
+    def varina_location():
+      return (state('device_tracker.life360_varina'))
 
   schedule_snippets:
 
@@ -38,7 +38,7 @@ schedy_heating:  # This is our app instance name.
     - device_tracker.life360_varina
 
   schedule_prepend:
-    - x: "10 if house_mode() == 'Away' else Next()"
+
 
   # default rule to apply if no other matches
   schedule_append:
@@ -50,9 +50,11 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.bedroom_1_radiator_thermostat:
       schedule:
-        - v: "19 if season() == 'Winter' else 17"
+        - x: "10 if house_mode() == 'Away' else Next()"
+        - x: "11 if season() == 'Summer' else Next()"
+        - x: "17 if gareth_location() == 'not_home' and varina_location() == 'not_home' else Next()"
+        - v: 19
           rules:
-            - x: "17 if house_vacant() else Next()"
             - { start: "07:00", end: "09:00" }
             - { start: "19:00", end: "22:00" }
 
@@ -61,32 +63,41 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.bedroom_2_radiator_thermostat:
       schedule:
-        - v: "22 if season() == 'Winter' else 17"
+        - x: "10 if house_mode() == 'Away' else Next()"
+        - x: "11 if season() == 'Summer' else Next()"
+        - x: "17 if varina_location() == 'not_home' else Next()"
+        - v: 22
           rules:
-            - x: "17 if varina_away() or house_vacant() else Next()"
-            - { start: "07:00", end: "22:00" }
+            - weekdays: 1-7
+              rules:
+              - rules:
+                - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
+                - { start: "07:00", end: "09:00" }
+                - { start: "17:00", end: "22:00" }
+              - rules:
+                - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
+                - { start: "07:00", end: "22:00" }
 
     landing:
       actors:
         climate.landing_radiator_thermostat:
       schedule:
-        - x: "17 if house_vacant() or season() == 'Summer' else Next()"
-        - v: 20
+        - x: "10 if house_mode() == 'Away' else Next()"
+        - x: "11 if season() == 'Summer' else Next()"
+        - x: "17 if gareth_location() == 'not_home' and varina_location() == 'not_home' else Next()"
+        - v: 22
           rules:
             - weekdays: 1-5
               rules:
               - rules:
-                - x: "17 if house_vacant() else Next()"
                 - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
                 - { start: "07:00", end: "09:00" }
                 - { start: "17:00", end: "22:00" }
               - rules:
-                - x: "17 if house_vacant() else Next()"
                 - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
                 - { start: "07:00", end: "22:00" }
             - weekdays: 6-7
               rules:
-                - x: "17 if house_vacant() else Next()"
                 - { start: "07:00", end: "22:00" }
 
     livingroom:
@@ -96,30 +107,35 @@ schedy_heating:  # This is our app instance name.
         climate.livingroom_radiator_thermostat:
         climate.diningroom_radiator_thermostat:
       schedule:
-        - v: "19 if season() == 'Winter' else 17"
+        - x: "10 if house_mode() == 'Away' else Next()"
+        - x: "11 if season() == 'Summer' else Next()"
+        - x: "17 if gareth_location() == 'not_home' and varina_location() == 'not_home' else Next()"
+        - v: 22
           rules:
             - weekdays: 1-5
               rules:
               - rules:
-                - x: "17 if house_vacant() else Next()"
                 - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
+                - { v: 23, start: "19:00", end: "22:30"}
                 - { start: "07:00", end: "09:00" }
-                - { start: "17:00", end: "22:00" }
+                - { start: "17:00", end: "19:00" }
               - rules:
-                - x: "17 if house_vacant() else Next()"
                 - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
-                - { start: "07:00", end: "22:00" }
+                - { v: 23, start: "19:00", end: "22:30"}
+                - { start: "07:00", end: "19:00" }
             - weekdays: 6-7
               rules:
-                - x: "17 if house_vacant() else Next()"
-                - { start: "07:00", end: "22:00" }
+                - { v: 23, start: "19:00", end: "22:30"}
+                - { start: "07:00", end: "19:00" }
 
     shack:
       rescheduling_delay: 0
       actors:
         climate.shack_thermostat:
       schedule:
-        - v: "19 if season() == 'Winter' else 17"
+        - x: "10 if house_mode() == 'Away' else Next()"
+        - x: "11 if season() == 'Summer' else Next()"
+        - x: "17 if gareth_location() == 'not_home' else Next()"
+        - v: 19
           rules:
-            - x: "17 if gareth_away() or house_vacant() else Next()"
             - { start: "08:30", end: "22:00" }

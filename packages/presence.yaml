@@ -1,43 +1,7 @@
-#person:
-#  - name: Gareth
-#    id: gareth1953
-#    user_id: !secret user_id_gareth
-#    device_trackers:
-#      - device_tracker.life360_gareth
-#      - device_tracker.gh_ip7plus_4
-#      - device_tracker.logh1_s_ipad
 
-#  - name: Varina
-#    id: varina1955
-#    user_id: !secret user_id_varina
-#    device_trackers:
-#      - device_tracker.life360_varina
-
-
-automation:
-  - alias: 'Set House Vacant'
-    trigger:
-      - platform: state
-        entity_id: device_tracker.life360_gareth, device_tracker.life360_varina
-        to: 'not_home'
-    condition:
-      - condition: state
-        entity_id: 'device_tracker.life360_gareth'
-        state: 'not_home'
-        for: "01:00:00"
-      - condition: state
-        entity_id: 'device_tracker.life360_varina'
-        state: 'not_home'
-        for: "01:00:00"
-    action:
-      service: input_boolean.turn_on
-      entity_id: input_boolean.house_vacant
-
-  - alias: 'Unset House Vacant'
-    trigger:
-      - platform: state
-        entity_id: device_tracker.life360_gareth, device_tracker.life360_varina
-        to: 'home'
-    action:
-      service: input_boolean.turn_off
-      entity_id: input_boolean.house_vacant
+homeassistant:
+  customize:
+    device_tracker.life360_gareth:
+      friendly_name: Gareth
+    device_tracker.life360_varina:
+      friendly_name: Varina

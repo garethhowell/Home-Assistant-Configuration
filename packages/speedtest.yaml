@@ -7,9 +7,9 @@ speedtestdotnet:
   scan_interval:
     minutes: 15
 
-influxdb:
-  include:
-    entities:
-      - sensor.speedtest_download
-      - sensor.speedtest_ping
-      - sensor.speedtest_upload
+#influxdb:
+#  include:
+#    entities:
+#      - sensor.speedtest_download
+#      - sensor.speedtest_ping
+#      - sensor.speedtest_upload

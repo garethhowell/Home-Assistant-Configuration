@@ -4,37 +4,13 @@
 #
 ---
 sensor:
-  - platform: metoffice
-    api_key: !secret metoffice_api_key
-    monitored_conditions:
-      - weather
-      - temperature
-      - humidity
-      - uv
-      - visibility
-      - visibility_distance
-      - wind_speed
-      - wind_direction
-      - precipitation
+        #  - platform: metoffice
+        #    api_key: !secret metoffice_api_key
 
   - platform: openweathermap
     api_key: !secret openweather_api_key
-    monitored_conditions:
-      - weather
-      - temperature
-      - humidity
-      - wind_speed
-      - wind_bearing
-      - pressure
-      - clouds
-      - rain
-      - snow
-      - weather_code
-        
 
 weather:
-  - platform: metoffice
-    api_key: !secret metoffice_api_key
+        #  - platform: metoffice
 
   - platform: openweathermap
-    api_key: !secret openweather_api_key

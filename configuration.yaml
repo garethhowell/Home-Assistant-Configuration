@@ -10,6 +10,13 @@ homeassistant:
   auth_mfa_modules:
     - type: totp
 
+  # Allow local users in without a password
+  #      auth_providers:
+  #      - type: homeassistant
+  #      - type: trusted_networks
+  #        trusted_networks:
+  #          - 172.29.12.0/24
+
 # Simple integrations are retained in here.
 
 # Get a warning of any impending breaking changes
@@ -19,12 +26,13 @@ breaking_changes:
   name: Potential Breaking changes
   scan_interval: 60
 
+
 # Recorder
 # Store data in MariaDB instead of HA's SQLite database
 # to get better performance
 #
-recorder:
-  db_url: mysql://homeassistant:IsThisAStrongPassword?@core-mariadb/homeassistant?charset=utf8
+#recorder:
+#  db_url: mysql://homeassistant:IsThisAStrongPassword?@core-mariadb/homeassistant?charset=utf8
 
 # The config component enables a set of additional capabilities to manage and
 #  # configure certain parts of Home Assistant straight from the frontend.
@@ -42,12 +50,13 @@ discovery:
 #
 hassio:
 
+
 # This tells HA to keep a history of the data
 #
 history:
 
 # IOS
-ios:
+#ios:
 
 # The logbook component provides a different perspective on the history of
 # your house by showing all the changes that happened to your house in
@@ -61,8 +70,8 @@ logbook:
 # Control what gets logged in HA (to keep the noise level down)
 #
 logger:
-  default: info
-  #logs:
+  default: warning
+  #  logs:
     #homeassistant.components.ozw: debug
     #homeassistant.components.rfxtrx: debug
     #homeassistant.components.mqtt: debug
@@ -96,7 +105,7 @@ mqtt:
 # https://www.home-assistant.io/integrations/pushover/
 #
 notify:
-  - name: Pushover
+  - name: Pushover_Gareth
     platform: pushover
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
@@ -109,13 +118,15 @@ notify:
     api_key: !secret slack_api_key
     default_channel: '#Home_Assistant'
 
+
+
 # rfxtrx
 #
 # https://www.home-assistant.io/integrations/rfxtrx/
 #
-rfxtrx:
-  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1XETXVE-if00-port0
-  debug: false
+#rfxtrx:
+#  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1XETXVE-if00-port0
+#  debug: false
 
 # Sun
 sun:

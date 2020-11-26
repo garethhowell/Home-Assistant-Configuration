@@ -1,0 +1,31 @@
+schedy_ch:  # An arbitrary name for this instance of Schedy,
+         # needed e.g. for addressing events to it.
+  # Obligatory settings that tell appdaemon where to find the app.
+  # You shouldn't need to change these two.
+  module: hass_apps_loader
+  class: SchedyApp
+
+  # Enable debugging output
+  #debug: false
+
+  actor_type: input_boolean
+
+  expression_environment: |
+
+  schedule_prepend:
+
+  watched_entities:
+#    - input_boolean.central_heating_manual
+
+  rooms:
+
+    den:
+      actors:
+        input_boolean.central_heating_manual:
+
+      allow_manual_changes: true
+      rescheduling_delay: 0
+
+      schedule:
+        - { v: "on", start: "07:00", end: "09:00" }
+        - v: "off"

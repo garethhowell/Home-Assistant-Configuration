@@ -1,8 +1,21 @@
 ---
 homeassistant:
   customize:
+    
     sensor.shack_environment:
       hidden: true
+    sensor.shack_temperature:
+      friendly_name: "Shack Temperature"
+    sensor.openweathermap_temperature:
+      friendly_name: "Ext Temp"
+    sensor.openweathermap_humidity:
+      friendly_name: "Ext Humidity"
+    switch.central_heating_boiler_ch:
+      friendly_name: "CH Boiler"
+    sensor.cold_outside:
+      device_class: cold
+    sensor.freezing_outside:
+      device_class: cold
 
 sensor:
   - platform: mqtt
@@ -27,8 +40,8 @@ sensor:
     device_class: temperature
     value_template: '{{ value_json.sValue }}'
 
-  - platform: rfxtrx
-    automatic_add: true
+    #  - platform: rfxtrx
+    #automatic_add: true
     #devices:
     #  "a520900d30002a61a0279":
     #    name: Shack Environment
@@ -36,65 +49,130 @@ sensor:
     #      - Temperature
     #      - Humidity
 
-  - platform: template
-    sensors:
-      shack_temp:
-        friendly_name: "Shack Temperature"
-        entity_id: sensor.shack_environment_temperature # react only to this entity's changes
-        unit_of_measurement: "C"
-        value_template:
-          "{{ states('sensor.shack_environment_temperature')| float - 41.0 }}"
+#  - platform: template
+#    sensors:
+#      shack_temp:
+#        friendly_name: "Shack Temperature"
+#        entity_id: sensor.shack_environment_temperature # react only to this entity's changes
+#        unit_of_measurement: "C"
+#        value_template:
+#          "{{ states('sensor.shack_environment_temperature')| float - 41.0 }}"
 
-  - platform: template
-    sensors:
-      shack_humidity:
-        friendly_name: "Shack Humidity"
-        entity_id: sensor.shack_environment_humidity # react only to this entity's changes
-        unit_of_measurement: "%"
-        value_template:
-          "{{ states('sensor.shack_environment_humidity')| float }}"
+#  - platform: template
+#    sensors:
+#      shack_humidity:
+#        friendly_name: "Shack Humidity"
+#        entity_id: sensor.shack_environment_humidity # react only to this entity's changes
+#        unit_of_measurement: "%"
+#        value_template:
+#          "{{ states('sensor.shack_environment_humidity')| float }}"
 
-influxdb:
-  include:
-    entities:
-      - sensor.external_temperature
-      - sensor.external_humidity
+# emoncms - Open Energy Monitor
+# https://www.home-assistant.io/integrations/emoncms
 
-      - sensor.shed_temperature
-      - switch.shed_heater
-      - switch.shed_fan
+  - platform: emoncms
+    api_key: !secret opencms_api_key
+    url: http://emonpi.agdon.net
+    id: 1
+    unit_of_measurement: "°C"
+    sensor_names:
+      22: "Bedroom1 Temperature"
+      24: "Livingroom Temperature"
+      25: "External Temperature"
+      33: "Bedroom2 Temperature"
+      37: "Shack Temperature"
 
-      - climate.shack_thermostat
-      - sensor.shack_temperature
-      - sensor.shack_humidity
-      - switch.shack_heater
-      - switch.shack_lights
+  - platform: emoncms
+    api_key: !secret opencms_api_key
+    url: http://emonpi.agdon.net
+    id: 2
+    unit_of_measurement: "%"
+    sensor_names:
+      23: "Bedroom1 Humidity"
+      26: "Livingroom Humidity"
+      34: "Bedroom2 Humidity"
+      38: "Shack Humidity"
 
-automation:
-  - alias: 'Turn on Shed Fan'
-    description: 'Turn on Shed Fan when temp goes above 22C'
-    trigger:
-      - above: 22
-        entity_id: sensor.shed_temperature
-        platform: numeric_state
-    condition:
-      - condition: state
-        entity_id: switch.shed_fan
-        state: 'off'
-    action:
-      - service: switch.turn_on
-        entity_id: switch.shed_fan
 
-  - alias: 'Turn off Shed Fan'
-    description: 'Turn off Shed Fan when temp drops below 20C'
-    trigger:
-      - below: 20
-        entity_id: sensor.shed_temperature
-        platform: numeric_state
-    condition:
-      - condition: state
-        entity_id: switch.shed_fan
-        state: 'on'
-    action:
-      - service: switch.turn_off
-        entity_id: switch.shed_fan
+
+#influxdb:
+#  include:
+#    entities:
+#      - sensor.external_temperature
+#      - sensor.external_humidity
+
+#      - sensor.shed_temperature
+#      - switch.shed_heater
+#      - switch.shed_fan
+
+#      - climate.shack_thermostat
+#      - sensor.shack_temperature
+#      - sensor.shack_humidity
+#      - switch.shack_heater
+#      - switch.shack_lights
+
+#      - sensor.owm_temperature
+
+# Shed Thermostats
+# Use generic_thermostat to keep temp between 6 and 24
+climate:
+  - platform: generic_thermostat
+    name: "Shed Thermostat Low"
+    heater: switch.shed_heater
+    ac_mode: false
+    target_sensor: sensor.shed_temperature
+    min_temp: 3
+    max_temp: 15
+    target_temp: 6
+    initial_hvac_mode: "heat"
+    
+  - platform: generic_thermostat
+    name: "Shed Thermostat High"
+    heater: switch.shed_fan
+    ac_mode: true
+    target_sensor: sensor.shed_temperature
+    min_temp: 15
+    max_temp: 30
+    target_temp: 22
+    initial_hvac_mode: "cool"
+    
+  - platform: generic_thermostat
+    name: "Shack Thermostat"
+    heater: switch.shack_heater
+    ac_mode: false
+    target_sensor: sensor.shack_temperature
+    min_temp: 10
+    max_temp: 30
+    target_temp: 17
+    initial_hvac_mode: "heat"
+    
+  - platform: generic_thermostat
+    name: "Hot Water"
+    heater: switch.central_heating_boiler_ch
+    ac_mode: false
+    target_sensor: sensor.external_temperature
+    min_temp: 0
+    max_temp: 35
+    target_temp: 0
+    initial_hvac_mode: "heat"
+    
+
+input_boolean:
+  living_room_temperature_up:
+    name: "Living Room Temperature Up"
+    initial: off
+  living_room_temperature_down:
+    name: "Living Room Temperature Down"
+    initial: off
+  central_heating_manual:
+    name: "Central Heating on Manual"
+    initial: off
+
+  cold_outside:
+    name: "It's cold outside"
+    initial: off
+
+  freezing_outside:
+    name: "It's freezing our there"
+    initial: off
+

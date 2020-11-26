@@ -41,5 +41,9 @@ influxdb:
       override_measurement: temperature
     sensor.*temp:
       override_measurement: temperature
+    sensor.*°C:
+      override_measurement: temperature
     sensor.*battery_level:
       override_measurement: battery_level
+    sensor.*%:
+      override_measurement: percent
