@@ -29,8 +29,8 @@ schedy_water:  # This is our app instance name.
       actors:
         climate.hot_water:
       schedule:
-        - x: "0 if house_mode() == 'Away' else Next()"
+        - x: "-10 if house_mode() == 'Away' else Next()"
         - v: 35
           rules:
             - { start: "07:00", end: "09:00" }
-        - v: 0
+        - v: -10

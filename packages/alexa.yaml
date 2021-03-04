@@ -1,30 +1,31 @@
-# Home Assistant Cloud
-# https://www.home-assistant.io/cloud/
+# Alexa
+# Allow control of HA from Alexa Skills
+# https://www.home-assistant.io/integrations/alexa.smart_home
+#
 ---
-cloud:
-  alexa:
+alexa:
+  smart_home: 
+    locale: en-GB
     filter:
-      include_entities: 
-        - input_boolean.home_tomorrow
-        - sensor.doorbell_sound
-      include_domains:
-        - climate
-        - scene
-        
-    entity_config:
-      sensor.doorbell_sound:
-        name: Front Door Bell
-        display_categories: doorbell
-        
-      climate.livingroom_radiator_thermostat:
-        name: Livingroom temperature
-        
-      climate.diningroom_radiator_thermostat:
-        name: Diningroom temperature
+      include_entities:
+        - climate.bedroom_1_thermostat
+        - climate.bedroom_2_thermostat
+        - climate.livingroom_thermostat
+        - climate.shack_thermostat
+        - input_boolean.shack_occupied
+        - scene.evening
+        - scene.goodnight
+        - switch.livingroom_standard_lamps
 
-      scene.christmas_evening:
-        name: Christmas Lights
-        description: All the decorative Christmas lights
+
+    entity_config:
+#      sensor.doorbell_sound:
+#        name: Front Door Bell
+#        display_categories: doorbell
         
       scene.goodnight:
-        name: Lights Out
+        name: "Bedtime"
+        
+      switch.livingroom_standard_lamps:
+        name: "Livingroom lights"
+      

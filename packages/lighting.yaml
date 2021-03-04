@@ -4,16 +4,53 @@ group:
     entities:
       - switch.livingroom_standard_lamps
 
+  christmas_lights:
+    name: Christmas Lights
+    entities: []
+#      - switch.shack_power_switch
+#      - switch.shed_fan
+#      - light.wled_shack_master
+#      - light.wled_bed2_master
+
 scene:
   - name: Evening
     entities:
       group.evening_lights: on
-
+      group.christmas_lights: on
+      
   - name: Goodnight
     entities:
       group.evening_lights: off
       switch.central_heating_boiler_ch: off
-      
+      group.christmas_lights: off
+      input_boolean.shack_occupied: off
+      climate.livingroom_thermostat:
+        state: on
+        temperature: 15
+      climate.bedroom_2_thermostat: 
+        state: on
+        temperature: 15
+
+script:
+  switch_on_christmas_lights:
+    alias: Turn on Christmas Lights
+    sequence:
+      - service: wled.preset
+        data:
+          entity_id: light.wled_shack_segment_2
+          preset: 1
+      - service: wled.preset
+        data:
+          entity_id: light.wled_bed2_segment_2
+          preset: 1
+      - service: switch.turn_on
+        data:
+          entity_id: 
+            - group.evening_lights
+            - group.christmas_lights
+            - light.wled_shack_master
+            - light.wled_bed2_master
+
 automation:
   # When it gets dark outside
   #
@@ -26,6 +63,7 @@ automation:
     action:
       service: scene.turn_on
       entity_id: scene.evening
+#      service: script.switch_on_christmas_lights
 
   - alias: lights_out
     # Switch lights off at 11PM
@@ -46,7 +84,7 @@ automation:
       to: 'rain'
     condition:
       - condition: state
-        entity_id: device_tracker.life360_gareth
+        entity_id: device_tracker.ghip7plus
         state: 'home'
       - condition: time
         after: '14:00'

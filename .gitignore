@@ -15,7 +15,7 @@ logs
 .vscode
 .Trash-*
 appdaemon/compiled
-custom_components
+custom_components/
 deps/
 **/__pycache__
 

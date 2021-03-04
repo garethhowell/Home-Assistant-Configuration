@@ -1,178 +1,125 @@
 ---
 homeassistant:
   customize:
-    
+
     sensor.shack_environment:
       hidden: true
-    sensor.shack_temperature:
-      friendly_name: "Shack Temperature"
+
     sensor.openweathermap_temperature:
       friendly_name: "Ext Temp"
     sensor.openweathermap_humidity:
       friendly_name: "Ext Humidity"
-    switch.central_heating_boiler_ch:
-      friendly_name: "CH Boiler"
-    sensor.cold_outside:
+    sensor.external_eemperature_2:
+      friendly_name: "External Temperature"
+
+    binary_sensor.cold_outside:
       device_class: cold
-    sensor.freezing_outside:
+    binary_sensor.freezing_outside:
       device_class: cold
+
 
 sensor:
+# Temperatures
   - platform: mqtt
-    state_topic: 'home/sensor/499/hum'
-    name: 'External Humidity'
-    unit_of_measurement: '%'
-
-  - platform: mqtt
-    state_topic: 'home/sensor/499/temp'
-    name: 'External Temperature'
-    unit_of_measurement: '°C'
-
-  - platform: mqtt
-    state_topic: 'home/sensor/509/hum'
-    name: 'Shack Humidity'
-    unit_of_measurement: '%'
-
-  - platform: mqtt
-    state_topic: 'tel/19c/shed/temp'
+    state_topic: 'emon/emonth4/temperature'
     name: 'Shed Temperature'
     unit_of_measurement: '°C'
     device_class: temperature
-    value_template: '{{ value_json.sValue }}'
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
 
-    #  - platform: rfxtrx
-    #automatic_add: true
-    #devices:
-    #  "a520900d30002a61a0279":
-    #    name: Shack Environment
-    #    data_type:
-    #      - Temperature
-    #      - Humidity
-
-#  - platform: template
-#    sensors:
-#      shack_temp:
-#        friendly_name: "Shack Temperature"
-#        entity_id: sensor.shack_environment_temperature # react only to this entity's changes
-#        unit_of_measurement: "C"
-#        value_template:
-#          "{{ states('sensor.shack_environment_temperature')| float - 41.0 }}"
-
-#  - platform: template
-#    sensors:
-#      shack_humidity:
-#        friendly_name: "Shack Humidity"
-#        entity_id: sensor.shack_environment_humidity # react only to this entity's changes
-#        unit_of_measurement: "%"
-#        value_template:
-#          "{{ states('sensor.shack_environment_humidity')| float }}"
-
-# emoncms - Open Energy Monitor
-# https://www.home-assistant.io/integrations/emoncms
-
-  - platform: emoncms
-    api_key: !secret opencms_api_key
-    url: http://emonpi.agdon.net
-    id: 1
+  - platform: mqtt
+    state_topic: "emon/emonth5/temperature"
+    name: "Bedroom1 Temperature"
     unit_of_measurement: "°C"
-    sensor_names:
-      22: "Bedroom1 Temperature"
-      24: "Livingroom Temperature"
-      25: "External Temperature"
-      33: "Bedroom2 Temperature"
-      37: "Shack Temperature"
+    device_class: temperature
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
 
-  - platform: emoncms
-    api_key: !secret opencms_api_key
-    url: http://emonpi.agdon.net
-    id: 2
+  - platform: mqtt
+    state_topic: "emon/emonth6/temperature"
+    name: "Livingroom Temperature"
+    device_class: temperature
+    value_template: '{{ value | float | round(1) }}'
+    unit_of_measurement: "°C"
+    expire_after: 300
+
+  - platform: mqtt
+    state_topic: "emon/emonth6/external temperature"
+    name: "External Temperature_2"
+    unit_of_measurement: "°C"
+    device_class: temperature
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
+
+  - platform: mqtt
+    state_topic: "emon/emonth7/temperature"
+    name: "Bedroom2 Temperature"
+    unit_of_measurement: "°C"
+    device_class: temperature
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
+
+  - platform: mqtt
+    state_topic: "emon/emonth8/temperature"
+    name: "Shack Temperature"
+    unit_of_measurement: "°C"
+    device_class: temperature
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
+
+# Humidity
+  - platform: mqtt
+    state_topic: "emon/emonth5/humidity"
+    name: "Bedroom1 Humidity"
     unit_of_measurement: "%"
-    sensor_names:
-      23: "Bedroom1 Humidity"
-      26: "Livingroom Humidity"
-      34: "Bedroom2 Humidity"
-      38: "Shack Humidity"
-
-
-
-#influxdb:
-#  include:
-#    entities:
-#      - sensor.external_temperature
-#      - sensor.external_humidity
-
-#      - sensor.shed_temperature
-#      - switch.shed_heater
-#      - switch.shed_fan
-
-#      - climate.shack_thermostat
-#      - sensor.shack_temperature
-#      - sensor.shack_humidity
-#      - switch.shack_heater
-#      - switch.shack_lights
-
-#      - sensor.owm_temperature
-
-# Shed Thermostats
-# Use generic_thermostat to keep temp between 6 and 24
-climate:
-  - platform: generic_thermostat
-    name: "Shed Thermostat Low"
-    heater: switch.shed_heater
-    ac_mode: false
-    target_sensor: sensor.shed_temperature
-    min_temp: 3
-    max_temp: 15
-    target_temp: 6
-    initial_hvac_mode: "heat"
+   
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300 
     
-  - platform: generic_thermostat
-    name: "Shed Thermostat High"
-    heater: switch.shed_fan
-    ac_mode: true
-    target_sensor: sensor.shed_temperature
-    min_temp: 15
-    max_temp: 30
-    target_temp: 22
-    initial_hvac_mode: "cool"
+  - platform: mqtt
+    state_topic: "emon/emonth6/humidity"
+    name: "Livingroom Humidity"
+    unit_of_measurement: "%"
     
-  - platform: generic_thermostat
-    name: "Shack Thermostat"
-    heater: switch.shack_heater
-    ac_mode: false
-    target_sensor: sensor.shack_temperature
-    min_temp: 10
-    max_temp: 30
-    target_temp: 17
-    initial_hvac_mode: "heat"
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
+
+  - platform: mqtt
+    state_topic: "emon/emonth7/humidity"
+    name: "Bedroom2 Humidity"
+    unit_of_measurement: "%"
     
-  - platform: generic_thermostat
-    name: "Hot Water"
-    heater: switch.central_heating_boiler_ch
-    ac_mode: false
-    target_sensor: sensor.external_temperature
-    min_temp: 0
-    max_temp: 35
-    target_temp: 0
-    initial_hvac_mode: "heat"
-    
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
 
-input_boolean:
-  living_room_temperature_up:
-    name: "Living Room Temperature Up"
-    initial: off
-  living_room_temperature_down:
-    name: "Living Room Temperature Down"
-    initial: off
-  central_heating_manual:
-    name: "Central Heating on Manual"
-    initial: off
+  - platform: mqtt
+    state_topic: "emon/emonth8/humidity"
+    name: "Shack Humidity"
+    unit_of_measurement: "%"
+   
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
 
-  cold_outside:
-    name: "It's cold outside"
-    initial: off
-
-  freezing_outside:
-    name: "It's freezing our there"
-    initial: off
-
+# Indicators that external temps are low
+binary_sensor:
+  - platform: template
+    sensors:
+      cold_outside:
+        friendly_name: "Low Temp"
+        entity_id: sensor.external_temperature_2
+        value_template: >-
+          {% if states('sensor.external_temperature_2') | float  < 5.0 %}
+          true
+          {% else %}
+          false
+          {% endif %}
+      freezing_outside:
+        friendly_name: "Freezing!"
+        entity_id: sensor.external_temperature_2
+        value_template: >-
+          {% if states('sensor.external_temperature_2') | float  < 0.3 %}
+          true
+          {% else %}
+          false
+          {% endif %}

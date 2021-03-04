@@ -1,0 +1,138 @@
+sensor:
+  - platform: mqtt
+    state_topic: 'emon/emonth4/battery'
+    name: 'Shed Battery'
+    unit_of_measurement: 'V'
+    device_class: battery
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
+    
+  - platform: mqtt
+    state_topic: 'emon/emonth5/battery'
+    name: 'Bedroom1 Battery'
+    unit_of_measurement: 'V'
+    device_class: battery
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
+
+  - platform: mqtt
+    state_topic: 'emon/emonth6/battery'
+    name: 'Livingroom Battery'
+    unit_of_measurement: 'V'
+    device_class: battery
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
+
+  - platform: mqtt
+    state_topic: 'emon/emonth7/battery'
+    name: 'Bedroom2 Battery'
+    unit_of_measurement: 'V'
+    device_class: battery
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
+
+  - platform: mqtt
+    state_topic: 'emon/emonth8/battery'
+    name: 'Shack Battery'
+    unit_of_measurement: 'V'
+    device_class: battery
+    value_template: '{{ value | float | round(1) }}'
+    expire_after: 300
+
+  - platform: template
+    sensors:
+      devices_with_low_battery_charge:
+        friendly_name: 'Devices with low battery charge'
+        unit_of_measurement: devices
+        value_template: >-
+          {{ states.sensor
+             | selectattr('attributes.device_class', 'eq', 'battery')
+             | selectattr('attributes.unit_of_measurement', 'eq', '%' )
+             | map(attribute='state')
+             | reject('in', ['unknown', 'unavailable', 'Ok'])
+             | map('int', -1) | select('le', 10)
+             | list | count
+          }}
+        icon_template: >-
+          {% if is_state('sensor.devices_with_low_battery_charge', '0') %}
+            mdi:check-circle
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+          
+  - platform: template
+    sensors:
+      devices_with_low_battery_voltage:
+        friendly_name: 'Devices with low battery voltage'
+        unit_of_measurement: devices
+        value_template: >-
+          {{ states.sensor
+             | selectattr('attributes.device_class', 'eq', 'battery')
+             | selectattr('attributes.unit_of_measurement', 'eq', 'V' )
+             | map(attribute='state')
+             | reject('in', ['unknown', 'unavailable', 'Ok'])
+             | map('float', -1) | select('le', 1.8)
+             | list | count
+          }}
+        icon_template: >-
+          {% if is_state('sensor.devices_with_low_battery_voltage', '0') %}
+            mdi:check-circle
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
+  - platform: template
+    sensors:
+      devices_with_low_battery:
+        friendly_name: "Devices with low battery"
+        unit_of_measurement: devices
+        value_template: >-
+          {{
+            states('sensor.devices_with_low_battery_charge') | int +
+            states('sensor.devices_with_low_battery_voltage') | int
+          }}
+        icon_template: >-
+          {% if is_state('sensor.devices_with_low_battery', '0') %}
+            mdi:check-circle
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
+binary_sensor:
+  - platform: threshold
+    entity_id: sensor.devices_with_low_battery
+    name: Some devices have low battery
+    upper: 0.5
+
+  - platform: template
+    sensors: 
+      master_alarm:
+        friendly_name: "Master Alarm"
+        value_template: >-
+          {{
+              states('binary_sensor.some_devices_have_low_battery')
+          }}
+    
+
+alert:
+  low_battery_devices:
+    name: Some devices have low battery
+    entity_id: binary_sensor.some_devices_have_low_battery
+    title: "{{ states('sensor.devices_with_low_battery') }} devices have low battery"
+    message: "Devices all have low battery, you should change them"
+    state: 'on'
+    can_acknowledge: true
+    repeat: 720
+    notifiers:
+      - slack
+    
+  master_alarm:
+    name: Master Alarm Sounding
+    done_message: Master Alarm condition has been resolved
+    entity_id: binary_sensor.master_alarm
+    state: 'on'
+    repeat: 120
+    can_acknowledge: True
+    notifiers:
+      - pushover_gareth
+      - slack
