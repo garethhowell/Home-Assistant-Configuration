@@ -119,7 +119,12 @@ input_boolean:
     name: "Disable vacant house setback"
     initial: off
 
-# "Virtual" switches for rooms demanding heat
+# Virtual switch to simulate bedtime at any time
+  simulate_bedtime:
+    name: "Simulate Bedtime"
+    initial: off
+
+# Virtual switches for rooms demanding heat
   livingroom_heat_demand:
     name: "Living Room Heating"
     initial: off
