@@ -96,7 +96,7 @@ sensor:
 
 # MQTT
 mqtt:
-  broker: mqtt.agdon.net
+  broker: 172.29.12.18
   username: !secret mqtt_username
   password: !secret mqtt_password
   discovery: true
