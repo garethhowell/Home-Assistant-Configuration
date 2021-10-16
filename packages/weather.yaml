@@ -3,14 +3,14 @@
 # https://www.home-assistant.io/integrations/sensor.metoffice/
 #
 ---
-sensor:
+#sensor:
         #  - platform: metoffice
         #    api_key: !secret metoffice_api_key
 
-  - platform: openweathermap
-    api_key: !secret openweather_api_key
+#  - platform: openweathermap
+#    api_key: !secret openweather_api_key
 
-weather:
+#weather:
         #  - platform: metoffice
 
-  - platform: openweathermap
+#  - platform: openweathermap

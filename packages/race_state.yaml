@@ -1,0 +1,16 @@
+---
+input_select:
+  # input select to indicate the state of the current race being tracked.
+  # Not intended to be user-controlled, but to be set by an external program
+  #
+  race_state:
+    name: Race State
+    options:
+      - Not Started
+      - Green Flag
+      - Yellow Flag
+      - FCY
+      - Safety Car
+      - Red Flag
+      - Checkered
+    initial: Not Started

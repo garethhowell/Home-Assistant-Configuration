@@ -36,6 +36,7 @@ input_select:
     name: Season?
     options:
       - Winter
+      - Spring
       - Summer
 
 sensor:

@@ -107,7 +107,7 @@ binary_sensor:
     sensors:
       cold_outside:
         friendly_name: "Low Temp"
-        entity_id: sensor.external_temperature_2
+        #entity_id: sensor.external_temperature_2
         value_template: >-
           {% if states('sensor.external_temperature_2') | float  < 5.0 %}
           true
@@ -116,7 +116,7 @@ binary_sensor:
           {% endif %}
       freezing_outside:
         friendly_name: "Freezing!"
-        entity_id: sensor.external_temperature_2
+        #entity_id: sensor.external_temperature_2
         value_template: >-
           {% if states('sensor.external_temperature_2') | float  < 0.3 %}
           true

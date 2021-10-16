@@ -10,31 +10,9 @@ homeassistant:
   auth_mfa_modules:
     - type: totp
 
-  # Allow local users in without a password
-  #      auth_providers:
-  #      - type: homeassistant
-  #      - type: trusted_networks
-  #        trusted_networks:
-  #          - 172.29.12.0/24
 
 # Simple integrations are retained in here.
 
-# Get a warning of any impending breaking changes
-# https://github.com/custom-components/breaking_changes
-#
-#breaking_changes:
-#  name: Potential Breaking changes
-#  scan_interval: 60
-
-
-# Recorder
-# Store data in MariaDB instead of HA's SQLite database
-# to get better performance
-#
-#recorder:
-#  db_url: mysql://homeassistant:IsThisAStrongPassword?@core-mariadb/homeassistant?charset=utf8
-
-  
 # The config component enables a set of additional capabilities to manage and
 #  # configure certain parts of Home Assistant straight from the frontend.
 #
@@ -77,12 +55,6 @@ logger:
     #homeassistant.components.rfxtrx: debug
     #homeassistant.components.mqtt: debug
 
-# Lovelace UI
-# https://www.home-assistant.io/lovelace/
-# https://www.home-assistant.io/lovelace/yaml-mode/
-#lovelace:
-#    mode: yaml
-
 # Google Map
 # https://www.home-assistant.io/components/map/
 map:
@@ -92,27 +64,6 @@ map:
 #
 sensor:
   - platform: moon
-
-
-# MQTT
-mqtt:
-  broker: 172.29.12.18
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  discovery: true
-  discovery_prefix: homeassistant
-
-
-
-
-
-# rfxtrx
-#
-# https://www.home-assistant.io/integrations/rfxtrx/
-#
-#rfxtrx:
-#  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1XETXVE-if00-port0
-#  debug: false
 
 # Sun
 sun:

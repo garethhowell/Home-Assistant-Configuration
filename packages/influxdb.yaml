@@ -37,7 +37,7 @@ influxdb:
   component_config_glob:
     sensor.*humidity:
       override_measurement: humidity
-    sensor.*temperature:
+    sensor.*temperature*:
       override_measurement: temperature
     sensor.*temp:
       override_measurement: temperature

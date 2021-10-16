@@ -18,6 +18,7 @@ appdaemon/compiled
 custom_components
 deps/
 **/__pycache__
+notebooks/
 
 # Ignored Files
 secrets.yaml
@@ -37,6 +38,7 @@ cameras.yaml
 OZW_Log.txt
 pyozw.sqlite
 zwcfg*.xml
+*.log.*
 
 
 # Node-Red

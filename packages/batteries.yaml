@@ -119,16 +119,17 @@ alert:
     name: Some devices have low battery
     entity_id: binary_sensor.some_devices_have_low_battery
     title: "{{ states('sensor.devices_with_low_battery') }} devices have low battery"
-    message: "Devices all have low battery, you should change them"
+    message: 'Some devices need a battery change'
     state: 'on'
     can_acknowledge: true
     repeat: 720
     notifiers:
       - slack
+      - pushover_gareth
     
   master_alarm:
     name: Master Alarm Sounding
-    done_message: Master Alarm condition has been resolved
+    done_message: 'Master Alarm'
     entity_id: binary_sensor.master_alarm
     state: 'on'
     repeat: 120

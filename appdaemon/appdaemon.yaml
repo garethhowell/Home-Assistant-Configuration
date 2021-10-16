@@ -8,8 +8,7 @@ appdaemon:
   plugins:
     HASS:
       type: hass
-http:
-  url: http://127.0.0.1:5050
+
 hadashboard:
 admin:
 api:

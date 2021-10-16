@@ -3,13 +3,6 @@
 #
 # https://www.home-assistant.io/components/speedtestdotnet/
 #
-speedtestdotnet:
-  scan_interval:
-    minutes: 15
-
-#influxdb:
-#  include:
-#    entities:
-#      - sensor.speedtest_download
-#      - sensor.speedtest_ping
-#      - sensor.speedtest_upload
+#speedtestdotnet:
+#  scan_interval:
+#    minutes: 15
