@@ -32,6 +32,7 @@ known_devices.yaml
 *.uuid
 *.mp3
 *.delete
+*.pickle
 airsonos.xml
 cameras.yaml
 .pip_progress

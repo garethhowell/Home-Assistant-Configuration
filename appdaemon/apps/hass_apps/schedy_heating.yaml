@@ -2,7 +2,7 @@
 schedy_heating:  # This is our app instance name.
   module: hass_apps_loader
   class: SchedyApp
-
+  
   debug: true
 
   reset_at_startup: false
@@ -20,7 +20,7 @@ schedy_heating:  # This is our app instance name.
       return state("input_boolean.house_vacant")
 
     def season():
-      return state("input_select.season")
+      return state('input_select.season')
 
     def gareth_location():
       return (state('device_tracker.ghip7plus'))
@@ -68,8 +68,7 @@ schedy_heating:  # This is our app instance name.
         - x: "15 if season() == 'Spring' else Next()"
         - v: 18
           rules:
-            - { start: "07:00", end: "09:00" }
-            - { start: "19:00", end: "22:30" }
+            - { start: "19:00", end: "09:00+1d" }
         
     bedroom_2:
       rescheduling_delay: 0
