@@ -1,7 +1,7 @@
 
 homeassistant:
   customize:
-    device_tracker.varinas_iphone:
+    device_tracker.unifi_84_8c_8d_d6_dd_ad_default:
       friendly_name: Varina
     device_tracker.ghip7plus:
       friendly_name: Gareth
