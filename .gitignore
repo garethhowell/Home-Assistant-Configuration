@@ -36,7 +36,7 @@ known_devices.yaml
 *.delete
 *.pickle
 airsonos.xml
-cameras.yaml
+#packages/cameras.yaml
 .pip_progress
 OZW_Log.txt
 pyozw.sqlite
