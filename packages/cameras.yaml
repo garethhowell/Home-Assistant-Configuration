@@ -1,0 +1,10 @@
+# MotionEye Automation test
+automation:
+  - alias: Receive notification when motion is detected on Shack External camera
+    trigger:
+      platform: webhook
+      webhook_id: "123321"
+    action:
+      data:
+        message: "Motion detected on Shack External Camera"
+      service: notify.pushover_gareth
