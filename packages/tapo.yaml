@@ -1,0 +1,6 @@
+#P100 or P105 Plug
+#switch:
+#    platform: tapo
+#    ip_address: 192.168.10.90
+#    email: gareth.howell@gmail.com
+#    password: !secret tapo_password

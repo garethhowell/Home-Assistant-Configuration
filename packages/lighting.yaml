@@ -1,3 +1,8 @@
+input_boolean:
+  christmas:
+    name: "Is it Christmas?"
+    initial: off
+      
 group:
   evening_lights:
     name: Lights that come on automatically in the evening
@@ -6,9 +11,13 @@ group:
 
   christmas_lights:
     name: Christmas Lights
-    entities: []
-#      - switch.shack_power_switch
-#      - switch.shed_fan
+    entities:
+      - switch.ikea_switch01 # Shed
+      - switch.ikea_switch02 # Shack
+      - switch.shack_power_switch # Shack
+      - switch.tp100_01 # Bedroom 3
+      - switch.tp100_02 # Bedroom 2
+      - switch.tp100_04 # Den
 #      - light.wled_shack_master
 #      - light.wled_bed2_master
 
@@ -16,7 +25,6 @@ scene:
   - name: Evening
     entities:
       group.evening_lights: on
-      group.christmas_lights: on
       
   - name: Goodnight
     entities:
@@ -36,21 +44,20 @@ script:
   switch_on_christmas_lights:
     alias: Turn on Christmas Lights
     sequence:
-      - service: wled.preset
-        data:
-          entity_id: light.wled_shack_segment_2
-          preset: 1
-      - service: wled.preset
-        data:
-          entity_id: light.wled_bed2_segment_2
-          preset: 1
+#      - service: wled.preset
+#        data:
+#          entity_id: light.wled_shack_segment_2
+#          preset: 1
+#      - service: wled.preset
+#        data:
+#          entity_id: light.wled_bed2_segment_2
+#          preset: 1
       - service: switch.turn_on
         data:
           entity_id: 
-            - group.evening_lights
             - group.christmas_lights
-            - light.wled_shack_master
-            - light.wled_bed2_master
+#            - light.wled_shack_master
+#            - light.wled_bed2_master
 
 automation:
   # When it gets dark outside
@@ -64,7 +71,7 @@ automation:
     action:
       service: scene.turn_on
       entity_id: scene.evening
-#      service: script.switch_on_christmas_lights
+      service: script.switch_on_christmas_lights
 
   - alias: lights_out
     # Switch lights off at 11PM

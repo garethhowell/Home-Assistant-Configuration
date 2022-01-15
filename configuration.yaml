@@ -29,6 +29,8 @@ discovery:
 #
 hassio:
 
+recorder:
+  db_url: mysql://homeassistant:D86pmj@core-mariadb/homeassistant?charset=utf8mb4
 
 # This tells HA to keep a history of the data
 #

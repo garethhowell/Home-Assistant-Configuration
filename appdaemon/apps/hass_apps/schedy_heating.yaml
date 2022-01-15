@@ -26,10 +26,10 @@ schedy_heating:  # This is our app instance name.
       return (state('device_tracker.ghip7plus'))
 
     def varina_location():
-      return (state('device_tracker.varinas_iphone'))
+      return (state('device_tracker.v_iphone'))
     
     def setback_disable():
-      return (state('inout_boolean.setback_disable'))
+      return (state('input_boolean.setback_disable'))
       
     def shack_occupied():
       return (state('input_boolean.shack_occupied'))
@@ -48,7 +48,7 @@ schedy_heating:  # This is our app instance name.
     - input_select.house_mode
     - input_select.season
     - device_tracker.ghip7plus
-    - device_tracker.varinas_iphone
+    - device_tracker.v_iphone # Varina's iPhone
 
   schedule_prepend:
     - x: "10 if house_mode() == 'Away' else Next()"

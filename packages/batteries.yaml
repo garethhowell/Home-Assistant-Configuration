@@ -1,3 +1,8 @@
+# Batteries.yaml
+# Stuff to report battery state and raise an elert of a battery state gets low.
+#
+
+# emonCMS battery sensors
 sensor:
   - platform: mqtt
     state_topic: 'emon/emonth4/battery'
@@ -6,6 +11,18 @@ sensor:
     device_class: battery
     value_template: '{{ value | float | round(1) }}'
     expire_after: 300
+
+#  - platform: template
+#    name: 'Shed Battery'
+#    update_interval: 60s
+#    value_template: >-
+#      {{
+#          states('sensor.inst_shed_battery)
+#      }}
+#    filters:
+#    - sliding_window_moving_average:
+#        windows_size: 5
+#        send_every: 1
     
   - platform: mqtt
     state_topic: 'emon/emonth5/battery'
@@ -35,10 +52,11 @@ sensor:
     state_topic: 'emon/emonth8/battery'
     name: 'Shack Battery'
     unit_of_measurement: 'V'
-    device_class: battery
+    device_class: voltage
     value_template: '{{ value | float | round(1) }}'
     expire_after: 300
 
+# The number of devices whose battery charge is below 10%
   - platform: template
     sensors:
       devices_with_low_battery_charge:
@@ -60,6 +78,7 @@ sensor:
             mdi:battery-alert
           {% endif %}
           
+# The number of devices whose battery voltage is below 1.8V
   - platform: template
     sensors:
       devices_with_low_battery_voltage:
@@ -81,6 +100,7 @@ sensor:
             mdi:battery-alert
           {% endif %}
 
+# The number of devices which have a low battery state
   - platform: template
     sensors:
       devices_with_low_battery:
@@ -99,11 +119,15 @@ sensor:
           {% endif %}
 
 binary_sensor:
+# At least one device has a low battery
   - platform: threshold
     entity_id: sensor.devices_with_low_battery
     name: Some devices have low battery
     upper: 0.5
+    device_class: battery
 
+
+# Raise a Master Alarm if a battery has a low battery
   - platform: template
     sensors: 
       master_alarm:
@@ -112,6 +136,7 @@ binary_sensor:
           {{
               states('binary_sensor.some_devices_have_low_battery')
           }}
+        delay_on: 0:05:00
     
 
 alert:
