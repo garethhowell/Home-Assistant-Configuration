@@ -2,7 +2,7 @@ input_boolean:
   christmas:
     name: "Is it Christmas?"
     initial: off
-      
+
 group:
   evening_lights:
     name: Lights that come on automatically in the evening
@@ -25,7 +25,7 @@ scene:
   - name: Evening
     entities:
       group.evening_lights: on
-      
+
   - name: Goodnight
     entities:
       group.evening_lights: off
@@ -36,7 +36,7 @@ scene:
       climate.livingroom_thermostat:
         state: on
         temperature: 15
-      climate.bedroom_2_thermostat: 
+      climate.bedroom_2_thermostat:
         state: on
         temperature: 15
 
@@ -44,17 +44,17 @@ script:
   switch_on_christmas_lights:
     alias: Turn on Christmas Lights
     sequence:
-#      - service: wled.preset
-#        data:
-#          entity_id: light.wled_shack_segment_2
-#          preset: 1
-#      - service: wled.preset
-#        data:
-#          entity_id: light.wled_bed2_segment_2
-#          preset: 1
+      #      - service: wled.preset
+      #        data:
+      #          entity_id: light.wled_shack_segment_2
+      #          preset: 1
+      #      - service: wled.preset
+      #        data:
+      #          entity_id: light.wled_bed2_segment_2
+      #          preset: 1
       - service: switch.turn_on
         data:
-          entity_id: 
+          entity_id:
             - group.christmas_lights
 #            - light.wled_shack_master
 #            - light.wled_bed2_master
@@ -63,15 +63,15 @@ automation:
   # When it gets dark outside
   #
   - alias: Lights on at sunset
-  # Lights on 30 minutes before sunset if house is not vacant
+    # Lights on 30 minutes before sunset if house is not vacant
     trigger:
       platform: sun
       event: sunset
-      offset: '-00:30:00'
+      offset: "-00:30:00"
     action:
-      service: scene.turn_on
-      entity_id: scene.evening
-      service: script.switch_on_christmas_lights
+      - service: scene.turn_on
+        entity_id: scene.evening
+      - service: script.switch_on_christmas_lights
 
   - alias: lights_out
     # Switch lights off at 11PM
@@ -85,18 +85,18 @@ automation:
   # Switch on living room lights if it is raining outside
   # From https://www.home-assistant.io/cookbook/automation_for_rainy_days/
   #
-  - alias: 'Rainy Day'
+  - alias: "Rainy Day"
     trigger:
       platform: state
       entity_id: sensor.dark_sky_precip_intensity
-      to: 'rain'
+      to: "rain"
     condition:
       - condition: state
         entity_id: device_tracker.ghip7plus
-        state: 'home'
+        state: "home"
       - condition: time
-        after: '14:00'
-        before: '23:00'
+        after: "14:00"
+        before: "23:00"
     action:
       service: scene.turn_on
       entity_id: scene.evening

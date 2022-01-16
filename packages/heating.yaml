@@ -144,12 +144,12 @@ binary_sensor:
     sensors:
       we_need_heat:
         friendly_name: "We need heat"
-        entity_id:
-          - input_boolean.livingroom_heat_demand
-          - input_boolean.bedroom1_heat_demand
-          - input_boolean.bedroom2_heat_demand
-          - input_boolean.central_heating_manual
-          - input_boolean.heated_towelrail_heat_demand
+      #  entity_id:
+      #    - input_boolean.livingroom_heat_demand
+      #    - input_boolean.bedroom1_heat_demand
+      #    - input_boolean.bedroom2_heat_demand
+      #    - input_boolean.central_heating_manual
+      #    - input_boolean.heated_towelrail_heat_demand
         value_template: >-
           {% if states('input_boolean.livingroom_heat_demand') == 'on' or
             states('input_boolean.bedroom1_heat_demand') == 'on' or
