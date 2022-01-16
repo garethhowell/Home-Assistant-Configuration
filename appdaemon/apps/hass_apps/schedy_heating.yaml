@@ -1,8 +1,7 @@
-
-schedy_heating:  # This is our app instance name.
+schedy_heating: # This is our app instance name.
   module: hass_apps_loader
   class: SchedyApp
-  
+
   debug: true
 
   reset_at_startup: false
@@ -27,7 +26,7 @@ schedy_heating:  # This is our app instance name.
 
     def varina_location():
       return (state('device_tracker.v_iphone'))
-    
+
     def setback_disable():
       return (state('input_boolean.setback_disable'))
       
@@ -66,16 +65,15 @@ schedy_heating:  # This is our app instance name.
         climate.bedroom_1_thermostat:
       schedule:
         - x: "15 if season() == 'Spring' else Next()"
-        - v: 18
+        - v: 16
           rules:
             - { start: "19:00", end: "09:00+1d" }
-        
+
     bedroom_2:
       rescheduling_delay: 0
       actors:
         climate.bedroom_2_thermostat:
       schedule:
-
         - x: "15 if season() == 'Spring' else Next()"
         - x: "15 if varina_location() == 'not_home' else Next()"
         - x: "15 if simulate_bedtime() == 'on' else Next()"
@@ -83,31 +81,30 @@ schedy_heating:  # This is our app instance name.
           rules:
             - weekdays: 1-7
               rules:
-              - rules:
-                - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
-                - { start: "07:00", end: "09:00" }
-                - { start: "17:00", end: "21:00" }
-              - rules:
-                - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
-                - { start: "07:00", end: "21:00" }
+                - rules:
+                    - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
+                    - { start: "07:00", end: "09:00" }
+                    - { start: "17:00", end: "21:00" }
+                - rules:
+                    - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
+                    - { start: "07:00", end: "21:00" }
 
     landing:
       actors:
         climate.landing_radiator_thermostat:
       schedule:
-
         - x: "10 if season() == 'Spring' else Next()"
         - v: 22
           rules:
             - weekdays: 1-5
               rules:
-              - rules:
-                - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
-                - { start: "07:00", end: "09:00" }
-                - { start: "17:00", end: "22:00" }
-              - rules:
-                - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
-                - { start: "07:00", end: "22:00" }
+                - rules:
+                    - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
+                    - { start: "07:00", end: "09:00" }
+                    - { start: "17:00", end: "22:00" }
+                - rules:
+                    - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
+                    - { start: "07:00", end: "22:00" }
             - weekdays: 6-7
               rules:
                 - { start: "07:00", end: "22:00" }
@@ -118,30 +115,28 @@ schedy_heating:  # This is our app instance name.
       actors:
         climate.livingroom_thermostat:
       schedule:
-
         - x: "15 if simulate_bedtime() == 'on' else Next()"
         - v: 20
           rules:
             - weekdays: 1-5
               rules:
-              - rules:
-#                - x: "Next() if season() == 'Spring' else Break()"
-#                - {v: 15, start: "23:00", end: "17:00+1d" }
-#                - { start: "17:00", end: "23:00" }
-                - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
-                - { start: "07:00", end: "09:00" }
-                - { start: "17:00", end: "19:00" }
-              - rules:
-                - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
-                - { start: "07:00", end: "09:00" }
-                - { v: 19, start: "09:00", end: "17:00" }
-                - { start: "17:00", end: "22:30" }
+                - rules:
+                    #                - x: "Next() if season() == 'Spring' else Break()"
+                    #                - {v: 15, start: "23:00", end: "17:00+1d" }
+                    #                - { start: "17:00", end: "23:00" }
+                    - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
+                    - { start: "07:00", end: "09:00" }
+                    - { start: "17:00", end: "19:00" }
+                - rules:
+                    - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
+                    - { start: "07:00", end: "09:00" }
+                    - { v: 19, start: "09:00", end: "17:00" }
+                    - { start: "17:00", end: "22:30" }
             - weekdays: 6-7
               rules:
                 - { start: "07:00", end: "09:00" }
                 - { v: 19, start: "09:00", end: "17:00" }
                 - { start: "17:00", end: "22:30" }
-
 
     shack:
       rescheduling_delay: 0
@@ -157,4 +152,3 @@ schedy_heating:  # This is our app instance name.
         - v: 20
           rules:
             - { start: "08:30", end: "22:00" }
-
