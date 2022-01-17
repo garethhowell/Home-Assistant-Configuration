@@ -77,7 +77,7 @@ schedy_heating: # This is our app instance name.
         - x: "15 if season() == 'Spring' else Next()"
         - x: "15 if varina_location() == 'not_home' else Next()"
         - x: "15 if simulate_bedtime() == 'on' else Next()"
-        - v: 21
+        - v: 20
           rules:
             - weekdays: 1-7
               rules:
@@ -94,7 +94,7 @@ schedy_heating: # This is our app instance name.
         climate.landing_radiator_thermostat:
       schedule:
         - x: "10 if season() == 'Spring' else Next()"
-        - v: 22
+        - v: 19
           rules:
             - weekdays: 1-5
               rules:
@@ -116,7 +116,7 @@ schedy_heating: # This is our app instance name.
         climate.livingroom_thermostat:
       schedule:
         - x: "15 if simulate_bedtime() == 'on' else Next()"
-        - v: 20
+        - v: 19
           rules:
             - weekdays: 1-5
               rules:
@@ -149,6 +149,6 @@ schedy_heating: # This is our app instance name.
         - x: "10 if gareth_location() == 'not_home' else Next()"
         - x: "10 if shack_occupied() == 'off' else Next()"
         - x: "15 if season() == 'Spring' else Next()"
-        - v: 20
+        - v: 19
           rules:
             - { start: "08:30", end: "22:00" }
