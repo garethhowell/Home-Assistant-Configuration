@@ -146,9 +146,9 @@ schedy_heating: # This is our app instance name.
         - v: 6
           rules:
             - { start: "22:00", end: "08:30+1d" }
-        - x: "10 if gareth_location() == 'not_home' else Next()"
-        - x: "10 if shack_occupied() == 'off' else Next()"
-        - x: "15 if season() == 'Spring' else Next()"
+        - x: "6 if gareth_location() == 'not_home' else Next()"
+        - x: "6 if shack_occupied() == 'off' else Next()"
+        - x: "6 if season() == 'Spring' else Next()"
         - v: 19
           rules:
             - { start: "08:30", end: "22:00" }
