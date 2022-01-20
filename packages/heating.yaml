@@ -21,7 +21,7 @@ switch:
     state_topic: shellies/shellyswitch25-76CD68/relay/1
     command_topic: shellies/shellyswitch25-76CD68/relay/1/command
     json_attributes_topic: shellies/shellyswitch25-76CD68/info
-    
+
 # Shed Thermostats
 # Use generic_thermostat to keep temp between 6 and 24
 climate:
@@ -45,19 +45,19 @@ climate:
     target_temp: 22
     initial_hvac_mode: "cool"
 
-# Shack Thermostat
+  # Shack Thermostat
   - platform: generic_thermostat
     name: "Shack Thermostat"
     heater: switch.shack_heater
     ac_mode: false
     target_sensor: sensor.shack_temperature
-    min_temp: 10
+    min_temp: 6
     max_temp: 30
     target_temp: 17
     initial_hvac_mode: "heat"
 
-# Hot Water thermostat - used to enable boiler in morning
-#  to warm towel rail even if rooms don't need heating
+  # Hot Water thermostat - used to enable boiler in morning
+  #  to warm towel rail even if rooms don't need heating
   - platform: generic_thermostat
     name: "Hot Water"
     heater: input_boolean.heated_towelrail_heat_demand
@@ -68,7 +68,7 @@ climate:
     target_temp: -10
     initial_hvac_mode: "heat"
 
-# Room thermostats
+  # Room thermostats
   - platform: generic_thermostat
     name: "Livingroom Thermostat"
     heater: input_boolean.livingroom_heat_demand
@@ -76,7 +76,7 @@ climate:
     target_sensor: sensor.livingroom_temperature
     min_temp: 10
     max_temp: 30
-#    hot_tolerance: -1.5
+    #    hot_tolerance: -1.5
     target_temp: 19
     initial_hvac_mode: "heat"
   - platform: generic_thermostat
@@ -87,7 +87,7 @@ climate:
     min_temp: 10
     max_temp: 30
     target_temp: 17
-#    hot_tolerance: -1.5
+    #    hot_tolerance: -1.5
     initial_hvac_mode: "heat"
   - platform: generic_thermostat
     name: "Bedroom 2 Thermostat"
@@ -97,11 +97,11 @@ climate:
     min_temp: 10
     max_temp: 30
     target_temp: 19
-#    hot_tolerance: -1.5
+    #    hot_tolerance: -1.5
     initial_hvac_mode: "heat"
 
 input_boolean:
-# Buttons to manipulate living room temps up and down
+  # Buttons to manipulate living room temps up and down
   living_room_temperature_up:
     name: "Living Room Temperature Up"
     initial: off
@@ -109,22 +109,22 @@ input_boolean:
     name: "Living Room Temperature Down"
     initial: off
 
-# Switch to override central heating - reset at 00:01 each day
+  # Switch to override central heating - reset at 00:01 each day
   central_heating_manual:
     name: "Central Heating on Manual"
     initial: off
 
-# Switch to disable set-back when house is vacant
+  # Switch to disable set-back when house is vacant
   setback_disable:
     name: "Disable vacant house setback"
     initial: off
 
-# Virtual switch to simulate bedtime at any time
+  # Virtual switch to simulate bedtime at any time
   simulate_bedtime:
     name: "Simulate Bedtime"
     initial: off
 
-# Virtual switches for rooms demanding heat
+  # Virtual switches for rooms demanding heat
   livingroom_heat_demand:
     name: "Living Room Heating"
     initial: off
@@ -139,17 +139,17 @@ input_boolean:
     initial: off
 
 binary_sensor:
-# Overall indicator that we need heat
+  # Overall indicator that we need heat
   - platform: template
     sensors:
       we_need_heat:
         friendly_name: "We need heat"
-      #  entity_id:
-      #    - input_boolean.livingroom_heat_demand
-      #    - input_boolean.bedroom1_heat_demand
-      #    - input_boolean.bedroom2_heat_demand
-      #    - input_boolean.central_heating_manual
-      #    - input_boolean.heated_towelrail_heat_demand
+        #  entity_id:
+        #    - input_boolean.livingroom_heat_demand
+        #    - input_boolean.bedroom1_heat_demand
+        #    - input_boolean.bedroom2_heat_demand
+        #    - input_boolean.central_heating_manual
+        #    - input_boolean.heated_towelrail_heat_demand
         value_template: >-
           {% if states('input_boolean.livingroom_heat_demand') == 'on' or
             states('input_boolean.bedroom1_heat_demand') == 'on' or
