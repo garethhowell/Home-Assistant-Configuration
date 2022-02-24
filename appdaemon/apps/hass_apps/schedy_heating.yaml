@@ -50,7 +50,7 @@ schedy_heating: # This is our app instance name.
     - device_tracker.v_iphone # Varina's iPhone
 
   schedule_prepend:
-    - x: "10 if house_mode() == 'Away' else Next()"
+    - x: "6 if house_mode() == 'Away' else Next()"
     - x: "10 if season() == 'Summer' else Next()"
     - x: "15 if gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
@@ -64,6 +64,7 @@ schedy_heating: # This is our app instance name.
       actors:
         climate.bedroom_1_thermostat:
       schedule:
+        - x: "6 if house_mode() == 'Away' else Next()"
         - x: "15 if season() == 'Spring' else Next()"
         - v: 16
           rules:
@@ -74,6 +75,7 @@ schedy_heating: # This is our app instance name.
       actors:
         climate.bedroom_2_thermostat:
       schedule:
+        - x: "6 if house_mode() == 'Away' else Next()"
         - x: "15 if season() == 'Spring' else Next()"
         - x: "15 if varina_location() == 'not_home' else Next()"
         - x: "15 if simulate_bedtime() == 'on' else Next()"
@@ -93,6 +95,7 @@ schedy_heating: # This is our app instance name.
       actors:
         climate.landing_radiator_thermostat:
       schedule:
+        - x: "6 if house_mode() == 'Away' else Next()"
         - x: "10 if season() == 'Spring' else Next()"
         - v: 19
           rules:
@@ -115,6 +118,7 @@ schedy_heating: # This is our app instance name.
       actors:
         climate.livingroom_thermostat:
       schedule:
+        - x: "6 if house_mode() == 'Away' else Next()"
         - x: "15 if simulate_bedtime() == 'on' else Next()"
         - v: 19
           rules:
