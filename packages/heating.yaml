@@ -40,7 +40,7 @@ climate:
     heater: switch.shed_fan
     ac_mode: true
     target_sensor: sensor.shed_temperature
-    min_temp: 15
+    min_temp: 3
     max_temp: 30
     target_temp: 22
     initial_hvac_mode: "cool"
@@ -74,7 +74,7 @@ climate:
     heater: input_boolean.livingroom_heat_demand
     ac_mode: false
     target_sensor: sensor.livingroom_temperature
-    min_temp: 10
+    min_temp: 6
     max_temp: 30
     #    hot_tolerance: -1.5
     target_temp: 19
@@ -84,7 +84,7 @@ climate:
     heater: input_boolean.bedroom1_heat_demand
     ac_mode: false
     target_sensor: sensor.bedroom1_temperature
-    min_temp: 10
+    min_temp: 6
     max_temp: 30
     target_temp: 17
     #    hot_tolerance: -1.5
@@ -94,7 +94,7 @@ climate:
     heater: input_boolean.bedroom2_heat_demand
     ac_mode: false
     target_sensor: sensor.bedroom2_temperature
-    min_temp: 10
+    min_temp: 6
     max_temp: 30
     target_temp: 19
     #    hot_tolerance: -1.5
