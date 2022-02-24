@@ -187,7 +187,7 @@ alert:
     message: "Some devices need a battery change"
     state: "on"
     can_acknowledge: true
-    repeat: 720
+    repeat: 2880
     notifiers:
       - slack
       - pushover_gareth
@@ -197,7 +197,7 @@ alert:
     done_message: "Master Alarm"
     entity_id: binary_sensor.master_alarm
     state: "on"
-    repeat: 120
+    repeat: 2880
     can_acknowledge: True
     notifiers:
       - pushover_gareth
