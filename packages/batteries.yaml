@@ -119,7 +119,7 @@ sensor:
             mdi:battery-alert
           {% endif %}
 
-  # The number of devices whose battery voltage is below 1.8V
+  # The number of devices whose battery voltage is below 1.6V
   - platform: template
     sensors:
       devices_with_low_battery_voltage:
@@ -132,7 +132,7 @@ sensor:
              | selectattr('attributes.type', 'eq', 'filtered')
              | map(attribute='state')
              | reject('in', ['unknown', 'unavailable', 'Ok'])
-             | map('float', -1) | select('le', 1.8)
+             | map('float', -1) | select('le', 1.6)
              | list | count
           }}
         icon_template: >-
