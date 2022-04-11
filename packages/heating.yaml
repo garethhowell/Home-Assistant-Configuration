@@ -156,8 +156,8 @@ binary_sensor:
             states('input_boolean.bedroom2_heat_demand') == 'on' or
             states('input_boolean.central_heating_manual') == 'on' or
             states('input_boolean.heated_towelrail_heat_demand') == 'on'
-             %}
+          %}
             true
-            {% else %}
+          {% else %}
             false
-            {% endif %}
+          {% endif %}
