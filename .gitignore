@@ -54,3 +54,4 @@ node-red
 # Alexa Media
 alexa_media.*.pickle
 aircast.xml
+themes/ios_dark_mode/ios_dark_mode.yaml
