@@ -1,12 +1,14 @@
-
 homeassistant:
   customize:
     device_tracker.v_iphone:
       friendly_name: Varina
+
     device_tracker.ghip7plus:
       friendly_name: Gareth
 
-input_boolean:
-  shack_occupied:
-    name: "Shack Occupied"
-    icon: mdi:house
+group:
+  all_people:
+    name: "All people needing to be tracked"
+    entities:
+      - device_tracker.ghipv7plus
+      - device_tracker.v_iphone

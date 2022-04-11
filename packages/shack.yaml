@@ -1,0 +1,6 @@
+homeassistant:
+  customize:
+    input_boolean.shack_occupied:
+      icon_template: >-
+        if (state === 'on') return 'mdi:account';
+        return 'mdi:account-outline'

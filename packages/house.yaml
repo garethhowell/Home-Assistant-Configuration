@@ -1,6 +1,7 @@
 #
 # tracks whether the house is occupied or not
 #
+
 input_boolean:
   house_vacant:
     name: "House Vacant?"
@@ -27,7 +28,7 @@ input_select:
       - Home - Normal Day
       - Home - Home Day
       - Away
-    icon: mdi:flame
+    icon: mdi:thermostat
 
   # input select to indicate which season we are in.
   # Used by Schedy to set climate controls
@@ -40,7 +41,6 @@ input_select:
       - Summer
 
 sensor:
-
   # The time and date (time_date) sensor platform.
   # Has the time in various formats, the date, or both.
   #
@@ -50,9 +50,9 @@ sensor:
   #
   - platform: time_date
     display_options:
-      - 'time'
-      - 'date'
-      - 'date_time'
+      - "time"
+      - "date"
+      - "date_time"
       #- 'date_time_iso'
       #- 'time_date'
       #- 'time_utc'
@@ -69,3 +69,36 @@ sensor:
     image: raspberrypi3
   - platform: version
     name: version_current
+
+automation:
+  - alias: house vacant
+    description: ""
+    trigger:
+      - platform: state
+        entity_id: group.all_people
+        from: home
+        to: not_home
+        for: "00:01:00"
+    condition: []
+    action:
+      - service: input_boolean.turn_on
+        data: {}
+        target:
+          entity_id: input_boolean.house_vacant
+    mode: single
+
+  - alias: house not vacant
+    description: ""
+    trigger:
+      - platform: state
+        entity_id: group.all_people
+        from: not_home
+        to: home
+        for: "00:01:00"
+    condition: []
+    action:
+      - service: input_boolean.turn_off
+        data: {}
+        target:
+          entity_id: input_boolean.house_vacant
+    mode: single
