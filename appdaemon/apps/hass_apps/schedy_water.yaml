@@ -1,4 +1,4 @@
-schedy_water:  # This is our app instance name.
+schedy_water: # This is our app instance name.
   module: hass_apps_loader
   class: SchedyApp
 
@@ -22,7 +22,6 @@ schedy_water:  # This is our app instance name.
   # default rule to apply if no other matches
   schedule_append:
 
-
   rooms:
     hot_water:
       rescheduling_delay: 60
@@ -32,5 +31,5 @@ schedy_water:  # This is our app instance name.
         - x: "-10 if house_mode() == 'Away' else Next()"
         - v: 35
           rules:
-            - { start: "07:00", end: "09:00" }
+            - { start: "07:00", end: "08:00" }
         - v: -10
