@@ -97,6 +97,26 @@ sensor:
         time_constant: 10
         precision: 1
 
+  # The number of devices with 'Low Battery' binary_sensor 'on'
+  - platform: template
+    sensors:
+      devices_with_low_battery_sensor_active:
+        friendly_name: "Devices with low battery sensor active"
+        unit_of_measurement: devices
+        value_template: >-
+          {{ states.binary_sensor
+             | selectattr('attributes.device_class', 'eq', 'battery')
+             | map(attribute='state')
+             | select('eq', 'on')
+             | list | count
+          }}
+        icon_template: >-
+          {% if is_state('binary_sensor.devices_with_low_battery_sensor_active', '0') %}
+            mdi:check-circle
+          {% else %}
+            mdi:battery-alert
+          {% endif %}
+
   # The number of devices whose battery charge is below 10%
   - platform: template
     sensors:
@@ -107,6 +127,7 @@ sensor:
           {{ states.sensor
              | selectattr('attributes.device_class', 'eq', 'battery')
              | selectattr('attributes.unit_of_measurement', 'eq', '%' )
+             | rejectattr('attributes.state_class', 'eq', 'measurement')
              | map(attribute='state')
              | reject('in', ['unknown', 'unavailable', 'Ok'])
              | map('int', -1) | select('le', 10)
@@ -151,7 +172,8 @@ sensor:
         value_template: >-
           {{
             states('sensor.devices_with_low_battery_charge') | int +
-            states('sensor.devices_with_low_battery_voltage') | int
+            states('sensor.devices_with_low_battery_voltage') | int +
+            states('sensor.devices_with_low_battery_sensor_active') | int
           }}
         icon_template: >-
           {% if is_state('sensor.devices_with_low_battery', '0') %}
@@ -166,7 +188,7 @@ binary_sensor:
     entity_id: sensor.devices_with_low_battery
     name: Some devices have low battery
     upper: 0.5
-    device_class: battery
+    #device_class: battery
 
   # Raise a Master Alarm if a battery has a low battery
   - platform: template
