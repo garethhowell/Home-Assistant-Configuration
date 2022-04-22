@@ -1,23 +1,26 @@
 livingroom_lights:
-  widget_type: light
-  title: Standard Lights
+  widget_type: switch
+  title: Standard Lamps
   entity: switch.livingroom_standard_lamps
+  icon: mdi-light-switch
 
-livingroom_rad:
+liv_thermostat:
   widget_type: climate
-  entity: climate.livingroom_radiator_thermostat
-
-diningroom_rad:
-  widget_type: climate
-  entity: climate.diningroom_radiator_thermostat
-
-shack_therm:
-  widget_type: climate
-  title: Shack
-  entity: climate.shack_thermostat
+  entity: climate.livingroom_thermostat
+  title: "Thermostat"
+  units: "&deg;C"
   step: 1
-  units: C
+
+evening:
+  widget_type: scene
+  entity: scene.evening
+  title: "Evening"
+
+bedtime:
+  widget_type: scene
+  entity: scene.goodnight
+  title: "Bedtime"
 
 layout:
-  - livingroom_lights(2x2), spacer(6x2)
-  - 
+  - liv_thermostat(2x2), livingroom_lights(2x2), evening(2x2), bedtime(2x2)
+  - spacer

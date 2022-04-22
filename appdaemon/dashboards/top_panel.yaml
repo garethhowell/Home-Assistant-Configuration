@@ -1,7 +1,7 @@
 gareth_presence:
   widget_type: device_tracker
   title: Gareth
-  device: life360_gareth
+  device: ghip7plus
   enable: 1
   icon_on: fa-male
   icon_off: fa-male
@@ -10,7 +10,7 @@ gareth_presence:
 varina_presence:
   widget_type: device_tracker
   title: Varina
-  device: life360_varina
+  device: v_iphone
   enable: 1
   icon_on: fa-female
   icon_off: fa-female
@@ -22,10 +22,22 @@ mode:
   entity: input_select.house_mode
 
 weather:
-  widget_type: weather
+  widget_type: sensor
   entity: weather.openweathermap
-  units: "&deg;C"
+
+ext_temp:
+  widget_type: sensor
+  entity: sensor.external_temperature_2
+  title: Temp
+  unit: "&deg;C"
+  enable: 1
+
+pressure:
+  widget_type: sensor
+  entity: sensor.openweathermap_pressure
+  title: Pressure
+  enable: 1
 
 layout:
-  - clock.clock(2x1), weather(2x2), mode(2x1), gareth_presence, varina_presence
-  - 
+  - clock.clock(2x1), weather(2x2), ext_temp, pressure, gareth_presence, varina_presence
+  - mode(2x1)
