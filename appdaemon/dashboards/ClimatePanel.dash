@@ -2,7 +2,7 @@
 # Main arguments, all optional
 #
 title: Climate
-widget_dimensions: [120, 120]
+widget_dimensions: [110, 110]
 widget_size: [1, 1]
 widget_margins: [5, 5]
 columns: 8
