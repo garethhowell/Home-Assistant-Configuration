@@ -8,7 +8,12 @@ appdaemon:
   plugins:
     HASS:
       type: hass
+      ha_url: http://172.29.12.18:8123
+      token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhOTQ0ZmVlYTE3MjQ0MDJhYWVmZWU4YjhlZjE5MDUzMiIsImlhdCI6MTY1MDYyMjAwMCwiZXhwIjoxOTY1OTgyMDAwfQ.oc7EcC_zvNsw9WHcFQ8yHhL9DjztV6y9HO79nqs6kWQ
 
+http:
+  url: http://127.0.0.1:5050
 hadashboard:
+  dash_url: http://172.29.12.18:5050
 admin:
 api:
