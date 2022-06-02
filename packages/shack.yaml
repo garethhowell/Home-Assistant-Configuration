@@ -4,3 +4,8 @@ homeassistant:
       icon_template: >-
         if (state === 'on') return 'mdi:account';
         return 'mdi:account-outline'
+
+input_boolean:
+  shack_occupied:
+    name: "Shack Occupied"
+    initial: off

@@ -141,6 +141,7 @@ schedy_heating: # This is our app instance name.
       actors:
         climate.shack_thermostat:
       schedule:
+        - x: "6 if season() == 'Spring' else Next()"
         - v: 6
           rules:
             - { start: "22:00", end: "08:30+1d" }
