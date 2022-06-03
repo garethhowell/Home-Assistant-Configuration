@@ -10,17 +10,17 @@ homeassistant:
     sensor.shack_temperature:
       friendly_name: "Shack Temperature"
 
-switch:
-  # Shelly switch controlling CH side of boiler
-  - platform: mqtt
-    name: Central Heating Boiler - CH
-    unique_id: central_heating_boiler_ch
-    payload_on: "on"
-    payload_off: "off"
-    qos: 1
-    state_topic: shellies/shellyswitch25-76CD68/relay/1
-    command_topic: shellies/shellyswitch25-76CD68/relay/1/command
-    json_attributes_topic: shellies/shellyswitch25-76CD68/info
+mqtt:
+  switch:
+    # Shelly switch controlling CH side of boiler
+    - name: Central Heating Boiler - CH
+      unique_id: central_heating_boiler_ch
+      payload_on: "on"
+      payload_off: "off"
+      qos: 1
+      state_topic: shellies/shellyswitch25-76CD68/relay/1
+      command_topic: shellies/shellyswitch25-76CD68/relay/1/command
+      json_attributes_topic: shellies/shellyswitch25-76CD68/info
 
 # Shed Thermostats
 # Use generic_thermostat to keep temp between 6 and 24

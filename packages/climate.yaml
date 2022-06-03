@@ -1,7 +1,6 @@
 ---
 homeassistant:
   customize:
-
     sensor.shack_environment:
       hidden: true
 
@@ -17,89 +16,76 @@ homeassistant:
     binary_sensor.freezing_outside:
       device_class: cold
 
+mqtt:
+  sensor:
+    # Temperatures
+    - name: "Shed Temperature"
+      state_topic: "emon/emonth4/temperature"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
 
-sensor:
-# Temperatures
-  - platform: mqtt
-    state_topic: 'emon/emonth4/temperature'
-    name: 'Shed Temperature'
-    unit_of_measurement: '°C'
-    device_class: temperature
-    value_template: '{{ value | float | round(1) }}'
-    expire_after: 300
+    - name: "Bedroom1 Temperature"
+      state_topic: "emon/emonth5/temperature"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
 
-  - platform: mqtt
-    state_topic: "emon/emonth5/temperature"
-    name: "Bedroom1 Temperature"
-    unit_of_measurement: "°C"
-    device_class: temperature
-    value_template: '{{ value | float | round(1) }}'
-    expire_after: 300
+    - name: "Livingroom Temperature"
+      state_topic: "emon/emonth6/temperature"
+      device_class: temperature
+      value_template: "{{ value | float | round(1) }}"
+      unit_of_measurement: "°C"
+      expire_after: 300
 
-  - platform: mqtt
-    state_topic: "emon/emonth6/temperature"
-    name: "Livingroom Temperature"
-    device_class: temperature
-    value_template: '{{ value | float | round(1) }}'
-    unit_of_measurement: "°C"
-    expire_after: 300
+    - name: "External Temperature_2"
+      state_topic: "emon/emonth6/external temperature"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
 
-  - platform: mqtt
-    state_topic: "emon/emonth6/external temperature"
-    name: "External Temperature_2"
-    unit_of_measurement: "°C"
-    device_class: temperature
-    value_template: '{{ value | float | round(1) }}'
-    expire_after: 300
+    - name: "Bedroom2 Temperature"
+      state_topic: "emon/emonth7/temperature"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
 
-  - platform: mqtt
-    state_topic: "emon/emonth7/temperature"
-    name: "Bedroom2 Temperature"
-    unit_of_measurement: "°C"
-    device_class: temperature
-    value_template: '{{ value | float | round(1) }}'
-    expire_after: 300
+    - name: "Shack Temperature"
+      state_topic: "emon/emonth8/temperature"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
 
-  - platform: mqtt
-    state_topic: "emon/emonth8/temperature"
-    name: "Shack Temperature"
-    unit_of_measurement: "°C"
-    device_class: temperature
-    value_template: '{{ value | float | round(1) }}'
-    expire_after: 300
+    # Humidity
+    - name: "Bedroom1 Humidity"
+      state_topic: "emon/emonth5/humidity"
+      unit_of_measurement: "%"
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
 
-# Humidity
-  - platform: mqtt
-    state_topic: "emon/emonth5/humidity"
-    name: "Bedroom1 Humidity"
-    unit_of_measurement: "%"
-   
-    value_template: '{{ value | float | round(1) }}'
-    expire_after: 300 
-    
-  - platform: mqtt
-    state_topic: "emon/emonth6/humidity"
-    name: "Livingroom Humidity"
-    unit_of_measurement: "%"
-    
-    value_template: '{{ value | float | round(1) }}'
-    expire_after: 300
+    - name: "Livingroom Humidity"
+      state_topic: "emon/emonth6/humidity"
+      unit_of_measurement: "%"
 
-  - platform: mqtt
-    state_topic: "emon/emonth7/humidity"
-    name: "Bedroom2 Humidity"
-    unit_of_measurement: "%"
-    
-    value_template: '{{ value | float | round(1) }}'
-    expire_after: 300
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
 
-  - platform: mqtt
-    state_topic: "emon/emonth8/humidity"
-    name: "Shack Humidity"
-    unit_of_measurement: "%"
-   
-    value_template: '{{ value | float | round(1) }}'
-    expire_after: 300
+    - name: "Bedroom2 Humidity"
+      state_topic: "emon/emonth7/humidity"
+      unit_of_measurement: "%"
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
+
+    - name: "Shack Humidity"
+      state_topic: "emon/emonth8/humidity"
+      unit_of_measurement: "%"
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
 
 # Indicators that external temps are low
 binary_sensor:
