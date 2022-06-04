@@ -2,14 +2,12 @@
 # Welcome to my Home Assistant configuration!
 #
 homeassistant:
-
   # All complex integrations are contained in packages
   packages: !include_dir_named packages
 
   # Use totp Multi-Factor Authentication (MFA)
   auth_mfa_modules:
     - type: totp
-
 
 # Simple integrations are retained in here.
 
@@ -24,6 +22,11 @@ config:
 # https://www.home-assistant.io/integrations/discovery/
 #
 discovery:
+
+# Energy Management
+# https://www.home-assistant.io/docs/energy
+#
+energy:
 
 # This enables the Hass.io panel in the Home Assistant frontend
 #
@@ -53,9 +56,9 @@ logbook:
 logger:
   default: warning
   #  logs:
-    #homeassistant.components.ozw: debug
-    #homeassistant.components.rfxtrx: debug
-    #homeassistant.components.mqtt: debug
+  #homeassistant.components.ozw: debug
+  #homeassistant.components.rfxtrx: debug
+  #homeassistant.components.mqtt: debug
 
 # Google Map
 # https://www.home-assistant.io/components/map/

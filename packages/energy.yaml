@@ -1,0 +1,57 @@
+# Energy Management
+
+# Raw energy sensors from openenergymonitor
+mqtt:
+  sensor:
+    # raw home_power from openenergymonitor
+    - name: "Raw Home Power"
+      state_topic: "emon/emontx1/power1"
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
+
+    # ditto shack_power from openenergymonitor
+    - name: "Raw Shack Power"
+      state_topic: "emon/emontx1/power2"
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
+
+    # ditto solar_power from openenergymonitor
+    - name: "Raw Solar Power"
+      state_topic: "emon/emontx1/power3"
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
+
+# Integrated versions of the above to get energy in kWh
+sensor:
+  - platform: integration
+    source: sensor.raw_home_power
+    name: "Home Energy"
+    unique_id: "raw_home_power"
+    unit_prefix: k
+    round: 2
+    unit_time: h
+    method: trapezoidal
+
+  - platform: integration
+    source: sensor.raw_shack_power
+    name: "Shack Energy"
+    unique_id: "raw_shack_power"
+    unit_prefix: k
+    round: 2
+    unit_time: h
+    method: trapezoidal
+
+  - platform: integration
+    source: sensor.raw_solar_power
+    name: "Solar Energy"
+    unique_id: "raw_solar_power"
+    unit_prefix: k
+    round: 2
+    unit_time: h
+    method: trapezoidal
