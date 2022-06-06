@@ -64,6 +64,11 @@ logger:
 # https://www.home-assistant.io/components/map/
 map:
 
+# My Configuration
+# https://www.home-assistant.io/integrations/my/
+#
+my:
+
 # Moon sensor
 # https://www.home-assistant.io/components/moon/
 #
