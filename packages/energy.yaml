@@ -4,7 +4,7 @@
 mqtt:
   sensor:
     # raw home_power from openenergymonitor
-    - name: "Raw Home Power"
+    - name: "Raw House Power"
       state_topic: "emon/emontx1/power1"
       unit_of_measurement: "W"
       device_class: power
@@ -30,9 +30,9 @@ mqtt:
 # Integrated versions of the above to get energy in kWh
 sensor:
   - platform: integration
-    source: sensor.raw_home_power
-    name: "Home Energy"
-    unique_id: "raw_home_power"
+    source: sensor.raw_house_power
+    name: "House Energy"
+    unique_id: "house_energy"
     unit_prefix: k
     round: 2
     unit_time: h
@@ -41,7 +41,7 @@ sensor:
   - platform: integration
     source: sensor.raw_shack_power
     name: "Shack Energy"
-    unique_id: "raw_shack_power"
+    unique_id: "shack_energy"
     unit_prefix: k
     round: 2
     unit_time: h
@@ -50,7 +50,7 @@ sensor:
   - platform: integration
     source: sensor.raw_solar_power
     name: "Solar Energy"
-    unique_id: "raw_solar_power"
+    unique_id: "solar_energy"
     unit_prefix: k
     round: 2
     unit_time: h
