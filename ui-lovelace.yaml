@@ -11,7 +11,7 @@ views:
       grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
       grid-template-areas: |
         "sidebar  .           .       .       ."
-        "sidebar  vardagsrum  studio  sovrum  ."
+        "sidebar  livingroom  studio  sovrum  ."
         "sidebar  media       övrigt  hemma   ."
         "sidebar  footer      footer  footer  ."
       mediaquery:
@@ -35,15 +35,14 @@ views:
           grid-template-rows: 0 repeat(3, fit-content(100%)) 0fr
           grid-template-areas: |
             "sidebar  .           .       ."
-            "sidebar  vardagsrum  sovrum  ."
+            "sidebar  livingroom  sovrum  ."
             "sidebar  studio      övrigt  ."
             "sidebar  media       hemma   ."
             "sidebar  footer      footer  ."
             "sidebar  .           .       ."
     cards:
-
       - type: custom:button-card #extra_styles fix
-        styles: {card: [display: none]}
+        styles: { card: [display: none] }
 
       #################################################
       #                                               #
@@ -55,80 +54,76 @@ views:
         view_layout:
           grid-area: sidebar
         cards:
-
           - type: custom:button-card
             entity: sensor.template_sidebar
             template: sidebar
 
-          - type: conditional
-            conditions:
-              - entity: input_boolean.laundry_display
-                state: 'on'
-            card:
-              type: custom:button-card
-              entity: timer.laundry
-              hold_action:
-                action: call-service
-                service: input_boolean.turn_off
-                service_data:
-                  entity_id: input_boolean.laundry_display
-              template: laundry
+      #          - type: conditional
+      #            conditions:
+      #              - entity: input_boolean.laundry_display
+      #                state: "on"
+      #            card:
+      #              type: custom:button-card
+      #              entity: timer.laundry
+      #              hold_action:
+      #                action: call-service
+      #                service: input_boolean.turn_off
+      #                service_data:
+      #                  entity_id: input_boolean.laundry_display
+      #              template: laundry
 
       #################################################
       #                                               #
-      #                  VARDAGSRUM                   #
+      #                  Livingroom                   #
       #                                               #
       #################################################
 
       - type: grid
-        title: Vardagsrum
+        title: Livingroom
         view_layout:
-          grid-area: vardagsrum
+          grid-area: livingroom
         columns: 2
         cards:
-
           - type: custom:button-card
-            entity: light.group_belysning
-            name: Belysning
-            template:
-              - light
-              - icon_hue
-
-          - type: custom:button-card
-            entity: light.horna
-            name: Hörnlampa
+            entity: switch.livingroom_standard_lamps
+            name: Standard Lamps
             template:
               - light
               - icon_shade
 
-          - type: custom:button-card
-            entity: media_player.sony_bravia_tv
-            name: Tv
-            state_display: >
-              [[[
-                if (variables.state === 'playing') {
-                  return 'På';
-                }
-                if (variables.state === true) {
-                  return variables.translate_unknown;
-                }
-              ]]]
-            hold_action:
-              !include popup/vardagsrum_tv.yaml
-            template:
-              - base
-              - icon_tv
-              - loader
+      #          - type: custom:button-card
+      #            entity: light.horna
+      #            name: Hörnlampa
+      #            template:
+      #              - light
+      #              - icon_shade
 
-          - type: custom:button-card
-            entity: switch.deltaco_sh_p01
-            name: Balkong
-            hold_action:
-              !include popup/vardagsrum_balkong.yaml
-            template:
-              - base
-              - icon_hue
-              - loader
+      #          - type: custom:button-card
+      #            entity: media_player.sony_bravia_tv
+      #            name: Tv
+      #            state_display: >
+      #              [[[
+      #                if (variables.state === 'playing') {
+      #                  return 'På';
+      #                }
+      #                if (variables.state === true) {
+      #                  return variables.translate_unknown;
+      #                }
+      #              ]]]
+      #            hold_action: !include popup/vardagsrum_tv.yaml
+      #            template:
+      #              - base
+      #              - icon_tv
+      #              - loader
+
+      #          - type: custom:button-card
+      #            entity: switch.deltaco_sh_p01
+      #            name: Balkong
+      #            hold_action: !include popup/vardagsrum_balkong.yaml
+      #            template:
+      #              - base
+      #              - icon_hue
+      #              - loader
 
       #################################################
       #                                               #
@@ -142,7 +137,6 @@ views:
           grid-area: studio
         columns: 2
         cards:
-
           - type: custom:button-card
             entity: light.dator
             name: Datorlampa
@@ -160,8 +154,7 @@ views:
           - type: custom:button-card
             entity: switch.computer_imac
             name: Dator
-            hold_action:
-              !include popup/studio_dator.yaml
+            hold_action: !include popup/studio_dator.yaml
             template:
               - base
               - icon_imac
@@ -182,8 +175,7 @@ views:
           - type: custom:button-card
             entity: switch.gosund_monitors_switch
             name: Monitorer
-            hold_action:
-              !include popup/studio_monitorer.yaml
+            hold_action: !include popup/studio_monitorer.yaml
             template:
               - base
               - icon_monitors
@@ -208,7 +200,6 @@ views:
           grid-area: sovrum
         columns: 2
         cards:
-
           - type: custom:button-card
             entity: light.group_sanglampor
             name: Sänglampor
@@ -219,8 +210,7 @@ views:
           - type: custom:button-card
             entity: climate.ac
             name: Klimat
-            hold_action:
-              !include popup/sovrum_klimat.yaml
+            hold_action: !include popup/sovrum_klimat.yaml
             template:
               - base
               - icon_climate
@@ -238,8 +228,7 @@ views:
           - type: custom:button-card
             entity: switch.playstation_5
             name: Playstation
-            hold_action:
-              !include popup/vardagsrum_playstation.yaml
+            hold_action: !include popup/vardagsrum_playstation.yaml
             template:
               - base
               - icon_ps5
@@ -248,8 +237,7 @@ views:
           - type: custom:button-card
             entity: media_player.samsung_tv
             name: "Tv\u00B2"
-            hold_action:
-              !include popup/sovrum_tv2.yaml
+            hold_action: !include popup/sovrum_tv2.yaml
             template:
               - base
               - icon_tv
@@ -267,17 +255,14 @@ views:
           grid-area: media
         columns: 1
         cards:
-
           - type: custom:swipe-card
             parameters:
               speed: 550
               spaceBetween: 40
               threshold: 5
             cards:
-
               - type: horizontal-stack
                 cards:
-
                   - type: conditional
                     conditions:
                       - entity: select.conditional_media
@@ -348,7 +333,6 @@ views:
               - type: grid
                 columns: 2
                 cards:
-
                   - type: custom:button-card
                     entity: media_player.vardagsrum
                     name: Vardagsrum
@@ -389,7 +373,6 @@ views:
           grid-area: övrigt
         columns: 2
         cards:
-
           - type: custom:button-card
             entity: light.group_badrum
             name: Badrum
@@ -400,8 +383,7 @@ views:
           - type: custom:button-card
             entity: switch.gosund_fan_switch
             name: "Fläkt\u00B2"
-            hold_action:
-              !include popup/studio_flakt.yaml
+            hold_action: !include popup/studio_flakt.yaml
             template:
               - base
               - icon_fan2
@@ -433,14 +415,12 @@ views:
           grid-area: hemma
         columns: 2
         cards:
-
           - type: custom:button-card
             entity: person.matte
             name: Mattias
             triggers_update:
               - sensor.matte_last_changed
-            tap_action:
-              !include popup/hemma_mattias.yaml
+            tap_action: !include popup/hemma_mattias.yaml
             variables:
               retain: sensor.matte_last_changed
             template: person
@@ -450,8 +430,7 @@ views:
             name: Sanja
             triggers_update:
               - sensor.sanja_last_changed
-            tap_action:
-              !include popup/hemma_sanja.yaml
+            tap_action: !include popup/hemma_sanja.yaml
             variables:
               retain: sensor.sanja_last_changed
             template: person
@@ -484,34 +463,31 @@ views:
         view_layout:
           grid-area: footer
         cards:
+          #          - type: custom:button-card
+          #            name: >
+          #              <ha-icon icon="mdi:nas"></ha-icon> NAS
+          #            tap_action: !include popup/footer/nas.yaml
+          #            variables:
+          #              notify: >
+          #                [[[
+          #                  let status = states['sensor.nas_volume_1_status'],
+          #                   security = states['binary_sensor.nas_security_status'],
+          #                   disk_use = states['sensor.disk_use_percent'],
+          #                   nas_update = states['binary_sensor.nas_update_available'];
+          #                 if (status && security && disk_use && nas_update) {
+          #                   return nas_update.state === 'on'
+          #                     ? 1
+          #                     : status.state === 'background_scrubbing' ||
+          #                       security.state === 'on' ||
+          #                       parseFloat(disk_use.state) >= 85;
+          #                 }
+          #               ]]]
+          #           template: footer
 
           - type: custom:button-card
             name: >
-              <ha-icon icon="mdi:nas"></ha-icon> NAS
-            tap_action:
-              !include popup/footer/nas.yaml
-            variables:
-              notify: >
-                [[[
-                  let status = states['sensor.nas_volume_1_status'],
-                    security = states['binary_sensor.nas_security_status'],
-                    disk_use = states['sensor.disk_use_percent'],
-                    nas_update = states['binary_sensor.nas_update_available'];
-                  if (status && security && disk_use && nas_update) {
-                    return nas_update.state === 'on'
-                      ? 1
-                      : status.state === 'background_scrubbing' ||
-                        security.state === 'on' ||
-                        parseFloat(disk_use.state) >= 85;
-                  }
-                ]]]
-            template: footer
-
-          - type: custom:button-card
-            name: >
-              <ha-icon icon="mdi:arrow-up-bold-circle-outline"></ha-icon> Uppdatera
-            tap_action:
-              !include popup/footer/updater.yaml
+              <ha-icon icon="mdi:arrow-up-bold-circle-outline"></ha-icon> Updates
+            tap_action: !include popup/footer/updates.yaml
             variables:
               notify: >
                 [[[
@@ -537,8 +513,7 @@ views:
           - type: custom:button-card
             name: >
               <ha-icon icon="mdi:robot-vacuum-variant"></ha-icon> Städa
-            tap_action:
-              !include popup/footer/vacuum.yaml
+            tap_action: !include popup/footer/vacuum.yaml
             variables:
               notify: >
                 [[[
@@ -553,15 +528,13 @@ views:
           - type: custom:button-card
             name: >
               <ha-icon icon="mdi:chart-line-variant"></ha-icon> Historik
-            tap_action:
-              !include popup/footer/history.yaml
+            tap_action: !include popup/footer/history.yaml
             template: footer
 
           - type: custom:button-card
             name: >
               <ha-icon icon="mdi:tablet"></ha-icon> Platta
-            tap_action:
-              !include popup/footer/tablet.yaml
+            tap_action: !include popup/footer/tablet.yaml
             variables:
               notify: >
                 [[[
@@ -575,8 +548,7 @@ views:
           - type: custom:button-card
             name: >
               <ha-icon icon="mdi:router-wireless"></ha-icon> Router
-            tap_action:
-              !include popup/footer/router.yaml
+            tap_action: !include popup/footer/router.yaml
             variables:
               notify: >
                 [[[
@@ -593,8 +565,7 @@ views:
           - type: custom:button-card
             name: >
               <ha-icon icon="mdi:raspberry-pi"></ha-icon> RPi
-            tap_action:
-              !include popup/footer/rpi.yaml
+            tap_action: !include popup/footer/rpi.yaml
             variables:
               notify: >
                 [[[

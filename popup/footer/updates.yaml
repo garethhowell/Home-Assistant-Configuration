@@ -1,7 +1,7 @@
 action: fire-dom-event
 browser_mod:
   command: popup
-  title: Uppdateringar
+  title: Updates
   style:
     .: |
       :host .content {
@@ -35,7 +35,7 @@ browser_mod:
         triggers_update:
           - sensor.hass_version_latest
           - sensor.hass_version_latest_beta
-        name: Uppdatera HASS
+        name: Update HASS
         icon: mdi:update
         styles:
           card:
@@ -64,7 +64,7 @@ browser_mod:
             [[[
               return `[[[
                 hass.callService('browser_mod', 'toast', {
-                  message: 'Startar watchtower...'
+                  message: 'Starting Watchtower...'
                 });
                 hass.callService('switch', 'turn_on', {
                   entity_id: 'switch.docker_watchtower'
@@ -79,7 +79,7 @@ browser_mod:
 
       - type: custom:button-card
         entity: sensor.hacs
-        name: Öppna HACS
+        name: Update HACS
         icon: mdi:open-in-new
         styles:
           card:
@@ -120,7 +120,7 @@ browser_mod:
         styles:
           card:
             - width: max-content
-            - filter: 'opacity(30%)'
+            - filter: "opacity(30%)"
             - display: >
                 [[[
                   return `[[[
