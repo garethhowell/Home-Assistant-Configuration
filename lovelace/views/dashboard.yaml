@@ -1,66 +1,14 @@
-icon: mdi:home
-path: home
-theme: ""
-title: Home
-badges:
-  - entity: alert.master_alarm
-  - entity: binary_sensor.cold_outside
-  - entity: binary_sensor.freezing_outside
-  - entity: switch.central_heating_boiler_ch
-  - entity: sensor.unavailable_entities
-  - entity: automation.unavailable_entities_notification
-  - entity: input_boolean.house_vacant
-  - entity: input_boolean.simulate_bedtime
-cards:
-  - show_name: true
-    show_icon: true
-    show_state: true
-    entities:
-      - entity: sensor.external_temperature_2
-      - entity: device_tracker.ghip7plus
-      - entity: device_tracker.v_iphone
-      - entity: sensor.moon
-    type: glance
-    state_color: true
-  - entities:
-      - entity: scene.evening
-      - entity: scene.goodnight
-      - entity: input_boolean.central_heating_manual
-      - entity: input_boolean.christmas
-      - entity: script.switch_on_christmas_lights
-      - entity: input_boolean.setback_disable
-      - entity: input_boolean.shack_occupied
-    type: entities
-  - type: horizontal-stack
-    cards:
-      - type: vertical-stack
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: thermostat
-                entity: climate.livingroom_thermostat
-                name: Livingroom
-          - type: horizontal-stack
-            cards:
-              - type: button
-                tap_action:
-                  action: toggle
-                entity: input_boolean.living_room_temperature_down
-                name: Down
-              - type: button
-                tap_action:
-                  action: toggle
-                entity: input_boolean.living_room_temperature_up
-                name: Up
-      - type: thermostat
-        entity: climate.shack_thermostat
-  - entity: weather.openweathermap
-    type: weather-forecast
-  - entities:
-      - entity: input_select.house_mode
-      - entity: input_select.season
-      - entity: input_boolean.home_tomorrow
-      - entity: input_boolean.house_vacant
-      - entity: input_boolean.visitors
-    show_header_toggle: false
-    type: entities
+title: Home Control Panel
+type: custom:grid-layout
+path: 0
+layout:
+  #default
+  margin: 0
+  grid-gap: var(--custom-layout-card-padding)
+  grid-template-columns: repeat(4, 1fr) 0
+  grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
+  grid-template-areas: |
+    "sidebar  .           .       .       ."
+    "sidebar  livingroom  bedroom1  bedroom2  ."
+    "sidebar  shack       shed      outside   ."
+    "sidebar  footer      footer    footer    ."
