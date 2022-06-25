@@ -1,0 +1,4 @@
+# Moon sensor
+# https://www.home-assistant.io/components/moon/
+#
+- platform: moon

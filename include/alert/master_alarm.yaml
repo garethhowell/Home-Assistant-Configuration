@@ -1,0 +1,10 @@
+master_alarm:
+  name: Master Alarm Sounding
+  done_message: "Master Alarm"
+  entity_id: binary_sensor.master_alarm
+  state: "on"
+  repeat: 2880
+  can_acknowledge: True
+  notifiers:
+    - pushover_gareth
+    - slack

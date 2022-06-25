@@ -26,7 +26,7 @@ mqtt:
       device_class: battery
       value_template: "{{ value | float | round(1) }}"
       expire_after: 300
-      
+
     - name: "Bedroom1 Battery"
       state_topic: "emon/emonth5/battery"
       unit_of_measurement: "V"

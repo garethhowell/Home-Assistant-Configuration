@@ -58,18 +58,6 @@ sensor:
       #- 'time_utc'
       #- 'beat'
 
-  # The version sensor platform is displaying the
-  # available and current version online.
-  #
-  # https://www.home-assistant.io/components/sensor.version/
-  #
-  - platform: version
-    name: version_available
-    source: hassio
-    image: raspberrypi3
-  - platform: version
-    name: version_current
-
 automation:
   - alias: house vacant
     description: ""

@@ -1,0 +1,11 @@
+low_battery_devices:
+  name: Some devices have low battery
+  entity_id: binary_sensor.some_devices_have_low_battery
+  title: "{{ states('sensor.devices_with_low_battery') }} devices have low battery"
+  message: "Some devices need a battery change"
+  state: "on"
+  can_acknowledge: true
+  repeat: 2880
+  notifiers:
+    - slack
+    - pushover_gareth

@@ -2,6 +2,20 @@
 # Welcome to my Home Assistant configuration!
 #
 homeassistant:
+  customize:
+    sensor.filtered_shed_battery:
+      type: "filtered"
+    sensor.filtered_bedroom1_battery:
+      type: "filtered"
+    sensor.filtered_bedroom2_battery:
+      type: "filtered"
+    sensor.filtered_livingroom_battery:
+      type: "filtered"
+    sensor.filtered_shack_battery:
+      type: "filtered"
+    sensor.filtered_emontx1_battery:
+      type: "filtered"
+
   # All complex integrations are contained in packages
   packages: !include_dir_named packages
 
@@ -28,9 +42,16 @@ discovery:
 #
 energy:
 
+# Configures the official Home Assistant frontend.
+#
+# https://www.home-assistant.io/components/frontend/
+#
 frontend:
   extra_module_url:
     - /hacsfiles/lovelace-card-mod/card-mod.js
+  # We can define additional/custom themes for the frontend here.
+  themes: !include_dir_merge_named ../themes
+
 
 # This enables the Hass.io panel in the Home Assistant frontend
 #
@@ -116,13 +137,8 @@ map:
 # My Configuration
 # https://www.home-assistant.io/integrations/my/
 #
-my:
 
-# Moon sensor
-# https://www.home-assistant.io/components/moon/
-#
-sensor:
-  - platform: moon
+my:
 
 # Sun
 sun:
@@ -136,3 +152,15 @@ sun:
 system_health:
 
 zeroconf:
+
+alert: !include_dir_merge_named include/alert
+
+mqtt:
+  binary_sensor: !include_dir_merge_list include/binary_sensor/mqtt
+  sensor: !include_dir_merge_list include/sensor/mqtt
+
+sensor: !include_dir_merge_list include/sensor/legacy_format
+
+template:
+  - binary_sensor: !include_dir_merge_list include/binary_sensor/template
+  - sensor: !include_dir_merge_list include/sensor/template
