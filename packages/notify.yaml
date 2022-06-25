@@ -10,7 +10,3 @@ notify:
     platform: pushover
     api_key: !secret pushover_api_key
     user_key: !secret pushover_door_user_key
-  - name: slack
-    platform: slack
-    api_key: !secret slack_api_key
-    default_channel: '#Home_Assistant'
