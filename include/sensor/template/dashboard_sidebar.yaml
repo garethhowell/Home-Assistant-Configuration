@@ -7,12 +7,6 @@
 - unique_id: sidebar
   state: template
   attributes:
-    # Display alert if master alarm is sounding
-    master_alarm: >
-      {% set alarm = states('binary_sensor.master_alarm') %}
-      {% if not alarm == 'off' %}
-      <b>Master Alarm is Sounding!</b>
-      {% endif %}
     # Display current time
     time: >
       {% set hours = now().strftime('%H') %}
@@ -22,7 +16,7 @@
       </span>
     # Ditto date
     date: >
-      <font color='#6a7377'><b>
+      <font color='#6a7377'><b><blink>
       {% if strptime(states('sensor.date'), '%Y-%m-%d').day != null %}
       {% set days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] %}
       {% set months = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -30,7 +24,8 @@
         {{ days[now().weekday()] }}<br>
         {{ strptime(states('sensor.date'), '%Y-%m-%d').day }} {{ months[now().month-1] }}
       {% endif %}
-      </b></font>
+      </blink></b></font>
+
     # Display an appropriate greeting
     greet: >
       <b>
@@ -50,6 +45,16 @@
       {% else %} Good day {{'\U0001F974'}}
       {% endif %}
       </b>
+
+    # Display alert if master alarm is sounding
+    master_alarm: >
+      <font color=red><b>
+      {% set alarm = states('binary_sensor.master_alarm') %}
+      {% if alarm == 'on' %}
+      <b>Master Alarm is Sounding!</b>
+      {% endif %}
+      </b></font>
+
     # Show which lights or switches are on at the moment
     active: >
       <b>
