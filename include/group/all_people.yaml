@@ -1,0 +1,5 @@
+all_people:
+  name: "All people needing to be tracked"
+  entities:
+    - device_tracker.ghipv7plus
+    - device_tracker.v_iphone

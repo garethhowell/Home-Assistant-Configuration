@@ -16,6 +16,17 @@ homeassistant:
     sensor.filtered_emontx1_battery:
       type: "filtered"
 
+    input_boolean.shack_occupied:
+      icon_template: >-
+        if (state === 'on') return 'mdi:account';
+        return 'mdi:account-outline'
+
+    device_tracker.v_iphone:
+      friendly_name: Varina
+
+    device_tracker.ghip7plus:
+      friendly_name: Gareth
+
   # All complex integrations are contained in packages
   packages: !include_dir_named packages
 
@@ -49,9 +60,9 @@ energy:
 frontend:
   extra_module_url:
     - /hacsfiles/lovelace-card-mod/card-mod.js
-  # We can define additional/custom themes for the frontend here.
-  themes: !include_dir_merge_named ../themes
 
+  # We can define additional/custom themes for the frontend here.
+  themes: !include_dir_merge_named lovelace/themes
 
 # This enables the Hass.io panel in the Home Assistant frontend
 #
@@ -151,13 +162,34 @@ sun:
 #
 system_health:
 
+# Text to speech
+tts:
+  - platform: google_translate
+
 zeroconf:
 
 alert: !include_dir_merge_named include/alert
 
+group: !include_dir_merge_named include/group
+
+input_boolean: !include_dir_merge_named include/input_boolean
+
 mqtt:
   binary_sensor: !include_dir_merge_list include/binary_sensor/mqtt
   sensor: !include_dir_merge_list include/sensor/mqtt
+
+notify: !include_dir_merge_list include/notify
+
+# The panel_iframe support allows you to add additional panels to your
+# Home Assistant frontend. The panels are listed in the sidebar and can
+# contain external resources like the web frontend of your router,
+# your monitoring system, or your media server.
+#
+# This configration loads up all my panels
+#
+# https://www.home-assistant.io/components/panel_iframe/
+#
+panel_iframe: !include_dir_merge_named include/panels/iframes
 
 sensor: !include_dir_merge_list include/sensor/legacy_format
 
