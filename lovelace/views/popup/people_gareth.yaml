@@ -1,7 +1,7 @@
 action: fire-dom-event
 browser_mod:
   command: popup
-  title: Matte
+  title: Gareth
   style:
     hui-vertical-stack-card:
       $: |
@@ -63,57 +63,24 @@ browser_mod:
         card_mod:
           class: content
         entities:
-          - entity: person.matte
+          - entity: person.gareth_2
             secondary_info: last-changed
 
       - type: history-graph
         entities:
-          - entity: person.matte
+          - entity: person.gareth_2
 
       - type: glance
         show_state: false
         entities:
-
-          - entity: device_tracker.mattias_iphone_unifi
-            name: Router
-            icon: mdi:wifi
-            card_mod:
-              style: &state |
-                state-badge {
-                  color: {{ is_state(config.entity, 'home') | iif('#3182b7', '#3c3f3f') }};
-                }
-
-          - entity: device_tracker.mattias_bluetooth
-            name: Bluetooth
-            icon: mdi:bluetooth
-            card_mod:
-              style: *state
-
-          - entity: device_tracker.mattias_iphone_ios
+          - entity: device_tracker.ghip7plus
             name: Position
             icon: custom:iphone-modern
-            card_mod:
-              style: *state
-
-      - type: custom:button-card
-        name: Spela upp ljud på iPhone X
-        icon: mdi:volume-high
-        template: icon_name
-        tap_action:
-          action: call-service
-          service: notify.mobile_app_mattias_iphone_ios
-          service_data:
-            title: Hitta min iPhone
-            message: Här är jag
-            data:
-              push:
-                sound:
-                  name: findmy.wav
-                  critical: 1
-                  volume: 1
+            #card_mod:
+            #  style: *state
 
       - type: map
         default_zoom: 16
         dark_mode: true
         entities:
-          - device_tracker.mattias_iphone_ios
+          - device_tracker.ghip7plus
