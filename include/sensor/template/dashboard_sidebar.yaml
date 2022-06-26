@@ -67,6 +67,7 @@
       {% set switches = [
         states.switch.shack_power_switch,
         states.switch.shed_fan,
+        states.switch.ikea_switch03,
         
       ] %}
 
@@ -82,7 +83,10 @@
       {% set append = switches_on + media_players_playing %}
       {% set switches_name = append | map(attribute='name') | join(', ') %}
 
-      {% if (lights_on | length == 0) and (switches_on | length > 0) %}
+      {% if (lights_on | length == 0) and (switches_on | length == 1) %}
+        {{switches_name}} is on
+
+      {% elif (lights_on | length == 0) and (switches_on | length > 0) %}
         {{ switches_name | regex_replace(',([^,]*)$',' and\\1') }} are on
 
       {% elif (lights_on | length == 1) and (switches_on | length == 1) %}
