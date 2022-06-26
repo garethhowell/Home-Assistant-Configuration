@@ -7,10 +7,10 @@
     grid-template-columns: repeat(4, 1fr) 0
     grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
     grid-template-areas: |
-      "sidebar  .           .       .       ."
-      "sidebar  livingroom  bedroom1  bedroom2  ."
-      "sidebar  media       övrigt  people   ."
-      "sidebar  footer      footer  footer  ."
+      "sidebar  .           .         .        ."
+      "sidebar  livingroom  bedroom1  bedroom2 ."
+      "sidebar  shack       media     people   ."
+      "sidebar  footer      footer    footer   ."
     mediaquery:
       #phone
       "(max-width: 800px)":
@@ -20,9 +20,9 @@
         grid-template-areas: |
           ".  .           .        ."
           ".  sidebar     sidebar  ."
-          ".  vardagsrum  bedroom2   ."
-          ".  bedroom1      övrigt   ."
-          ".  media       people    ."
+          ".  livingroom  bedroom1 ."
+          ".  bedroom2    shack    ."
+          ".  media       people   ."
           ".  footer      footer   ."
           ".  .           .        ."
       #portrait
@@ -31,12 +31,12 @@
         grid-template-columns: repeat(3, 1fr) 0
         grid-template-rows: 0 repeat(3, fit-content(100%)) 0fr
         grid-template-areas: |
-          "sidebar  .           .       ."
-          "sidebar  livingroom  bedroom2  ."
-          "sidebar  bedroom1      övrigt  ."
+          "sidebar  .           .        ."
+          "sidebar  livingroom  bedroom2 ."
+          "sidebar  bedroom1    shack    ."
           "sidebar  media       people   ."
-          "sidebar  footer      footer  ."
-          "sidebar  .           .       ."
+          "sidebar  footer      footer   ."
+          "sidebar  .           .        ."
   cards:
     - type: custom:button-card #extra_styles fix
       styles: { card: [display: none] }
@@ -82,11 +82,27 @@
       columns: 2
       cards:
         - type: custom:button-card
+          entity: climate.livingroom_thermostat
+          name: Climate
+          hold_action: !include popup/livingroom_climate.yaml
+          template:
+            - base
+            - icon_climate
+            - climate
+
+        - type: custom:button-card
           entity: switch.livingroom_standard_lamps
           name: Standard Lamps
           template:
             - light
             - icon_shade
+
+        - type: custom:button-card
+          entity: switch.ikea_switch03
+          name: Charger
+          template:
+            - base
+            - icon_imac
 
     #################################################
     #                                               #
@@ -100,6 +116,14 @@
         grid-area: bedroom1
       columns: 2
       cards:
+        - type: custom:button-card
+          entity: climate.bedroom_1_thermostat
+          name: Climate
+          hold_action: !include popup/bedroom1_climate.yaml
+          template:
+            - base
+            - icon_climate
+            - climate
 
     #################################################
     #                                               #
@@ -113,6 +137,42 @@
         grid-area: bedroom2
       columns: 2
       cards:
+        - type: custom:button-card
+          entity: climate.bedroom_2_thermostat
+          name: Climate
+          hold_action: !include popup/bedroom2_climate.yaml
+          template:
+            - base
+            - icon_climate
+            - climate
+
+    #################################################
+    #                                               #
+    #                    Shack                      #
+    #                                               #
+    #################################################
+
+    - type: grid
+      title: Shack
+      view_layout:
+        grid-area: shack
+      columns: 2
+      cards:
+        - type: custom:button-card
+          entity: climate.shack_thermostat
+          name: Climate
+          hold_action: !include popup/shack_climate.yaml
+          template:
+            - base
+            - icon_climate
+            - climate
+
+        - type: custom:button-card
+          entity: switch.shack_power_switch
+          name: Shack Power
+          template:
+            - base
+            - icon_imac
 
     #################################################
     #                                               #
@@ -234,48 +294,6 @@
 
     #################################################
     #                                               #
-    #                    ÖVRIGT                     #
-    #                                               #
-    #################################################
-
-    - type: grid
-      title: Övrigt
-      view_layout:
-        grid-area: övrigt
-      columns: 2
-      cards:
-        - type: custom:button-card
-          entity: light.group_badrum
-          name: Badrum
-          template:
-            - light
-            - icon_bathroom
-
-        - type: custom:button-card
-          entity: switch.gosund_fan_switch
-          name: "Fläkt\u00B2"
-          hold_action: !include popup/bedroom1_flakt.yaml
-          template:
-            - base
-            - icon_fan2
-            - loader
-
-        - type: custom:button-card
-          entity: light.garderob
-          name: Garderob
-          template:
-            - light
-            - icon_closet
-
-        - type: custom:button-card
-          entity: light.group_hall
-          name: Hall
-          template:
-            - light
-            - icon_spot
-
-    #################################################
-    #                                               #
     #                     People                     #
     #                                               #
     #################################################
@@ -287,23 +305,23 @@
       columns: 2
       cards:
         - type: custom:button-card
-          entity: person.gareth
+          entity: person.gareth_2
           name: Gareth
-          triggers_update:
-            - sensor.gareth_last_changed
+          #triggers_update:
+          #  - sensor.garet
           tap_action: !include popup/people_gareth.yaml
-          variables:
-            retain: sensor.gareth_last_changed
+          #variables:
+          #  retain: sensor.gareth_last_changed
           template: person
 
         - type: custom:button-card
-          entity: person.varina
+          entity: person.varina_2
           name: Varina
-          triggers_update:
-            - sensor.varina_last_changed
+          #triggers_update:
+          #  - sensor.varina_last_changed
           tap_action: !include popup/people_varina.yaml
-          variables:
-            retain: sensor.varina_last_changed
+          #variables:
+          #  retain: sensor.varina_last_changed
           template: person
 
     #################################################

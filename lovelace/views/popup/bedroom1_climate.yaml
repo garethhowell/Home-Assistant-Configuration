@@ -1,10 +1,10 @@
 action: fire-dom-event
 browser_mod:
   command: popup
-  title: Klimat
+  title: Climate
   style:
     hui-vertical-stack-card:
-      $hui-entities-card$ : |
+      $hui-entities-card$: |
         #states {
           padding-top: 0.5em;
           padding-bottom: 0em;
@@ -12,22 +12,21 @@ browser_mod:
   card:
     type: vertical-stack
     cards:
-
       - type: thermostat
-        entity: climate.ac
+        entity: climate.bedroom_1_thermostat
 
       - type: entities
         card_mod:
           class: content
         entities:
-          - entity: sensor.broadlink_rm4_pro_temperature
-            name: Rumstemperatur
-          - entity: sensor.broadlink_rm4_pro_humidity
-            name: Luftfuktighet
+          - entity: sensor.bedroom1_temperature
+            name: Room Temperature
+          - entity: sensor.bedroom1_humidity
+            name: Humidity
 
       - type: custom:apexcharts-card
         layout: minimal
-        locale: se
+        locale: en-uk
         graph_span: 8h
         show:
           loading: false
@@ -62,9 +61,9 @@ browser_mod:
             crosshairs:
               show: false
         series:
-          - entity: sensor.broadlink_rm4_pro_temperature
+          - entity: sensor.bedroom1_temperature
             name: Temp
-            color: '#385581'
+            color: "#385581"
             type: area
             fill_raw: last
             group_by:
