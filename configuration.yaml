@@ -34,6 +34,12 @@ homeassistant:
   auth_mfa_modules:
     - type: totp
 
+# browser_mod
+# A Home Assistant integration to turn your browser into a controllable entity
+# - and also an audio player and a security camera (WIP).
+
+browser_mod:
+
 # Simple integrations are retained in here.
 
 # The config component enables a set of additional capabilities to manage and
