@@ -1,0 +1,31 @@
+homeassistant:
+  customize:
+    # Batteries
+    sensor.filtered_shed_battery:
+      type: "filtered"
+    sensor.filtered_bedroom1_battery:
+      type: "filtered"
+    sensor.filtered_bedroom2_battery:
+      type: "filtered"
+    sensor.filtered_livingroom_battery:
+      type: "filtered"
+    sensor.filtered_shack_battery:
+      type: "filtered"
+    sensor.filtered_emontx1_battery:
+      type: "filtered"
+
+    input_boolean.shack_occupied:
+      icon_template: >-
+        if (state === 'on') return 'mdi:account';
+        return 'mdi:account-outline'
+
+    # Device trackers
+    device_tracker.v_iphone:
+      friendly_name: Varina
+
+    device_tracker.ghip7plus:
+      friendly_name: Gareth
+
+    # Switches
+    switch.ikea_switch03:
+      friendly_name: Charger
