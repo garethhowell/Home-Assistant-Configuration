@@ -14,7 +14,6 @@ group:
     entities:
       - switch.ikea_switch01 # Shed
       - switch.ikea_switch02 # Shack
-      - switch.shack_power_switch # Shack
       - switch.tp100_01 # Bedroom 3
       - switch.tp100_02 # Bedroom 2
       - switch.tp100_04 # Den
