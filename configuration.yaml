@@ -151,6 +151,8 @@ zeroconf:
 
 alert: !include_dir_merge_named include/alert
 
+binary_sensor: !include_dir_merge_list include/binary_sensor/legacy_format
+
 group: !include_dir_merge_named include/group
 
 input_boolean: !include_dir_merge_named include/input_boolean
