@@ -106,7 +106,10 @@ lovelace:
         url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js,
         type: module,
       },
-      { url: /hacsfiles/mini-graph-card/mini-graph-card.js, type: module },
+      {
+        url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js,
+        type: module,
+      },
       { url: /hacsfiles/simple-thermostat/simple-thermostat.js, type: module },
       { url: /hacsfiles/swipe-card/swipe-card.js, type: module },
       {
