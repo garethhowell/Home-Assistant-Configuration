@@ -65,25 +65,35 @@ mqtt:
     - name: "Bedroom1 Humidity"
       state_topic: "emon/emonth5/humidity"
       unit_of_measurement: "%"
+      device_class: humidity
       value_template: "{{ value | float | round(1) }}"
       expire_after: 300
 
     - name: "Livingroom Humidity"
       state_topic: "emon/emonth6/humidity"
       unit_of_measurement: "%"
-
+      device_class: humidity
       value_template: "{{ value | float | round(1) }}"
       expire_after: 300
 
     - name: "Bedroom2 Humidity"
       state_topic: "emon/emonth7/humidity"
       unit_of_measurement: "%"
+      device_class: humidity
       value_template: "{{ value | float | round(1) }}"
       expire_after: 300
 
     - name: "Shack Humidity"
       state_topic: "emon/emonth8/humidity"
       unit_of_measurement: "%"
+      device_class: humidity
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
+
+    - name: "Shed Humidity"
+      state_topic: "emon/emonth4/humidity"
+      unit_of_measurement: "%"
+      device_class: humidity
       value_template: "{{ value | float | round(1) }}"
       expire_after: 300
 
