@@ -4,7 +4,7 @@ schedy_water: # This is our app instance name.
 
   debug: true
 
-  reset_at_startup: false
+  reset_at_startup: true
 
   actor_type: thermostat
 
