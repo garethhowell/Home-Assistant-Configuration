@@ -14,7 +14,6 @@ group:
     entities:
       - switch.ikea_switch01 # Shed
       - switch.ikea_switch02 # Shack
-      - switch.tp100_01 # Bedroom 3
       - switch.tp100_02 # Bedroom 2
       - switch.tp100_04 # Den
 #      - light.wled_shack_master
@@ -30,14 +29,7 @@ scene:
       group.evening_lights: off
       switch.central_heating_boiler_ch: off
       input_boolean.simulate_bedtime: on
-      group.christmas_lights: off
-      input_boolean.shack_occupied: off
-      climate.livingroom_thermostat:
-        state: on
-        temperature: 15
-      climate.bedroom_2_thermostat:
-        state: on
-        temperature: 15
+      #group.christmas_lights: off
 
 script:
   switch_on_christmas_lights:
@@ -70,7 +62,7 @@ automation:
     action:
       - service: scene.turn_on
         entity_id: scene.evening
-      - service: script.switch_on_christmas_lights
+      #- service: script.switch_on_christmas_lights
 
   - alias: lights_out
     # Switch lights off at 11PM
