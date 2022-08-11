@@ -1,0 +1,74 @@
+title: "Shack"
+path: "shack"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: "custom:button-card"
+    template: card_title
+    name: Shack
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_graph
+        entity: sensor.shack_temperature
+        variables:
+          ulm_card_graph_color: "var(--google-blue)"
+          ulm_card_graph_name: Temperature
+          ulm_card_graph_entity: sensor.shack_temperature
+          ulm_card_graph_type: fill
+          ulm_card_graph_hours: 24
+
+      - type: "custom:button-card"
+        template: card_graph
+        entity: sensor.shack_humidity
+        variables:
+          ulm_card_graph_color: "var(--google-red)"
+          ulm_card_graph_name: Humidity
+          ulm_card_graph_entity: sensor.shack_humidity
+          ulm_card_graph_type: fill
+          ulm_card_graph_hours: 24
+
+  - type: "custom:button-card"
+    template: card_title
+    label: "Devices"
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.ikea_light01
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true
+
+      - type: "custom:button-card"
+        template: card_power_outlet
+        entity: switch.shack_power_switch
+        name: Power
+
+  - type: "custom:button-card"
+    template: card_title
+    label: "Sensors"
+
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_binary_sensor_alert
+        variables:
+          - ulm_card_binary_sensor_alert: true
+        entity: binary_sensor.ikea_motion01_occupancy
+        show_last_changed: true
+        name: "Presence"
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.ikea_motion01_battery
+        variables:
+          ulm_card_battery_battery_level_danger: 15
+          ulm_card_battery_battery_level_warning: 40
+        name: Motion battery
