@@ -97,7 +97,7 @@ lovelace:
       { url: /hacsfiles/lovelace-layout-card/layout-card.js, type: module },
       { url: /hacsfiles/lovelace-mushroom/mushroom.js, type: module },
       {
-        url: /hacsfiles/lovelace-rpi-monitor-card/lovelace-rpi-monitor-card.js,
+        url: /hacsfiles/lovelace-rpi-monitor-card/rpi-monitor-card.js,
         type: module,
       },
       {
@@ -112,16 +112,20 @@ lovelace:
         url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js,
         type: module,
       },
-      { url: /hacsfiles/mini-media-player/mini-media-player.js, type: module },
+      {
+        url: /hacsfiles/mini-media-player/mini-media-player-bundle.js,
+        type: module,
+      },
       { url: /hacsfiles/my-cards/my-cards.js, type: module },
       { url: /hacsfiles/simple-thermostat/simple-thermostat.js, type: module },
       {
         url: /hacsfiles/simple-weather-card/simple-weather-card-bundle.js,
         type: module,
       },
+      { url: /hacsfiles/state-switch/state-switch.js, type: module },
       { url: /hacsfiles/swipe-card/swipe-card.js, type: module },
       {
-        url: /hacsfiles/vertical-stack-card/vertical-stack-card.js,
+        url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js,
         type: module,
       },
       { url: /hacsfiles/weather-card/weather-card.js, type: module },
