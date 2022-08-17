@@ -2,36 +2,36 @@ title: "Home"
 path: "home"
 cards:
   - type: "custom:button-card"
-    template: "card_esh_welcome"
+    template: "card_welcome_scenes"
     triggers_update: "input_boolean.minimalist_dropdown"
     variables:
       ulm_card_esh_welcome_collapse: input_boolean.minimalist_dropdown
       ulm_weather: "weather.openweathermap"
       entity_1:
-        nav: "shack"
-        icon: "mdi:desk"
-        name: "Shack"
-        color: "blue"
-      entity_2:
-        nav: "lights"
-        icon: "mdi:lightbulb"
-        name: "Lights"
+        entity_id: scene.evening
+        icon: "mdi:floor-lamp"
+        name: "Evening"
         color: "yellow"
+      entity_2:
+        entity_id: scene.goodnight
+        icon: "mdi:lightbulb-night"
+        name: "Goodnight"
+        color: "blue"
       entity_3:
-        nav: "security"
-        icon: "mdi:shield"
-        name: Secure
+        entity_id: scene.home
+        icon: "mdi:home"
+        name: Home
         color: "green"
       entity_4:
-        nav: "network"
-        icon: "mdi:nas"
-        name: Net
-        color: "purple"
-      entity_5:
-        nav: "lab"
-        icon: "mdi:flask"
-        name: Lab
+        entity_id: scene.away
+        icon: "mdi:home-outline"
+        name: Away
         color: "red"
+      #entity_5:
+      #  nav: "lab"
+      #  icon: "mdi:flask"
+      #  name: Lab
+      #  color: "red"
 
   - type: grid
     square: false

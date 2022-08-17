@@ -33,6 +33,16 @@ cards:
           ulm_card_graph_hours: 24
 
   - type: "custom:button-card"
+    template: card_thermostat
+    entity: climate.shack_thermostat
+    variables:
+      ulm_card_thermostat_name: "Thermostat"
+      ulm_card_thermostat_enable_controls: true
+      ulm_card_thermostat_enable_horizontal: false
+      ulm_card_thermostat_enable_display_temperature: true
+      ulm_card_thermostat_enable_popup: true
+
+  - type: "custom:button-card"
     template: card_title
     label: "Devices"
 

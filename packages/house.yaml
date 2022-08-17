@@ -25,8 +25,7 @@ input_select:
   house_mode:
     name: House Mode?
     options:
-      - Home - Normal Day
-      - Home - Home Day
+      - Home
       - Away
     icon: mdi:thermostat
 
@@ -39,6 +38,15 @@ input_select:
       - Winter
       - Spring
       - Summer
+
+scene:
+  - name: "Home"
+    entities:
+      input_select.house_mode: "Home"
+
+  - name: "Away"
+    entities:
+      input_select.house_mode: "Away"
 
 sensor:
   # The time and date (time_date) sensor platform.

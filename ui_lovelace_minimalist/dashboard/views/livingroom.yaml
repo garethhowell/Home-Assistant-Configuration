@@ -37,6 +37,16 @@ cards:
           ulm_card_graph_hours: 24
 
   - type: "custom:button-card"
+    template: card_thermostat
+    entity: climate.livingroom_thermostat
+    variables:
+      ulm_card_thermostat_name: "Temp"
+      ulm_card_thermostat_enable_controls: true
+      ulm_card_thermostat_enable_horizontal: false
+      ulm_card_thermostat_enable_display_temperature: true
+      ulm_card_thermostat_enable_popup: true
+
+  - type: "custom:button-card"
     template: card_title
     label: "Devices"
 
@@ -61,7 +71,7 @@ cards:
     label: "Sensors"
 
   - type: grid
-    columns: 2
+    columns: 3
     square: false
     cards:
       - type: "custom:button-card"
@@ -79,3 +89,11 @@ cards:
           ulm_card_battery_battery_level_danger: 20
           ulm_card_battery_battery_level_warning: 50
         name: DR TRV
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.livingroom_battery
+        variables:
+          ulm_card_battery_battery_level_danger: 20
+          ulm_card_battery_battery_level_warning: 50
+        name: Temp

@@ -7,9 +7,10 @@ views:
   - !include views/home.yaml
   - !include views/bedroom_1.yaml
   - !include views/bedroom_2.yaml
-  - !include views/lights.yaml
+  #- !include views/lights.yaml
   - !include views/livingroom.yaml
-  - !include views/network.yaml
-  - !include views/security.yaml
+  #- !include views/network.yaml
+  #- !include views/security.yaml
   - !include views/shack.yaml
   - !include views/shed.yaml
+  - !include views/system.yaml

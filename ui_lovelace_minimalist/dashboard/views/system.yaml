@@ -1,0 +1,6 @@
+title: "System"
+path: "system"
+cards:
+  - type: "custom:button-card"
+    template: card_title
+    name: System
