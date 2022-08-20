@@ -60,11 +60,11 @@ cards:
         variables:
           ulm_card_battery_battery_level_danger: 15
           ulm_card_battery_battery_level_warning: 40
-        name: Radiator
+          ulm_card_battery_name: Radiator
       - type: "custom:button-card"
         template: card_battery
         entity: sensor.bedroom1_battery
         variables:
           ulm_card_battery_battery_level_danger: 15
           ulm_card_battery_battery_level_warning: 40
-        name: Temp
+          ulm_card_battery_name: Temp

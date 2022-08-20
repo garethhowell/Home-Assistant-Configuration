@@ -81,4 +81,4 @@ cards:
         variables:
           ulm_card_battery_battery_level_danger: 15
           ulm_card_battery_battery_level_warning: 40
-        name: Motion battery
+          ulm_card_battery_name: Motion battery

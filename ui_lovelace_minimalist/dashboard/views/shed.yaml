@@ -68,4 +68,4 @@ cards:
         variables:
           ulm_card_battery_battery_level_danger: 15
           ulm_card_battery_battery_level_warning: 40
-        name: Temp
+          ulm_card_battery_name: Temp

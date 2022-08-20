@@ -4,3 +4,88 @@ cards:
   - type: "custom:button-card"
     template: card_title
     name: System
+    label: Batteries
+
+  - type: grid
+    columns: 3
+    square: false
+    cards:
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.livingroom_radiator_battery_level
+        variables:
+          ulm_card_battery_battery_level_danger: 20
+          ulm_card_battery_battery_level_warning: 50
+          ulm_card_battery_name: LR TRV
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.diningroom_radiator_battery_level
+        variables:
+          ulm_card_battery_battery_level_danger: 20
+          ulm_card_battery_battery_level_warning: 50
+          ulm_card_battery_name: DR TRV
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.livingroom_battery
+        variables:
+          ulm_card_battery_battery_level_danger: 20
+          ulm_card_battery_battery_level_warning: 50
+          ulm_card_battery_name: LR Temp
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.bedroom_1_radiator_battery_level
+        variables:
+          ulm_card_battery_battery_level_danger: 15
+          ulm_card_battery_battery_level_warning: 40
+          ulm_card_battery_name: B1 TRV
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.bedroom1_battery
+        variables:
+          ulm_card_battery_battery_level_danger: 15
+          ulm_card_battery_battery_level_warning: 40
+          ulm_card_battery_name: B1 Temp
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.bedroom_2_radiator_battery_level
+        variables:
+          ulm_card_battery_battery_level_danger: 15
+          ulm_card_battery_battery_level_warning: 40
+          ulm_card_battery_name: B2 TRV
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.bedroom2_battery
+        variables:
+          ulm_card_battery_battery_level_danger: 15
+          ulm_card_battery_battery_level_warning: 40
+          ulm_card_battery_name: B2 Temp
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.ikea_motion01_battery
+        variables:
+          ulm_card_battery_battery_level_danger: 15
+          ulm_card_battery_battery_level_warning: 40
+          ulm_card_battery_name: SH Mot
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.shack_battery
+        variables:
+          ulm_card_battery_battery_level_danger: 15
+          ulm_card_battery_battery_level_warning: 40
+          ulm_card_battery_name: SH Temp
+
+      - type: "custom:button-card"
+        template: card_battery
+        entity: sensor.shed_battery
+        variables:
+          ulm_card_battery_battery_level_danger: 15
+          ulm_card_battery_battery_level_warning: 40
+          ulm_card_battery_name: SD Temp

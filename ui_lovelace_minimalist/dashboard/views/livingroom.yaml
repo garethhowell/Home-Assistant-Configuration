@@ -80,7 +80,7 @@ cards:
         variables:
           ulm_card_battery_battery_level_danger: 20
           ulm_card_battery_battery_level_warning: 50
-        name: LR TRV
+          ulm_card_battery_name: LR TRV
 
       - type: "custom:button-card"
         template: card_battery
@@ -88,7 +88,7 @@ cards:
         variables:
           ulm_card_battery_battery_level_danger: 20
           ulm_card_battery_battery_level_warning: 50
-        name: DR TRV
+          ulm_card_battery_name: DR TRV
 
       - type: "custom:button-card"
         template: card_battery
@@ -96,4 +96,4 @@ cards:
         variables:
           ulm_card_battery_battery_level_danger: 20
           ulm_card_battery_battery_level_warning: 50
-        name: Temp
+          ulm_card_battery_name: Temp
