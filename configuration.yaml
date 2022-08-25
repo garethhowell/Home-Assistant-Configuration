@@ -9,6 +9,8 @@ homeassistant:
   auth_mfa_modules:
     - type: totp
 
+automation: !include automations.yaml
+
 # browser_mod
 # A Home Assistant integration to turn your browser into a controllable entity
 # - and also an audio player and a security camera (WIP).
@@ -23,6 +25,8 @@ browser_mod:
 # https://www.home-assistant.io/components/config/
 #
 config:
+
+default_config:
 
 # Discover new devices
 # https://www.home-assistant.io/integrations/discovery/
@@ -171,6 +175,8 @@ binary_sensor: !include_dir_merge_list include/binary_sensor/legacy_format
 group: !include_dir_merge_named include/group
 
 input_boolean: !include_dir_merge_named include/input_boolean
+
+input_button: !include_dir_merge_named include/input_button
 
 mqtt:
   binary_sensor: !include_dir_merge_list include/binary_sensor/mqtt
