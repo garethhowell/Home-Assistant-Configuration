@@ -24,3 +24,26 @@
     target:
       entity_id: climate.hot_water
   mode: restart
+- id: '1661427731373'
+  alias: Extend CH by 1 hour
+  description: Extends the time at which the CH goes to night mode.
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.extend_ch
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.ch_extended
+  - delay:
+      hours: 1
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.ch_extended
+  mode: restart
