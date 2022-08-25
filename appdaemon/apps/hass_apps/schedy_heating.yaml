@@ -9,9 +9,6 @@ schedy_heating: # This is our app instance name.
   actor_type: thermostat
 
   expression_environment: |
-    def home_tomorrow():
-      return state("input_boolean.home_tomorrow")
-
     def house_mode():
       return state("input_select.house_mode")
 
@@ -43,7 +40,6 @@ schedy_heating: # This is our app instance name.
 
   watched_entities:
     - input_boolean.ch_extended
-    - input_boolean.home_tomorrow
     - input_boolean.house_vacant
     - input_boolean.setback_disable
     - input_boolean.shack_occupied
@@ -82,14 +78,6 @@ schedy_heating: # This is our app instance name.
         - x: "15 if simulate_bedtime() == 'on' else Next()"
         - v: 20
           rules:
-            #- weekdays: 1-7
-            #  rules:
-            #    - rules:
-            #        - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
-            #        - { start: "07:00", end: "09:00" }
-            #        - { start: "17:00", end: "21:00" }
-            #    - rules:
-            #        - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
             - { start: "07:00", end: "21:00" }
 
     landing:
@@ -98,17 +86,6 @@ schedy_heating: # This is our app instance name.
       schedule:
         - v: 19
           rules:
-            #  - weekdays: 1-5
-            #    rules:
-            #      - rules:
-            #          - x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
-            #          - { start: "07:00", end: "09:00" }
-            #          - { start: "17:00", end: "22:00" }
-            #      - rules:
-            #          - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
-            #          - { start: "07:00", end: "22:00" }
-            #  - weekdays: 6-7
-            #    rules:
             - { start: "07:00", end: "22:00" }
 
     livingroom:
@@ -120,25 +97,7 @@ schedy_heating: # This is our app instance name.
         - x: "15 if simulate_bedtime() == 'on' else Next()"
         - v: 19
           rules:
-            #- weekdays: 1-7
-            #  rules:
-            #- rules:
-            #                - x: "Next() if season() == 'Spring' else Break()"
-            #                - {v: 15, start: "23:00", end: "17:00+1d" }
-            #                - { start: "17:00", end: "23:00" }
-            #- x: "Next() if house_mode() == 'Home - Normal Day' else Break()"
-            #- { start: "07:00", end: "09:00" }
-            #- { start: "17:00", end: "19:00" }
-            #- rules:
-            #    - x: "Next() if house_mode() == 'Home - Home Day' else Break()"
             - { start: "07:00", end: "22:30" }
-              #  - { v: 19, start: "09:00", end: "17:00" }
-              #  - { start: "17:00", end: "22:30" }
-            #- weekdays: 6-7
-            #  rules:
-            #    - { start: "07:00", end: "09:00" }
-            #    - { v: 19, start: "09:00", end: "17:00" }
-            #    - { start: "17:00", end: "22:30" }
 
     shack:
       rescheduling_delay: 0
