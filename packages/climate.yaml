@@ -8,7 +8,7 @@ homeassistant:
       friendly_name: "Ext Temp"
     sensor.openweathermap_humidity:
       friendly_name: "Ext Humidity"
-    sensor.external_eemperature_2:
+    sensor.external_Temperature_2:
       friendly_name: "External Temperature"
 
     binary_sensor.cold_outside:
