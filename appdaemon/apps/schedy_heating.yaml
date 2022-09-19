@@ -80,13 +80,13 @@ schedy_heating: # This is our app instance name.
           rules:
             - { start: "07:00", end: "21:00" }
 
-    landing:
-      actors:
-        climate.landing_radiator_thermostat:
-      schedule:
-        - v: 19
-          rules:
-            - { start: "07:00", end: "22:00" }
+    #    landing:
+    #      actors:
+    #        climate.landing_radiator_thermostat:
+    #      schedule:
+    #        - v: 19
+    #          rules:
+    #            - { start: "07:00", end: "22:00" }
 
     livingroom:
       rescheduling_delay: 0

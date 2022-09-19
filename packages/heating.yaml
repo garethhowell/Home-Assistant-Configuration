@@ -69,6 +69,7 @@ climate:
     initial_hvac_mode: "heat"
 
   # Room thermostats
+  # Livingroom
   - platform: generic_thermostat
     name: "Livingroom Thermostat"
     heater: input_boolean.livingroom_heat_demand
@@ -79,6 +80,7 @@ climate:
     #    hot_tolerance: -1.5
     target_temp: 19
     initial_hvac_mode: "heat"
+  # Bedroom 1
   - platform: generic_thermostat
     name: "Bedroom 1 Thermostat"
     heater: input_boolean.bedroom1_heat_demand
@@ -89,6 +91,7 @@ climate:
     target_temp: 17
     #    hot_tolerance: -1.5
     initial_hvac_mode: "heat"
+  # Bedroom 2
   - platform: generic_thermostat
     name: "Bedroom 2 Thermostat"
     heater: input_boolean.bedroom2_heat_demand
@@ -99,7 +102,6 @@ climate:
     target_temp: 19
     #    hot_tolerance: -1.5
     initial_hvac_mode: "heat"
-
 input_boolean:
   # Buttons to manipulate living room temps up and down
   living_room_temperature_up:
