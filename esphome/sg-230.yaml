@@ -1,3 +1,5 @@
+!include ../secrets.yaml
+
 esphome:
   name: sg-230
 
@@ -37,17 +39,33 @@ switch:
     pin: D3
     name: "SG-230 Power"
     id: sg_230_power
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_OFF
 
+  # Relays D4 and D5 are configured to "Tune" or "Reset" the SG-230
+  # D4 NO is connected to 12V
+  # D5 NO is connected to 0V
+
+  # The control line to the SG-230 is connected to the common of both relays
+  # The control line is also connected to 12V and 0V via hi-value resistors to help it "float"
+  # D4 and D5 are interlocked to prevent them both being closed.
+  #
+  # SG-230 "Tune"
   - platform: gpio
     pin: D4
     name: "SG-230 Tune"
     id: sg_230_tune
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_OFF
     interlock: &sg230_interlocks [sg_230_tune, sg_230_reset]
 
+  # SG-230 "Reset"
   - platform: gpio
     pin: D5
     name: "SG-230 Reset"
     id: sg_230_reset
+    inverted: True
+    restore_mode: RESTORE_DEFAULT_OFF
     interlock: *sg230_interlocks
     
 
