@@ -50,7 +50,9 @@ schedy_heating: # This is our app instance name.
     - device_tracker.v_iphone # Varina's iPhone
 
   schedule_prepend:
+    # Heating on very low if we are away or it is summer season
     - x: "6 if house_mode() == 'Away' or season() == 'Summer' else Next()"
+    # Knock back the target temps if we are both out of the house
     - x: "15 if gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
   # default rule to apply if no other matches
@@ -63,7 +65,9 @@ schedy_heating: # This is our app instance name.
       actors:
         climate.bedroom_1_thermostat:
       schedule:
+        # Nothing needed in Spring season
         - x: "15 if season() == 'Spring' else Next()"
+        # Low level in the evening and overnight
         - v: 16
           rules:
             - { start: "19:00", end: "09:00+1d" }
@@ -94,7 +98,14 @@ schedy_heating: # This is our app instance name.
       actors:
         climate.livingroom_thermostat:
       schedule:
+        # Only heat in the evening during Spring season
         - x: "15 if simulate_bedtime() == 'on' else Next()"
+        - v: 19
+          rules:
+            - x: "Next() if season() == 'Spring' else Break()"
+            - { start: "18:00", end: "22:30" }
+            - v: 15
+        # Heat all day in Winter season
         - v: 19
           rules:
             - { start: "07:00", end: "22:30" }
@@ -105,9 +116,11 @@ schedy_heating: # This is our app instance name.
         climate.shack_thermostat:
       schedule:
         - x: "6 if season() == 'Spring' else Next()"
+        # Low level overnight
         - v: 6
           rules:
             - { start: "22:00", end: "08:30+1d" }
+        # Knock target temp bak if the Shack is unoccupied
         - x: "6 if gareth_location() == 'not_home' else Next()"
         - x: "6 if shack_occupied() == 'off' else Next()"
         - v: 19
