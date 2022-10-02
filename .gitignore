@@ -45,7 +45,11 @@ zwcfg*.xml
 
 
 # Node-Red
-node-red
+!node-red/
+
+node-red/*
+!/node-red/flows.json
+
 
 # Operating System Trash Files
 .DS_Store
