@@ -19,6 +19,7 @@ custom_components/
 deps/
 **/__pycache__
 notebooks/
+streamdeck/
 themes/
 www/
 
