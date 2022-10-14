@@ -149,7 +149,7 @@ binary_sensor:
       mode:
         input: True
         pullup: True
-      inverted: True
+      inverted: False
     #device_class: lock
     name: "SG-230 Tuned"
     id: sg_230_tuned
