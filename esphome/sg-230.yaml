@@ -6,47 +6,63 @@ esphome:
 esp8266:
   board: nodemcu
 
+#
 # Enable logging
+#
 logger:
 
+#
 # Enable Home Assistant API
+#
 api:
   encryption:
     key: !secret sg_230_api_transport_password
 
+#
 # Enable firmware updates Over The Air
+#
 ota:
   password: !secret sg_230_ota_password
 
+#
 # Set the WiFi credentials
+#
 wifi:
-  ssid: !secret NoT_wifi_ssid
-  password: !secret NoT_wifi_password
+  ssid: !secret INET_wifi_ssid
+  password: !secret INET_wifi_password
   
   # Set a manual IP address
-  manual_ip:
-    static_ip: !secret sg_230_static_ip
-    gateway: 192.168.30.1
-    subnet: 255.255.255.0
+  #manual_ip:
+  #  static_ip: !secret sg_230_static_ip
+  #  gateway: 192.168.30.1
+  #  subnet: 255.255.255.0
 
   # Fallback hotspot (captive portal) details in case wifi connection fails
   ap:
     ssid: "SG-230 Fallback Hotspot"
     password: !secret sg_230_ap_password
 
+#
 # Enable the captive portal
-captive_portal:
+#
+#captive_portal:
 
+#
 # Enable the internal web server
+#
 web_server:
   port: 80
 
+#
 # Update the internal RTC
+#
 time:
   - platform: sntp
     id: sg_230_time
 
+#
 # Sensors
+#
 sensor:
   - platform: wifi_signal
     name: SG-230 WiFi Signal Sensor
@@ -56,7 +72,9 @@ sensor:
     name: SG-230 Uptime
     id: sg_230_uptime
 
+#
 # Text Sensor to show WiFi Info
+#
 text_sensor:
   - platform: wifi_info
     ip_address:
@@ -71,7 +89,9 @@ text_sensor:
       id: sg_230_mac
     
 switch:
+  #
   # SG-230 Power switch
+  #
   - platform: gpio
     pin: D3
     name: "SG-230 Power"
@@ -80,15 +100,17 @@ switch:
     inverted: True
     restore_mode: RESTORE_DEFAULT_OFF
 
-  # Relays D4 and D5 are configured to "Tune" or "Reset" the SG-230
-  # D4 NO is connected to 12V
-  # D5 NO is connected to 0V
-
+  #
+  # Relays D5 and D6 are configured to "Tune" or "Reset" the SG-230
+  # D5 NO is connected to 12V
+  # D6 NO is connected to 0V
+  #
   # The control line to the SG-230 is connected to the common of both relays
   # The control line is also connected to 12V and 0V via hi-value resistors to help it "float"
-  # D4 and D5 are interlocked to prevent them both being closed.
+  # D5 and D6 are interlocked to prevent them both being closed.
   #
   # SG-230 "Tune"
+  #
   - platform: gpio
     pin: D5
     name: "SG-230 Tune"
@@ -97,14 +119,10 @@ switch:
     inverted: True
     restore_mode: RESTORE_DEFAULT_OFF
     interlock: [sg_230_reset]
-    on_turn_on: 
-      then:
-        - delay: 
-            milliseconds: 500
-        - switch.turn_off: sg_230_tune
 
-
+  #
   # SG-230 "Reset"
+  #
   - platform: gpio
     pin: D6
     name: "SG-230 Reset"
@@ -119,11 +137,20 @@ switch:
             milliseconds: 500
         - switch.turn_off: sg_230_reset
 
+#
 # SG-230 "Tuned" status line
+# D7 is connected to the output of an H11L1 opto-isolator
+# The input to the isolator is fed from the SG-230's tune status line
+#
 binary_sensor:
   - platform: gpio
-    pin: D4
-    device_class: lock
+    pin: 
+      number: D7
+      mode:
+        input: True
+        pullup: True
+      inverted: True
+    #device_class: lock
     name: "SG-230 Tuned"
     id: sg_230_tuned
     icon: mdi:check-decegram
