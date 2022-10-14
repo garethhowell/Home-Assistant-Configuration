@@ -1,0 +1,77 @@
+esphome:
+  name: anavi1
+
+esp8266:
+  board: esp12e
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret sg_230_api_transport_password
+
+#
+# Enable firmware updates Over The Air
+#
+ota:
+  password: !secret sg_230_ota_password
+
+wifi:
+  ssid: Howell_Connect
+  password: dlfgptrt
+
+  #manual_ip:
+  #  static_ip: 172.29.12.245
+  #  gateway: 172.29.12.1
+  #  subnet: 255.255.255.0
+
+  # Fallback hotspot (captive portal) details in case wifi connection fails
+  ap:
+    ssid: "ANAVI Fallback Hotspot"
+    password: password
+
+#
+# Enable the captive portal
+#
+captive_portal:
+
+#
+# Enable the internal web server
+#
+web_server:
+  port: 80
+
+#
+# Update the internal RTC
+#
+time:
+  - platform: sntp
+    id: anavi1_time
+
+status_led:
+  pin: GPIO16
+
+light:
+  - platform: rgb
+    name: "ANAVI Light 1"
+    red: output_component_1
+    green: output_component_2
+    blue: output_component_3
+
+output:
+  - platform: esp8266_pwm
+    id: output_component_1
+    pin: GPIO12
+    max_power: 80%
+
+  - platform: esp8266_pwm
+    id: output_component_2
+    pin: GPIO13
+    max_power: 80%
+
+  - platform: esp8266_pwm
+    id: output_component_3
+    pin: GPIO14
+    max_power: 80%
