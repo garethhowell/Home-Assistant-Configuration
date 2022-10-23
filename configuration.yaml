@@ -1,15 +1,11 @@
 ---
-# Welcome to my Home Assistant configuration!
-#
-homeassistant:
-  # All complex integrations are contained in packages
-  packages: !include_dir_named packages
+alert: !include_dir_merge_named include/alert
 
-  # Use totp Multi-Factor Authentication (MFA)
-  auth_mfa_modules:
-    - type: totp
+#amcrest: !include_dir_merge_list include/amcrest
 
 automation: !include automations.yaml
+
+binary_sensor: !include_dir_merge_list include/binary_sensor/legacy_format
 
 # browser_mod
 # A Home Assistant integration to turn your browser into a controllable entity
@@ -38,6 +34,10 @@ discovery:
 #
 energy:
 
+# FFMPEG support for cameras
+#
+ffmpeg:
+
 # Configures the official Home Assistant frontend.
 #
 # https://www.home-assistant.io/components/frontend/
@@ -49,16 +49,27 @@ frontend:
   # We can define additional/custom themes for the frontend here.
   themes: !include_dir_merge_named themes
 
+group: !include_dir_merge_named include/group
+
 # This enables the Hass.io panel in the Home Assistant frontend
 #
 hassio:
 
-recorder:
-  db_url: mysql://homeassistant:D86pmj@core-mariadb/homeassistant?charset=utf8mb4
-
 # This tells HA to keep a history of the data
 #
 history:
+
+homeassistant:
+  # All complex integrations are contained in packages
+  packages: !include_dir_named packages
+
+  # Use totp Multi-Factor Authentication (MFA)
+  auth_mfa_modules:
+    - type: totp
+
+input_boolean: !include_dir_merge_named include/input_boolean
+
+input_button: !include_dir_merge_named include/input_button
 
 # IOS
 #ios:
@@ -145,43 +156,15 @@ lovelace:
 # https://www.home-assistant.io/components/map/
 map:
 
-# My Configuration
-# https://www.home-assistant.io/integrations/my/
-#
-
-my:
-
-# Sun
-sun:
-  elevation: !secret zone_home_elevation
-
-# The System Health component provides an API to offer information
-# on the system and its components.
-#
-# https://www.home-assistant.io/components/system_health/
-#
-system_health:
-
-# Text to speech
-tts:
-  - platform: google_translate
-
-zeroconf:
-
-alert: !include_dir_merge_named include/alert
-
-binary_sensor: !include_dir_merge_list include/binary_sensor/legacy_format
-
-group: !include_dir_merge_named include/group
-
-input_boolean: !include_dir_merge_named include/input_boolean
-
-input_button: !include_dir_merge_named include/input_button
-
 mqtt:
   binary_sensor: !include_dir_merge_list include/binary_sensor/mqtt
   sensor: !include_dir_merge_list include/sensor/mqtt
   light: !include_dir_merge_list include/light/mqtt
+
+# My Configuration
+# https://www.home-assistant.io/integrations/my/
+#
+my:
 
 notify: !include_dir_merge_list include/notify
 
@@ -196,8 +179,28 @@ notify: !include_dir_merge_list include/notify
 #
 panel_iframe: !include_dir_merge_named include/panels/iframes
 
+recorder:
+  db_url: mysql://homeassistant:D86pmj@core-mariadb/homeassistant?charset=utf8mb4
+
 sensor: !include_dir_merge_list include/sensor/legacy_format
+
+# Sun
+sun:
+  elevation: !secret zone_home_elevation
+
+# The System Health component provides an API to offer information
+# on the system and its components.
+#
+# https://www.home-assistant.io/components/system_health/
+#
+system_health:
 
 template:
   - binary_sensor: !include_dir_merge_list include/binary_sensor/template
   - sensor: !include_dir_merge_list include/sensor/template
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+zeroconf:
