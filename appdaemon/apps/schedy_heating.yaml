@@ -94,8 +94,8 @@ schedy_heating: # This is our app instance name.
       schedule:
         - v: 19
           rules:
-        # Set at base level during the day and evening
-        - { start: "07:00", end: "22:00" }
+            # Set at base level during the day and evening
+            - { start: "07:00", end: "22:00" }
 
     livingroom:
       rescheduling_delay: 0
