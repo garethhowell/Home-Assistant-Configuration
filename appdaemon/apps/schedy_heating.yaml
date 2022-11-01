@@ -70,7 +70,7 @@ schedy_heating: # This is our app instance name.
         # Otherwise, low level in evenings and overnight
         - v: 17
           rules:
-            - { start: "19:00", end: "09:00+1d" }
+            - { start: "21:00", end: "07:00+1d" }
 
     bedroom_2:
       rescheduling_delay: 0
@@ -92,7 +92,7 @@ schedy_heating: # This is our app instance name.
       actors:
         climate.landing_radiator_thermostat:
       schedule:
-        - v: 19
+        - v: 18
           rules:
             # Set at base level during the day and evening
             - { start: "07:00", end: "22:00" }
