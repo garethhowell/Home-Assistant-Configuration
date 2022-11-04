@@ -1,4 +1,0 @@
-- name: Pushover_Door
-  platform: pushover
-  api_key: !secret pushover_api_key
-  user_key: !secret pushover_door_user_key
