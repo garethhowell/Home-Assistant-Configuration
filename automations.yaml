@@ -47,3 +47,14 @@
     target:
       entity_id: input_boolean.ch_extended
   mode: restart
+- id: '1667506703025'
+  alias: Shack light after motion when dark
+  description: ''
+  use_blueprint:
+    path: networkingcat/yet_another_motion_automation.yaml
+    input:
+      motion_entity: input_boolean.shack_occupied
+      light_target:
+        device_id: d27b0cfc3c01bde7cc3ce352a7c8285e
+      elevation_check: 4
+      no_motion_wait: 120
