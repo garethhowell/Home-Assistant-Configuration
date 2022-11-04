@@ -1,7 +1,7 @@
 ---
 alert: !include_dir_merge_named include/alert
 
-#amcrest: !include_dir_merge_list include/amcrest
+amcrest: !include_dir_merge_list include/amcrest
 
 automation: !include automations.yaml
 
@@ -87,7 +87,8 @@ logbook:
 #
 logger:
   default: warning
-  #  logs:
+  #logs:
+  #homeassistant.components.alexa: debug
   #homeassistant.components.ozw: debug
   #homeassistant.components.rfxtrx: debug
   #homeassistant.components.mqtt: debug

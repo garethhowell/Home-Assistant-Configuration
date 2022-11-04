@@ -1,0 +1,22 @@
+---
+- name: Front Door Bell
+  host: !secret ad410_host
+  username: !secret ad410_username
+  password: !secret ad410_password
+  resolution: high
+  stream_source: rtsp
+  scan_interval: 15
+  binary_sensors:
+    - online
+    - motion_detected
+    - crossline_detected
+  switches:
+    - privacy_mode
+
+- name: Front Door Bell Sub
+  host: !secret ad410_host
+  username: !secret ad410_username
+  password: !secret ad410_password
+  resolution: low
+  stream_source: rtsp
+  scan_interval: 30

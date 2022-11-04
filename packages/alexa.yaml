@@ -4,28 +4,37 @@
 #
 ---
 alexa:
-  smart_home: 
+  smart_home:
     locale: en-GB
+    endpoint: https://api.eu.amazonalexa.com/v3/events
+    client_id: !secret alexa_smart_home_client_id
+    client_secret: !secret alexa_smart_home_client_secret
     filter:
       include_entities:
+        - binary_sensor.front_door_bell_human
+        - binary_sensor.front_door_bell_motion
+        - binary_sensor.front_door_bell_ring
         - climate.bedroom_1_thermostat
         - climate.bedroom_2_thermostat
         - climate.livingroom_thermostat
         - climate.shack_thermostat
         - input_boolean.shack_occupied
+        - light.ikea_light01
         - scene.evening
         - scene.goodnight
         - switch.livingroom_standard_lamps
 
-
     entity_config:
-#      sensor.doorbell_sound:
-#        name: Front Door Bell
-#        display_categories: doorbell
-        
+      binary_sensor.front_door_bell_ring:
+        name: "Front Door"
+        description: "Doorbell Binary Sensor"
+        display_categories: DOORBELL
+
+      light.ikea_light01:
+        name: "Shack Light"
+
       scene.goodnight:
         name: "Bedtime"
-        
+
       switch.livingroom_standard_lamps:
         name: "Livingroom lights"
-      

@@ -1,0 +1,89 @@
+---
+template:
+  - trigger:
+      - platform: event
+        event_type: amcrest
+        id: start
+        event_data:
+          camera: "Front Door Bell"
+          event: CrossRegionDetection
+          payload:
+            code: CrossRegionDetection
+            action: Start
+            data:
+              Action: Appear
+              object:
+                ObjectType: Human
+      - platform: event
+        event_type: amcrest
+        id: stop
+        event_data:
+          camera: "Front Door Bell"
+          event: CrossRegionDetection
+          payload:
+            code: CrossRegionDetection
+            action: Stop
+            data:
+              Action: Appear
+              object:
+                ObjectType: Human
+    binary_sensor:
+      - name: Front Door Bell Human
+        icon: mdi:motion-sensor
+        state: >-
+          {{ 'on' if trigger.id == 'start' else 'off' }}
+
+  - trigger:
+      - platform: event
+        event_type: amcrest
+        id: start
+        event_data:
+          camera: "Front Door Bell"
+          event: CallNoAnswered
+          payload:
+            code: CallNoAnswered
+            action: Start
+      - platform: event
+        event_type: amcrest
+        id: stop
+        event_data:
+          camera: "Front Door Bell"
+          event: CallNoAnswered
+          payload:
+            code: CallNoAnswered
+            action: Stop
+    binary_sensor:
+      - name: Front Door Bell Ring
+        icon: mdi:doorbell-video
+        state: >-
+          {{ 'on' if trigger.id == 'start' else 'off' }}
+
+  - trigger:
+      - platform: event
+        event_type: amcrest
+        id: start
+        event_data:
+          camera: "Front Door Bell"
+          event: VideoMotion
+          payload:
+            code: VideoMotion
+            action: Start
+            data:
+              Action: Appear
+              object:
+      - platform: event
+        event_type: amcrest
+        id: stop
+        event_data:
+          camera: "Front Door Bell"
+          event: VideoMotion
+          payload:
+            code: VideoMotion
+            action: Stop
+            data:
+              Action: Appear
+    binary_sensor:
+      - name: Front Door Bell Motion
+        icon: mdi:motion
+        state: >-
+          {{ 'on' if trigger.id == 'start' else 'off' }}
