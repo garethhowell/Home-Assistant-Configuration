@@ -111,12 +111,12 @@ schedy_heating: # This is our app instance name.
             - { start: "18:00", end: "22:30" }
             - v: 15
         # Heat all day in Winter season
-        - v: 19
-          rules:
-            - { start: "07:00", end: "09:00" }
+        #- v: 19
+        #  rules:
+        #    - { start: "07:00", end: "09:00" }
         - v: 18
           rules:
-            - { start: "09:00", end: "17:00" }
+            - { start: "07:00", end: "17:00" }
         - v: 19
           rules:
             - { start: "17:00", end: "22:30" }
@@ -136,6 +136,6 @@ schedy_heating: # This is our app instance name.
         - x: "6 if gareth_location() == 'not_home' else Next()"
         - x: "6 if shack_occupied() == 'off' else Next()"
         # Otherwise, 19C
-        - v: 19
+        - v: 18
           rules:
             - { start: "08:30", end: "22:00" }
