@@ -1,0 +1,10 @@
+- name: Evening
+  entities:
+    group.evening_lights: on
+
+- name: Goodnight
+  entities:
+    group.evening_lights: off
+    switch.central_heating_boiler_ch: off
+    input_boolean.simulate_bedtime: on
+    #group.christmas_lights: off

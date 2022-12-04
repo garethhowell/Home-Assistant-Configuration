@@ -1,87 +1,132 @@
-- id: '1661425963315'
+- id: "1661425963315"
   alias: Extend HW by 1 hour
-  description: Sets the hot water thermostat to 26C for a period of 60 mins so that
+  description:
+    Sets the hot water thermostat to 26C for a period of 60 mins so that
     bathroom towel rail gets hot.
   trigger:
-  - platform: state
-    entity_id:
-    - input_button.extend_hw
+    - platform: state
+      entity_id:
+        - input_button.extend_hw
   condition: []
   action:
-  - service: climate.set_temperature
-    data:
-      temperature: 34
-    target:
-      entity_id: climate.hot_water
-  - delay:
-      hours: 1
-      minutes: 0
-      seconds: 0
-      milliseconds: 0
-  - service: climate.set_temperature
-    data:
-      temperature: 0
-    target:
-      entity_id: climate.hot_water
+    - service: climate.set_temperature
+      data:
+        temperature: 34
+      target:
+        entity_id: climate.hot_water
+    - delay:
+        hours: 1
+        minutes: 0
+        seconds: 0
+        milliseconds: 0
+    - service: climate.set_temperature
+      data:
+        temperature: 0
+      target:
+        entity_id: climate.hot_water
   mode: restart
-- id: '1661427731373'
+- id: "1661427731373"
   alias: Extend CH by 1 hour
   description: Extends the time at which the CH goes to night mode.
   trigger:
-  - platform: state
-    entity_id:
-    - input_button.extend_ch
+    - platform: state
+      entity_id:
+        - input_button.extend_ch
   condition: []
   action:
-  - service: input_boolean.turn_on
-    data: {}
-    target:
-      entity_id: input_boolean.ch_extended
-  - delay:
-      hours: 1
-      minutes: 0
-      seconds: 0
-      milliseconds: 0
-  - service: input_boolean.turn_off
-    data: {}
-    target:
-      entity_id: input_boolean.ch_extended
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.ch_extended
+    - delay:
+        hours: 1
+        minutes: 0
+        seconds: 0
+        milliseconds: 0
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.ch_extended
   mode: restart
-- id: '1667506703025'
+- id: "1667506703025"
   alias: Shack light on after motion when dark
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - input_boolean.shack_occupied
-    from: 'off'
-    to: 'on'
+    - platform: state
+      entity_id:
+        - input_boolean.shack_occupied
+      from: "off"
+      to: "on"
   condition:
-  - condition: template
-    value_template: '{{ state_attr(''sun.sun'', ''elevation'') < 4 }}'
+    - condition: template
+      value_template: "{{ state_attr('sun.sun', 'elevation') < 4 }}"
   action:
-  - service: light.turn_on
-    target:
-      entity_id: light.ikea_light01
-    data: {}
-- id: '1667735322575'
+    - service: light.turn_on
+      target:
+        entity_id: light.ikea_light01
+      data: {}
+- id: "1667735322575"
   alias: Shack lights off when empty
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - input_boolean.shack_occupied
-    from: 'on'
-    to: 'off'
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 15
+    - platform: state
+      entity_id:
+        - input_boolean.shack_occupied
+      from: "on"
+      to: "off"
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 15
   condition: []
   action:
-  - service: light.turn_off
-    data: {}
-    target:
-      area_id: b68158b98f94426aa307707a2c64d461
-      device_id: d27b0cfc3c01bde7cc3ce352a7c8285e
+    - service: light.turn_off
+      data: {}
+      target:
+        area_id: b68158b98f94426aa307707a2c64d461
+        device_id: d27b0cfc3c01bde7cc3ce352a7c8285e
   mode: single
+
+# When it gets dark outside
+#
+- id: "1667735322576"
+  alias: Lights on at sunset
+  # Lights on 30 minutes before sunset if house is not vacant
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.evening
+    #- service: script.switch_on_christmas_lights
+
+- id: "1667735322577"
+  alias: lights_out
+  # Switch lights off at 11PM
+  trigger:
+    platform: time
+    at: "23:00:00"
+  action:
+    service: scene.turn_on
+    entity_id: scene.goodnight
+
+# Switch on living room lights if it is raining outside
+# From https://www.home-assistant.io/cookbook/automation_for_rainy_days/
+#
+- id: "1667735322578"
+  alias: "Rainy Day"
+  trigger:
+    platform: state
+    entity_id: sensor.dark_sky_precip_intensity
+    to: "rain"
+  condition:
+    - condition: state
+      entity_id: device_tracker.ghip7plus
+      state: "home"
+    - condition: time
+      after: "14:00"
+      before: "23:00"
+  action:
+    service: scene.turn_on
+    entity_id: scene.evening
