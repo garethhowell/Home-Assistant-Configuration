@@ -62,12 +62,15 @@ hassio:
 history:
 
 homeassistant:
-  # All complex integrations are contained in packages
-  packages: !include_dir_named packages
-
   # Use totp Multi-Factor Authentication (MFA)
   auth_mfa_modules:
     - type: totp
+
+  # Load customizations
+  customize: !include customizations.yaml
+
+  # All complex integrations are contained in packages
+  packages: !include_dir_named packages
 
 input_boolean: !include_dir_merge_named include/input_boolean
 
