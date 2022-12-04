@@ -1,4 +1,6 @@
 ---
+alexa: !include alexa.yaml
+
 alert: !include_dir_merge_named include/alert
 
 amcrest: !include_dir_merge_list include/amcrest
