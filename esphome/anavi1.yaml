@@ -3,6 +3,7 @@ esphome:
 
 esp8266:
   board: esp12e
+  restore_from_flash: True
 
 # Enable logging
 logger:
@@ -59,6 +60,7 @@ light:
     red: output_component_1
     green: output_component_2
     blue: output_component_3
+    restore_mode: RESTORE_DEFAULT_OFF
 
 output:
   - platform: esp8266_pwm
