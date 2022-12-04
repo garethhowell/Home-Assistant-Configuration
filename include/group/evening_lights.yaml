@@ -1,4 +1,0 @@
-evening_lights:
-  name: Lights that come on automatically in the evening
-  entities:
-    - switch.livingroom_standard_lamps

@@ -1,9 +1,0 @@
-christmas_lights:
-  name: Christmas Lights
-  entities:
-    - switch.ikea_switch01 # Shed
-    - switch.ikea_switch02 # Shack
-    - switch.tp100_02 # Bedroom 2
-    - switch.tp100_04 # Den
-#      - light.wled_shack_master
-#      - light.wled_bed2_master

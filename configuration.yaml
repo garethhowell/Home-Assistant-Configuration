@@ -51,8 +51,6 @@ frontend:
   # We can define additional/custom themes for the frontend here.
   themes: !include_dir_merge_named themes
 
-group: !include_dir_merge_named include/group
-
 # This enables the Hass.io panel in the Home Assistant frontend
 #
 hassio:
