@@ -122,7 +122,7 @@ schedy_heating: # This is our app instance name.
             - { start: "17:00", end: "22:30" }
 
     shack:
-      rescheduling_delay: 0
+      rescheduling_delay: 60
       actors:
         climate.shack_thermostat:
       schedule:
