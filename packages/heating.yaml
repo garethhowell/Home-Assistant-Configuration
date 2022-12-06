@@ -34,6 +34,7 @@ climate:
     max_temp: 15
     target_temp: 6
     initial_hvac_mode: "heat"
+    precision: 0.5
 
   - platform: generic_thermostat
     name: "Shed Thermostat High"
@@ -44,6 +45,7 @@ climate:
     max_temp: 30
     target_temp: 22
     initial_hvac_mode: "cool"
+    precision: 0.5
 
   # Shack Thermostat
   - platform: generic_thermostat
@@ -55,6 +57,7 @@ climate:
     max_temp: 30
     target_temp: 17
     initial_hvac_mode: "heat"
+    precision: 0.5
 
   # Hot Water thermostat - used to enable boiler in morning
   #  to warm towel rail even if rooms don't need heating
@@ -67,6 +70,7 @@ climate:
     max_temp: 35
     target_temp: -10
     initial_hvac_mode: "heat"
+    precision: 0.5
 
   # Room thermostats
   # Livingroom
@@ -80,6 +84,8 @@ climate:
     #    hot_tolerance: -1.5
     target_temp: 19
     initial_hvac_mode: "heat"
+    precision: 0.5
+    
   # Bedroom 1
   - platform: generic_thermostat
     name: "Bedroom 1 Thermostat"
@@ -91,6 +97,8 @@ climate:
     target_temp: 17
     #    hot_tolerance: -1.5
     initial_hvac_mode: "heat"
+    precision: 0.5
+    
   # Bedroom 2
   - platform: generic_thermostat
     name: "Bedroom 2 Thermostat"
@@ -102,6 +110,8 @@ climate:
     target_temp: 19
     #    hot_tolerance: -1.5
     initial_hvac_mode: "heat"
+    precision: 0.5
+    
 input_boolean:
   # Buttons to manipulate living room temps up and down
   living_room_temperature_up:
