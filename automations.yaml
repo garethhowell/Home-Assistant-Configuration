@@ -75,8 +75,8 @@
     to: 'off'
     for:
       hours: 0
-      minutes: 0
-      seconds: 15
+      minutes: 5
+      seconds: 0
   condition: []
   action:
   - service: light.turn_off
