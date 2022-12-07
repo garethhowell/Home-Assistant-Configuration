@@ -33,14 +33,22 @@ schedy_heating: # This is our app instance name.
     def shack_occupied():
       return (state('input_boolean.shack_occupied'))
 
+    def livingroom_occupied():
+      return (state('input_boolean.livingroom_occupied'))
+
+    def bedroom_2_occupied():
+      return (state('input_boolean.bedroom_2_occupied'))
+
     def simulate_bedtime():
       return (state('input_boolean.simulate_bedtime'))
 
   schedule_snippets:
 
   watched_entities:
+    - input_boolean.bedroom_2_occupied
     - input_boolean.ch_extended
     - input_boolean.house_vacant
+    - input_boolean.livingroom_occupied
     - input_boolean.setback_disable
     - input_boolean.shack_occupied
     - input_boolean.simulate_bedtime
@@ -83,6 +91,8 @@ schedy_heating: # This is our app instance name.
         - x: "15 if varina_location() == 'not_home' else Next()"
         # Nothing needed if we have gone to bed early
         - x: "15 if simulate_bedtime() == 'on' else Next()"
+        # Noting needed if Bedroom 2 is unoccupied
+        - x: "17 if bedroom_2_occupied() == 'off' else Next()"
         # Otherwise, 20C target.
         - v: 20
           rules:
@@ -105,6 +115,8 @@ schedy_heating: # This is our app instance name.
       schedule:
         # Only heat in the evening during Spring season
         - x: "15 if simulate_bedtime() == 'on' else Next()"
+        # Back off if the room is unoccupied
+        - x: "17 if livingroom_occupied() == 'off' else Next() "
         - v: 19
           rules:
             - x: "Next() if season() == 'Spring' else Break()"
