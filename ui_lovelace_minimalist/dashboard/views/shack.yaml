@@ -66,19 +66,15 @@ cards:
     template: card_title
     label: "Sensors"
 
-  - type: horizontal-stack
+  - type: grid
+    columns: 2
+    square: false
     cards:
       - type: "custom:button-card"
-        template: card_binary_sensor_alert
-        variables:
-          - ulm_card_binary_sensor_alert: true
-        entity: binary_sensor.ikea_motion01_occupancy
-        show_last_changed: true
-        name: "Presence"
-      - type: "custom:button-card"
         template: card_battery
-        entity: sensor.ikea_motion01_battery
+        entity: sensor.shack_battery
         variables:
-          ulm_card_battery_battery_level_danger: 15
-          ulm_card_battery_battery_level_warning: 40
-          ulm_card_battery_name: Motion battery
+          ulm_card_battery_battery_level_danger: 20
+          ulm_card_battery_battery_level_warning: 50
+          ulm_card_battery_name: Temp
+
