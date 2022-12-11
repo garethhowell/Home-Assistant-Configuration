@@ -53,7 +53,7 @@ climate:
     heater: switch.shack_heater
     ac_mode: false
     target_sensor: sensor.shack_temperature
-    min_temp: 6
+    min_temp: 0
     max_temp: 30
     target_temp: 17
     initial_hvac_mode: "heat"
@@ -85,7 +85,7 @@ climate:
     target_temp: 19
     initial_hvac_mode: "heat"
     precision: 0.5
-    
+
   # Bedroom 1
   - platform: generic_thermostat
     name: "Bedroom 1 Thermostat"
@@ -98,7 +98,7 @@ climate:
     #    hot_tolerance: -1.5
     initial_hvac_mode: "heat"
     precision: 0.5
-    
+
   # Bedroom 2
   - platform: generic_thermostat
     name: "Bedroom 2 Thermostat"
@@ -111,7 +111,7 @@ climate:
     #    hot_tolerance: -1.5
     initial_hvac_mode: "heat"
     precision: 0.5
-    
+
 input_boolean:
   # Buttons to manipulate living room temps up and down
   living_room_temperature_up:
