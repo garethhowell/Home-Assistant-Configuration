@@ -88,9 +88,9 @@ schedy_heating: # This is our app instance name.
         # Nothing needed in Spring
         - x: "6 if season() == 'Spring' else Next()"
         # Low if Varina is not home
-        - x: "10 if varina_location() == 'not_home' else Next()"
+        - x: "15 if varina_location() == 'not_home' else Next()"
         # Low if we have gone to bed early
-        - x: "10 if simulate_bedtime() == 'on' else Next()"
+        - x: "15 if simulate_bedtime() == 'on' else Next()"
         # Winter
         # Ignore occupancy first thing to get room warm
         - v: 20
@@ -118,7 +118,7 @@ schedy_heating: # This is our app instance name.
         climate.livingroom_thermostat:
       schedule:
         # Override if we've gone to bed early
-        - x: "10 if simulate_bedtime() == 'on' else Next()"
+        - x: "15 if simulate_bedtime() == 'on' else Next()"
         # Otherwise
         # Only heat in the evening during Spring season
         - v: 19
@@ -149,15 +149,15 @@ schedy_heating: # This is our app instance name.
         climate.shack_thermostat:
       schedule:
         # Nothing needed during Spring
-        - x: "6 if season() == 'Spring' else Next()"
+        - x: "4 if season() == 'Spring' else Next()"
         # Low level overnight
-        - v: 5
+        - v: 4
           rules:
             - { start: "22:00", end: "08:30+1d" }
         # Knock target temp bak if the Shack is unoccupied
         - x: "6 if gareth_location() == 'not_home' else Next()"
-        - x: "6 if shack_occupied() == 'off' else Next()"
-        # Otherwise, 19C
-        - v: 18
+        - x: "18 if shack_occupied() == 'on' else Next()"
+        # Otherwise, 4C
+        - v: 4
           rules:
             - { start: "08:30", end: "22:00" }
