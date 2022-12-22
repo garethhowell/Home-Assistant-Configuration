@@ -61,9 +61,9 @@
     value_template: '{{ state_attr(''sun.sun'', ''elevation'') < 4 }}'
   action:
   - service: light.turn_on
-    target:
-      entity_id: light.ikea_light01
     data: {}
+    target:
+      entity_id: light.shack_light
 - id: '1667735322575'
   alias: Shack lights off when empty
   description: ''
@@ -82,8 +82,7 @@
   - service: light.turn_off
     data: {}
     target:
-      area_id: b68158b98f94426aa307707a2c64d461
-      device_id: d27b0cfc3c01bde7cc3ce352a7c8285e
+      entity_id: light.shack_light
   mode: single
 - id: '1667735322576'
   alias: Lights on at sunset
@@ -143,4 +142,79 @@
     data: {}
     target:
       entity_id: switch.christmas_lights
+  mode: single
+- id: '1671291723470'
+  alias: Reset bedtime overides
+  description: Periodically overnight, reset the booleans that get set when we go
+    to bed.
+  trigger:
+  - platform: time
+    at: 00:01:00
+  - platform: time
+    at: 01:00:00
+  - platform: time
+    at: 02:00:00
+  - platform: time
+    at: 03:00:00
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id:
+      - input_boolean.central_heating_manual
+      - input_boolean.simulate_bedtime
+  mode: single
+- id: '1671296065126'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.we_need_heat
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.central_heating_boiler_ch
+  mode: single
+- id: '1671296746796'
+  alias: Control CH boiler
+  description: Control CH boiler based on state of "We need heat" input_boolean
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.we_need_heat
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.central_heating_boiler_ch
+  - wait_for_trigger:
+    - platform: state
+      entity_id:
+      - binary_sensor.we_need_heat
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.central_heating_boiler_ch
   mode: single
