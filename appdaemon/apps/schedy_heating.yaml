@@ -59,9 +59,9 @@ schedy_heating: # This is our app instance name.
 
   schedule_prepend:
     # Heating on very low if we are away or it is summer season
-    - x: "6 if house_mode() == 'Away' or season() == 'Summer' else Next()"
+    - x: "4 if house_mode() == 'Away' or season() == 'Summer' else Next()"
     # Knock back the target temps if we are both out of the house
-    - x: "10 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+    - x: "4 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
   # default rule to apply if no other matches
   schedule_append:
@@ -75,10 +75,15 @@ schedy_heating: # This is our app instance name.
       schedule:
         # Nothing needed in Spring season
         - x: "6 if season() == 'Spring' else Next()"
-        # Otherwise, low level in evenings and overnight
-        - v: 17
+        # Warm in mornings and evenings
+        - v: 18.5
           rules:
-            - { start: "21:00", end: "07:00+1d" }
+            - { start: "07:00", end: "08:00" }
+            - { start: "19:00", end: "22:30" }
+        # Otherwise, low level overnight
+        - v: 17.5
+          rules:
+            - { start: "22:30", end: "07:00+1d" }
 
     bedroom_2:
       rescheduling_delay: 0
@@ -156,7 +161,7 @@ schedy_heating: # This is our app instance name.
             - { start: "22:00", end: "08:30+1d" }
         # Knock target temp bak if the Shack is unoccupied
         - x: "6 if gareth_location() == 'not_home' else Next()"
-        - x: "18 if shack_occupied() == 'on' else Next()"
+        - x: "17 if shack_occupied() == 'on' else Next()"
         # Otherwise, 4C
         - v: 4
           rules:
