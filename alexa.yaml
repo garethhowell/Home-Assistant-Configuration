@@ -18,7 +18,7 @@ smart_home:
       - climate.livingroom_thermostat
       - climate.shack_thermostat
       - input_boolean.shack_occupied
-      - light.ikea_light01
+      - light.shack_light
       - scene.evening
       - scene.goodnight
       - switch.livingroom_standard_lamps
@@ -29,7 +29,7 @@ smart_home:
       description: "Doorbell Binary Sensor"
       display_categories: DOORBELL
 
-    light.ikea_light01:
+    light.shack_light:
       name: "Shack Light"
 
     scene.goodnight:
