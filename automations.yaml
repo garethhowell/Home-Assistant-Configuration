@@ -87,9 +87,11 @@
 - id: '1667735322576'
   alias: Lights on at sunset
   trigger:
-    platform: sun
-    event: sunset
-    offset: -00:30:00
+  - platform: state
+    entity_id:
+    - input_boolean.sunset
+    from: 'off'
+    to: 'on'
   action:
   - service: scene.turn_on
     entity_id: scene.evening
@@ -130,9 +132,11 @@
   alias: Christmas Lights On
   description: Turn on Christmas Lights id dusk and enabled
   trigger:
-  - platform: sun
-    event: sunset
-    offset: -00:30:00
+  - platform: state
+    entity_id:
+    - input_boolean.sunset
+    from: 'off'
+    to: 'on'
   condition:
   - condition: state
     entity_id: input_boolean.christmas
@@ -166,7 +170,8 @@
       - input_boolean.simulate_bedtime
   mode: single
 - id: '1671296065126'
-  description: ''
+  alias: switch on central heating
+  description: switch on the boiler when a room needs heat
   trigger:
   - platform: state
     entity_id:
@@ -217,4 +222,18 @@
     data: {}
     target:
       entity_id: switch.central_heating_boiler_ch
+  mode: single
+- id: '1671785551975'
+  alias: sunset
+  description: Turn on input_boolean.sunset when the sun sets
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.sunset
   mode: single
