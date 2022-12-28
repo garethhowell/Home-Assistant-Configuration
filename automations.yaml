@@ -236,4 +236,15 @@
     data: {}
     target:
       entity_id: input_boolean.sunset
+  - condition: state
+    entity_id: sun.sun
+    state: above_horizon
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.sunset
   mode: single
