@@ -60,8 +60,6 @@ schedy_heating: # This is our app instance name.
   schedule_prepend:
     # Heating on very low if we are away or it is summer season
     - x: "4 if house_mode() == 'Away' or season() == 'Summer' else Next()"
-    # Knock back the target temps if we are both out of the house
-    - x: "4 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
   # default rule to apply if no other matches
   schedule_append:
@@ -75,12 +73,17 @@ schedy_heating: # This is our app instance name.
       schedule:
         # Nothing needed in Spring season
         - x: "6 if season() == 'Spring' else Next()"
+
+        # Knock back the target temps if we are both out of the house
+        - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+
         # Warm in mornings and evenings
         - v: 18.5
           rules:
             - { start: "07:00", end: "08:00" }
             - { start: "19:00", end: "22:30" }
-        # Otherwise, low level overnight
+
+            # Otherwise, low level overnight
         - v: 17.5
           rules:
             - { start: "22:30", end: "07:00+1d" }
@@ -92,16 +95,23 @@ schedy_heating: # This is our app instance name.
       schedule:
         # Nothing needed in Spring
         - x: "6 if season() == 'Spring' else Next()"
+
+        # Knock back the target temps if we are both out of the house
+        - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+
         # Low if Varina is not home
         - x: "15 if varina_location() == 'not_home' else Next()"
+
         # Low if we have gone to bed early
         - x: "15 if simulate_bedtime() == 'on' else Next()"
+
         # Winter
         # Ignore occupancy first thing to get room warm
         - v: 20
           rules:
             - { start: "07:00", end: "09:00" }
-        # Otherwise, drop back if room is unoccupied
+
+            # Otherwise, drop back if room is unoccupied
         - v: 20
           rules:
             - x: "17.5 if bedroom_2_occupied() == 'off' else Next() "
@@ -113,6 +123,9 @@ schedy_heating: # This is our app instance name.
       schedule:
         - v: 18
           rules:
+            # Knock back the target temps if we are both out of the house
+            - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+
             # Set at base level during the day and evening
             - { start: "07:00", end: "22:00" }
 
@@ -124,16 +137,24 @@ schedy_heating: # This is our app instance name.
       schedule:
         # Override if we've gone to bed early
         - x: "15 if simulate_bedtime() == 'on' else Next()"
+
         # Otherwise
         # Only heat in the evening during Spring season
         - v: 18
           rules:
             - x: "Next() if season() == 'Spring' else Break()"
+
+            # Knock back the target temps if we are both out of the house
+            - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+
             # Medium if the room is unoccupied
             - x: "16.5 if livingroom_occupied() == 'off' else Next() "
             - { start: "18:00", end: "22:30" }
         # Heat all day in Winter season
         # Ignore occupancy in the early morning, just get the room warm
+        # Knock back the target temps if we are both out of the house
+        - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+
         - v: 18
           rules:
             - { start: "07:00", end: "09:00" }
@@ -161,7 +182,7 @@ schedy_heating: # This is our app instance name.
             - { start: "22:00", end: "08:30+1d" }
         # Knock target temp bak if the Shack is unoccupied
         - x: "6 if gareth_location() == 'not_home' else Next()"
-        - x: "17 if shack_occupied() == 'on' else Next()"
+        - x: "19 if shack_occupied() == 'on' else Next()"
         # Otherwise, 4C
         - v: 4
           rules:
