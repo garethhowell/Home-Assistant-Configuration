@@ -1,4 +1,4 @@
-schedy_heating: # This is our app instance name.
+schedy_house: # This is our app instance name.
   module: hass_apps_loader
   class: SchedyApp
 
@@ -168,22 +168,3 @@ schedy_heating: # This is our app instance name.
           rules:
             - x: "17.5 if livingroom_occupied() == 'off' else Next() "
             - { start: "17:00", end: "22:30" }
-
-    shack:
-      rescheduling_delay: 60
-      actors:
-        climate.shack_thermostat:
-      schedule:
-        # Nothing needed during Spring
-        - x: "4 if season() == 'Spring' else Next()"
-        # Low level overnight
-        - v: 4
-          rules:
-            - { start: "22:00", end: "08:30+1d" }
-        # Knock target temp bak if the Shack is unoccupied
-        - x: "6 if gareth_location() == 'not_home' else Next()"
-        - x: "19 if shack_occupied() == 'on' else Next()"
-        # Otherwise, 4C
-        - v: 4
-          rules:
-            - { start: "08:30", end: "22:00" }
