@@ -27,6 +27,9 @@ schedy_house: # This is our app instance name.
     def ch_extended():
       return (state('input_boolean.ch_extended'))
 
+    def ch_manual():
+      return (state('input_boolean.central_heating_manual'))
+
     def setback_disable():
       return (state('input_boolean.setback_disable'))
       
@@ -46,6 +49,7 @@ schedy_house: # This is our app instance name.
 
   watched_entities:
     - input_boolean.bedroom_2_occupied
+    - input_boolean.central_heating_manual
     - input_boolean.ch_extended
     - input_boolean.house_vacant
     - input_boolean.livingroom_occupied
@@ -138,9 +142,15 @@ schedy_house: # This is our app instance name.
         # Override if we've gone to bed early
         - x: "15 if simulate_bedtime() == 'on' else Next()"
 
+        # Do nothing if CH is on manual
+        - x: "19 if ch_manual() == 'on' else Next()"
+
+        # Stay on if CH extended
+        - x: " 19 if ch_extended() == 'on' else Next() "
+
         # Otherwise
         # Only heat in the evening during Spring season
-        - v: 18
+        - v: 19
           rules:
             - x: "Next() if season() == 'Spring' else Break()"
 

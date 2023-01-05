@@ -168,6 +168,7 @@
       entity_id:
       - input_boolean.central_heating_manual
       - input_boolean.simulate_bedtime
+      - input_boolean.ch_extended
   mode: single
 - id: '1671296065126'
   alias: switch on central heating
