@@ -143,14 +143,14 @@ schedy_house: # This is our app instance name.
         - x: "15 if simulate_bedtime() == 'on' else Next()"
 
         # Do nothing if CH is on manual
-        - x: "19 if ch_manual() == 'on' else Next()"
+        - x: "20 if ch_manual() == 'on' else Next()"
 
         # Stay on if CH extended
-        - x: " 19 if ch_extended() == 'on' else Next() "
+        - x: " 20 if ch_extended() == 'on' else Next() "
 
         # Otherwise
         # Only heat in the evening during Spring season
-        - v: 19
+        - v: 20
           rules:
             - x: "Next() if season() == 'Spring' else Break()"
 
@@ -174,7 +174,7 @@ schedy_house: # This is our app instance name.
             - x: "16 if livingroom_occupied() == 'off' else Next() "
             - { start: "09:00", end: "17:00" }
 
-        - v: 19
+        - v: 20
           rules:
             - x: "17.5 if livingroom_occupied() == 'off' else Next() "
             - { start: "17:00", end: "22:30" }
