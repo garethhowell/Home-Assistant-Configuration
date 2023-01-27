@@ -48,11 +48,11 @@ schedy_shack: # This is our app instance name.
         # Low level overnight
         - v: 4
           rules:
-            - { start: "22:00", end: "08:30+1d" }
+            - { start: "23:00", end: "08:30+1d" }
         # Knock target temp bak if the Shack is unoccupied
         - x: "6 if gareth_location() == 'not_home' else Next()"
         - x: "19 if shack_occupied() == 'on' else Next()"
         # Otherwise, 4C
         - v: 4
           rules:
-            - { start: "08:30", end: "22:00" }
+            - { start: "08:30", end: "23:00" }

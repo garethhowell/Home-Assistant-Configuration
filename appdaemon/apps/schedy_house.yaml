@@ -19,10 +19,12 @@ schedy_house: # This is our app instance name.
       return state('input_select.season')
 
     def gareth_location():
-      return (state('device_tracker.ghip7plus'))
+      #return (state('device_tracker.ghip7plus'))
+      return (state('person.gareth'))
 
     def varina_location():
-      return (state('device_tracker.v_iphone'))
+      #return (state('device_tracker.v_iphone'))
+      return (state('person.varina'))
 
     def ch_extended():
       return (state('input_boolean.ch_extended'))
