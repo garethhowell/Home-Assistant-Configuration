@@ -7,5 +7,4 @@ low_battery_devices:
   can_acknowledge: true
   repeat: 2880
   notifiers:
-    - slack
     - pushover_gareth
