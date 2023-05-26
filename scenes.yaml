@@ -10,9 +10,6 @@
 - id: c5e86fed0b854c1687c4e7de13dac632
   name: Goodnight
   entities:
-    switch.central_heating_boiler_ch:
-      friendly_name: Central Heating Boiler - CH
-      state: 'off'
     input_boolean.simulate_bedtime:
       editable: false
       friendly_name: Simulate Bedtime
@@ -26,7 +23,9 @@
       entity_id:
       - switch.shack_xmas_lights_1
       - switch.kitchen_xmas_lights_1_1
-      - switch.den_xmas_lights_1
       - switch.shed_xmas_lights_1
+      - switch.bedroom_2_xmas_lights_2
+      - switch.bedroom_3_xmas_lights_1
       friendly_name: Christmas Lights
       state: 'off'
+  metadata: {}
