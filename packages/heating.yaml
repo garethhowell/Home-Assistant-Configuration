@@ -32,7 +32,7 @@ climate:
     target_sensor: sensor.shed_temperature
     min_temp: 4
     max_temp: 15
-    target_temp: 4
+    target_temp: 7
     initial_hvac_mode: "heat"
     precision: 0.5
 
