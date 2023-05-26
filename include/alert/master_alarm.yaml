@@ -7,4 +7,3 @@ master_alarm:
   can_acknowledge: True
   notifiers:
     - pushover_gareth
-    - slack
