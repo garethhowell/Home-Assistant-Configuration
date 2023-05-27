@@ -65,7 +65,7 @@ schedy_house: # This is our app instance name.
 
   schedule_prepend:
     # Heating on very low if we are away or it is summer season
-    - x: "4 if house_mode() == 'Away' or season() == 'Summer' else Next()"
+    - x: "10 if house_mode() == 'Away' or season() == 'Summer' else Next()"
 
   # default rule to apply if no other matches
   schedule_append:
@@ -78,7 +78,7 @@ schedy_house: # This is our app instance name.
         climate.bedroom_1_thermostat:
       schedule:
         # Nothing needed in Spring season
-        - x: "6 if season() == 'Spring' else Next()"
+        - x: "10 if season() == 'Spring' else Next()"
 
         # Knock back the target temps if we are both out of the house
         - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
@@ -100,7 +100,7 @@ schedy_house: # This is our app instance name.
         climate.bedroom_2_thermostat:
       schedule:
         # Nothing needed in Spring
-        - x: "6 if season() == 'Spring' else Next()"
+        - x: "10 if season() == 'Spring' else Next()"
 
         # Knock back the target temps if we are both out of the house
         - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
