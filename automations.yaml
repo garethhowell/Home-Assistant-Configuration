@@ -119,19 +119,6 @@
   action:
     service: scene.turn_on
     entity_id: scene.evening
-- id: '1667735322579'
-  alias: Receive notification when motion is detected on Shack External camera
-  trigger:
-  - platform: webhook
-    webhook_id: '123321'
-    allowed_methods:
-    - POST
-    - PUT
-    local_only: true
-  action:
-  - data:
-      message: Motion detected on Shack External Camera
-    service: notify.pushover_gareth
 - id: '1670157209661'
   alias: Christmas Lights On
   description: Turn on Christmas Lights id dusk and enabled

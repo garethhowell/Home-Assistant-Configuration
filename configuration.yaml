@@ -13,7 +13,7 @@ binary_sensor: !include_dir_merge_list include/binary_sensor/legacy_format
 # A Home Assistant integration to turn your browser into a controllable entity
 # - and also an audio player and a security camera (WIP).
 
-browser_mod:
+#browser_mod:
 
 # Simple integrations are retained in here.
 
@@ -104,17 +104,17 @@ lovelace:
       { url: /hacsfiles/apexcharts-card/apexcharts-card.js, type: module },
       { url: /hacsfiles/bar-card/bar-card.js, type: module },
       { url: /hacsfiles/button-card/button-card.js, type: module },
-      {
-        url: /hacsfiles/compact-custom-header/compact-custom-header.js,
-        type: module,
-      },
-      { url: /hacsfiles/kiosk-mode/kiosk-mode.js, type: module },
+      #{
+      #  url: /hacsfiles/compact-custom-header/compact-custom-header.js,
+      #  type: module,
+      #},
+      #{ url: /hacsfiles/kiosk-mode/kiosk-mode.js, type: module },
       { url: /hacsfiles/light-entity-card/light-entity-card.js, type: module },
       { url: /hacsfiles/light-popup-card/light-popup-card.js, type: module },
       { url: /hacsfiles/lovelace-auto-entities/auto-entities.js, type: module },
       { url: /hacsfiles/lovelace-card-mod/card-mod.js, type: module },
       { url: /hacsfiles/lovelace-layout-card/layout-card.js, type: module },
-      { url: /hacsfiles/lovelace-mushroom/mushroom.js, type: module },
+      #{ url: /hacsfiles/lovelace-mushroom/mushroom.js, type: module },
       {
         url: /hacsfiles/lovelace-rpi-monitor-card/rpi-monitor-card.js,
         type: module,
