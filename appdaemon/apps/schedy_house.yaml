@@ -2,7 +2,7 @@ schedy_house: # This is our app instance name.
   module: hass_apps_loader
   class: SchedyApp
 
-  debug: true
+  debug: false
 
   reset_at_startup: true
 
