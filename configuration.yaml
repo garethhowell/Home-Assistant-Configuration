@@ -46,7 +46,7 @@ ffmpeg:
 #
 frontend:
   extra_module_url:
-    - /hacsfiles/lovelace-card-mod/card-mod.js
+  #    - /hacsfiles/lovelace-card-mod/card-mod.js
 
   # We can define additional/custom themes for the frontend here.
   themes: !include_dir_merge_named themes
@@ -99,8 +99,7 @@ logger:
 # Lovelace
 lovelace:
   mode: yaml
-  resources:
-    [
+  resources: [
       { url: /hacsfiles/apexcharts-card/apexcharts-card.js, type: module },
       { url: /hacsfiles/bar-card/bar-card.js, type: module },
       { url: /hacsfiles/button-card/button-card.js, type: module },
@@ -135,7 +134,12 @@ lovelace:
         url: /hacsfiles/mini-media-player/mini-media-player-bundle.js,
         type: module,
       },
+      { url: /hacsfiles/mushroom-strategy/mushroom-strategy.js, type: module },
       { url: /hacsfiles/my-cards/my-cards.js, type: module },
+      {
+        url: /hacsfiles/octopus-energy-rates-card/octopus-energy-rates-card.js,
+        type: module,
+      },
       { url: /hacsfiles/simple-thermostat/simple-thermostat.js, type: module },
       {
         url: /hacsfiles/simple-weather-card/simple-weather-card-bundle.js,
