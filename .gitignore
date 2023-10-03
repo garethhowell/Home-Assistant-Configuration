@@ -8,6 +8,7 @@
 # Logs
 logs
 *.log
+zigbee2mqtt/log
 
 # Ignore Folders
 .storage
@@ -60,3 +61,4 @@ node-red/*
 # Alexa Media
 alexa_media.*.pickle
 aircast.xml
+zigbee2mqtt/log/2023-08-25.11-19-59/log.txt
