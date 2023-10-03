@@ -1,0 +1,27 @@
+- name: "scc CPU Load"
+  state_topic: "m5kvk-remote/cpu/load"
+  unit_of_measurement: "%"
+  #device_class:
+  value_template: "{{ value | float | round(0) }}"
+  expire_after: 300
+
+- name: "scc CPU Temp"
+  state_topic: "m5kvk-remote/cpu/temperature"
+  unit_of_measurement: "C"
+  device_class: temperature
+  value_template: "{{ value | float | round(0) }}"
+  expire_after: 300
+
+- name: "Remote Radio PSU Load"
+  state_topic: "m5kvk-remote/radio_psu/power"
+  unit_of_measurement: "W"
+  #device_class:
+  value_template: "{{ value | float | round(0) }}"
+  expire_after: 300
+
+- name: "Remote PC Load"
+  state_topic: "m5kvk-remote/windows/power"
+  unit_of_measurement: "W"
+  #device_class:
+  value_template: "{{ value | float | round(0) }}"
+  expire_after: 300
