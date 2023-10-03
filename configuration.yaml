@@ -9,6 +9,10 @@ automation: !include automations.yaml
 
 binary_sensor: !include_dir_merge_list include/binary_sensor/legacy_format
 
+#remote_homeassistant:
+#  instances:
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzNTE3MThiNmQ5MGM0MTg2OTBmMDdmNzNiMTc3ODRiOSIsImlhdCI6MTY5MjM1MzQwNSwiZXhwIjoyMDA3NzEzNDA1fQ.W8N-Fyw2UgJ3cbFUpGV5agkxAjdKCgVVdAQHXN9FkYw
+
 # browser_mod
 # A Home Assistant integration to turn your browser into a controllable entity
 # - and also an audio player and a security camera (WIP).
@@ -26,11 +30,6 @@ config:
 
 default_config:
 
-# Discover new devices
-# https://www.home-assistant.io/integrations/discovery/
-#
-discovery:
-
 # Energy Management
 # https://www.home-assistant.io/docs/energy
 #
@@ -46,7 +45,7 @@ ffmpeg:
 #
 frontend:
   extra_module_url:
-  #    - /hacsfiles/lovelace-card-mod/card-mod.js
+    - /hacsfiles/lovelace-card-mod/card-mod.js
 
   # We can define additional/custom themes for the frontend here.
   themes: !include_dir_merge_named themes
@@ -107,13 +106,13 @@ lovelace:
       #  url: /hacsfiles/compact-custom-header/compact-custom-header.js,
       #  type: module,
       #},
-      #{ url: /hacsfiles/kiosk-mode/kiosk-mode.js, type: module },
+      { url: /hacsfiles/kiosk-mode/kiosk-mode.js, type: module },
       { url: /hacsfiles/light-entity-card/light-entity-card.js, type: module },
       { url: /hacsfiles/light-popup-card/light-popup-card.js, type: module },
       { url: /hacsfiles/lovelace-auto-entities/auto-entities.js, type: module },
       { url: /hacsfiles/lovelace-card-mod/card-mod.js, type: module },
       { url: /hacsfiles/lovelace-layout-card/layout-card.js, type: module },
-      #{ url: /hacsfiles/lovelace-mushroom/mushroom.js, type: module },
+      { url: /hacsfiles/lovelace-mushroom/mushroom.js, type: module },
       {
         url: /hacsfiles/lovelace-rpi-monitor-card/rpi-monitor-card.js,
         type: module,
@@ -122,6 +121,7 @@ lovelace:
         url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js,
         type: module,
       },
+      { url: /hacsfiles/state-switch/state-switch.js, type: module },
       {
         url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js,
         type: module,
@@ -152,6 +152,10 @@ lovelace:
         type: module,
       },
       { url: /hacsfiles/weather-card/weather-card.js, type: module },
+      {
+        url: /hacsfiles/weather-radar-card/weather-radar-card.js,
+        type: module,
+      },
 
       { url: "/local/calendar-card.js?v=3.109.1", type: module },
       { url: "/local/custom_icons.js?v=28082021", type: module },
@@ -168,6 +172,7 @@ mqtt:
   binary_sensor: !include_dir_merge_list include/binary_sensor/mqtt
   sensor: !include_dir_merge_list include/sensor/mqtt
   light: !include_dir_merge_list include/light/mqtt
+  text: !include_dir_merge_list include/text/mqtt
 
 # My Configuration
 # https://www.home-assistant.io/integrations/my/
@@ -198,7 +203,6 @@ sensor: !include_dir_merge_list include/sensor/legacy_format
 
 # Sun
 sun:
-  elevation: !secret zone_home_elevation
 
 # The System Health component provides an API to offer information
 # on the system and its components.
