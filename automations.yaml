@@ -240,3 +240,34 @@
     target:
       entity_id: input_boolean.sunset
   mode: single
+- id: '1690796324661'
+  alias: Weekly reboot
+  description: ''
+  use_blueprint:
+    path: Chef-de-IT/Reboot-HA-weekly.yaml
+- id: '1692366440304'
+  alias: Alert when home assistant (re)starts
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: notify.pushover
+    data:
+      message: Home assistant has (re)started
+      title: Home Assistant
+  mode: single
+- id: '1694423107170'
+  alias: _Temp Switch on Xmas lihts
+  description: Because the goodnight automation is turning off the feed to m5kvk-remote
+  trigger:
+  - platform: time
+    at: '23:01:00'
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.shed_xmas_lights_1
+  mode: single
