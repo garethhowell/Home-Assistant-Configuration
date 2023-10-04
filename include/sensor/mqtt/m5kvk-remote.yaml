@@ -7,7 +7,7 @@
 
 - name: "scc CPU Temp"
   state_topic: "m5kvk-remote/cpu/temperature"
-  unit_of_measurement: "C"
+  unit_of_measurement: "°C"
   device_class: temperature
   value_template: "{{ value | float | round(0) }}"
   expire_after: 300
