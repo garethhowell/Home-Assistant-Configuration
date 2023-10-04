@@ -120,26 +120,3 @@ template:
           false
           {% endif %}
         availability: "{{ states('sensor.external_temperature_2') | float >= -30.0 }}"
-#binary_sensor:
-##  - platform: template
-#    sensors:
-#      cold_outside:
-#        friendly_name: "Low Temp"
-#        #entity_id: sensor.external_temperature_2
-#        value_template: >-
-#          {% if states('sensor.external_temperature_2') | float  < 5.0 %}
-#          true
-#          {% else %}
-#          false
-#          {% endif %}
-#        availability_template: "{{ states('sensor.external_temperature_2') | float >= -30.0) }}"
-#      freezing_outside:
-#        friendly_name: "Freezing!"
-#        #entity_id: sensor.external_temperature_2
-#        value_template: >-
-#          {% if states('sensor.external_temperature_2') | float  < 0.3 %}
-#          true
-#          {% else %}
-#          false
-#          {% endif %}
-#        availability_template: "{{ states('sensor.external_temperature_2') | float >= -30.0) }}"
