@@ -84,7 +84,7 @@ schedy_house: # This is our app instance name.
         - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
         # Warm in mornings and evenings
-        - v: 18.5
+        - v: 19.0
           rules:
             - { start: "07:00", end: "08:00" }
             - { start: "19:00", end: "22:30" }
@@ -113,12 +113,12 @@ schedy_house: # This is our app instance name.
 
         # Winter
         # Ignore occupancy first thing to get room warm
-        - v: 20
+        - v: 21
           rules:
             - { start: "07:00", end: "09:00" }
 
             # Otherwise, drop back if room is unoccupied
-        - v: 20
+        - v: 21
           rules:
             - x: "17.5 if bedroom_2_occupied() == 'off' else Next() "
             - { start: "09:00", end: "22:30" }
@@ -127,7 +127,7 @@ schedy_house: # This is our app instance name.
       actors:
         climate.landing_radiator_thermostat:
       schedule:
-        - v: 18
+        - v: 20
           rules:
             # Knock back the target temps if we are both out of the house
             - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
@@ -167,11 +167,11 @@ schedy_house: # This is our app instance name.
         # Knock back the target temps if we are both out of the house
         - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
-        - v: 18
+        - v: 20
           rules:
             - { start: "07:00", end: "09:00" }
         # Thereafter, drop back if the room is unoccupied
-        - v: 18
+        - v: 20
           rules:
             - x: "16 if livingroom_occupied() == 'off' else Next() "
             - { start: "09:00", end: "17:00" }
