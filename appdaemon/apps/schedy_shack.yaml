@@ -16,7 +16,7 @@ schedy_shack: # This is our app instance name.
       return state('input_select.season')
 
     def gareth_location():
-      return (state('device_tracker.ghip7plus'))
+      return (state('device_tracker.GH7pro'))
 
     def shack_occupied():
       return (state('input_boolean.shack_occupied'))
@@ -28,6 +28,7 @@ schedy_shack: # This is our app instance name.
     - input_boolean.shack_occupied
     - input_select.house_mode
     - input_select.season
+    - device_tracker.GH7pro
 
   schedule_prepend:
     # Heating on very low if we are away or it is summer season
