@@ -1,0 +1,31 @@
+blueprint:
+  name: Monitor Climate Temp Sensor Availability
+  description: Turns off the selected climate control if the associated temperature sensor becomes unavailable
+  domain: automation
+  author: Gareth Howell - gareth.howell@gmail.com
+  input:
+    temp_sensor:
+      name: Temperature Sensor
+      description: The temperature sensor to be monitored
+      selector:
+        entity:
+          filter:
+            - domain: sensor
+
+    target_thermostat:
+      name: Thermostat
+      description: The thermostat which uses the temperature sensor as its input
+      selector:
+        target:
+          entity:
+            domain: climate
+
+trigger:
+  - platform: state
+    entity_id: !input temp_sensor
+    to: "unavailable"
+    for: "00:00:15"
+
+action:
+  - service: climate.turn_off
+    target: !input target_thermostat
