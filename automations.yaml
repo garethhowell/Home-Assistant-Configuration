@@ -271,3 +271,50 @@
     target:
       entity_id: switch.shed_xmas_lights_1
   mode: single
+- id: '1700742837703'
+  alias: Monitor Bedroom1 Climate Temp Sensor Availability
+  description: ''
+  use_blueprint:
+    path: guff666/climate_sensor_availability.yaml
+    input:
+      temp_sensor: sensor.bedroom1_temperature
+      target_thermostat:
+        entity_id: climate.bedroom_1_thermostat
+- id: '1700742925557'
+  alias: Monitor Livingroom Climate Temp Sensor Availability
+  description: ''
+  use_blueprint:
+    path: guff666/climate_sensor_availability.yaml
+    input:
+      temp_sensor: sensor.livingroom_temperature
+      target_thermostat:
+        entity_id: climate.livingroom_thermostat
+- id: '1700742997780'
+  alias: Monitor Bedroom2 Climate Temp Sensor Availability
+  description: ''
+  use_blueprint:
+    path: guff666/climate_sensor_availability.yaml
+    input:
+      temp_sensor: sensor.bedroom2_temperature
+      target_thermostat:
+        entity_id: climate.bedroom_2_thermostat
+- id: '1700743025706'
+  alias: Monitor Shack Climate Temp Sensor Availability
+  description: ''
+  use_blueprint:
+    path: guff666/climate_sensor_availability.yaml
+    input:
+      temp_sensor: sensor.shack_temperature
+      target_thermostat:
+        entity_id: climate.shack_thermostat
+- id: '1700743064586'
+  alias: Monitor Shed Climate Temp Sensors Availability
+  description: ''
+  use_blueprint:
+    path: guff666/climate_sensor_availability.yaml
+    input:
+      temp_sensor: sensor.shed_temperature
+      target_thermostat:
+        entity_id:
+        - climate.shed_thermostat_high
+        - climate.shed_thermostat_low
