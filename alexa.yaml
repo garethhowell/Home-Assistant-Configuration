@@ -22,12 +22,25 @@ smart_home:
       - scene.evening
       - scene.goodnight
       - switch.livingroom_standard_lamps
+      - switch.phone_charger
 
   entity_config:
     binary_sensor.front_door_bell_ring:
       name: "Front Door"
       description: "Doorbell Binary Sensor"
       display_categories: DOORBELL
+
+    climate.bedroom_1_thermostat:
+      name: "Bedroom Temperature"
+
+    climate.bedroom_2_thermostat:
+      name: "Sewing Room Temperature"
+
+    climate.livingroom_thermostat:
+      name: "Livingroom Temperature"
+
+    climate.shack_thermostat:
+      name: "Shack Temperature"
 
     light.shack_light:
       name: "Shack Light"
