@@ -2,6 +2,18 @@
   command_topic: "router/get"
   state_topic: router/1127767870/wan
 
+- name: "RUT-951 Uptime"
+  command_topic: "router/get"
+  state_topic: router/1127767870/uptime
+
+- name: "RUT-951 Network"
+  command_topic: "router/get"
+  state_topic: router/1127767870/network
+
+- name: "RUT-951 Signal"
+  command_topic: "router/get"
+  state_topic: router/1127767870/signal
+
 - name: "Remote UPS State"
   command_topic: "get"
   state_topic: m5kvk-remote/ups/status
