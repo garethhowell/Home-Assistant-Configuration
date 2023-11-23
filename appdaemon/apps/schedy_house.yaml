@@ -160,7 +160,7 @@ schedy_house: # This is our app instance name.
             - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
             # Medium if the room is unoccupied
-            - x: "16.5 if livingroom_occupied() == 'off' else Next() "
+            - x: "17 if livingroom_occupied() == 'off' else Next() "
             - { start: "18:00", end: "22:30" }
         # Heat all day in Winter season
         # Ignore occupancy in the early morning, just get the room warm
