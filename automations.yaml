@@ -136,7 +136,7 @@
   - service: switch.turn_on
     data: {}
     target:
-      entity_id: switch.christmas_lights
+      entity_id: switch.christmas_lights_3
   mode: single
 - id: '1671291723470'
   alias: Reset bedtime overides
@@ -318,3 +318,45 @@
         entity_id:
         - climate.shed_thermostat_high
         - climate.shed_thermostat_low
+- id: '1701181191797'
+  alias: house vacant
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - person.gareth_2
+    - person.varina_2
+    from: home
+    to: not_home
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.house_vacant
+  mode: single
+- id: '1701187246072'
+  alias: house not vacant
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - person.gareth_2
+    - person.varina_2
+    from: not_home
+    to: home
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.house_vacant
+  mode: single

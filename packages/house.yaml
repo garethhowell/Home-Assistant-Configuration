@@ -63,36 +63,3 @@ sensor:
       #- 'time_date'
       #- 'time_utc'
       #- 'beat'
-
-automation:
-  - alias: house vacant
-    description: ""
-    trigger:
-      - platform: state
-        entity_id: group.all_people
-        from: home
-        to: not_home
-        for: "00:01:00"
-    condition: []
-    action:
-      - service: input_boolean.turn_on
-        data: {}
-        target:
-          entity_id: input_boolean.house_vacant
-    mode: single
-
-  - alias: house not vacant
-    description: ""
-    trigger:
-      - platform: state
-        entity_id: group.all_people
-        from: not_home
-        to: home
-        for: "00:01:00"
-    condition: []
-    action:
-      - service: input_boolean.turn_off
-        data: {}
-        target:
-          entity_id: input_boolean.house_vacant
-    mode: single
