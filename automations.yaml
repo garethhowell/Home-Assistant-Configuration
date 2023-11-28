@@ -120,7 +120,7 @@
     service: scene.turn_on
     entity_id: scene.evening
 - id: '1670157209661'
-  alias: Christmas Lights On
+  alias: Christmas Lights On at Sunset
   description: Turn on Christmas Lights id dusk and enabled
   trigger:
   - platform: state
@@ -160,26 +160,6 @@
       - input_boolean.central_heating_manual
       - input_boolean.simulate_bedtime
       - input_boolean.ch_extended
-  mode: single
-- id: '1671296065126'
-  alias: switch on central heating
-  description: switch on the boiler when a room needs heat
-  trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.we_need_heat
-    from: 'off'
-    to: 'on'
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 5
-  condition: []
-  action:
-  - service: switch.turn_on
-    data: {}
-    target:
-      entity_id: switch.central_heating_boiler_ch
   mode: single
 - id: '1671296746796'
   alias: Control CH boiler
