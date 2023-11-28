@@ -1,0 +1,3 @@
+[submodule "a0d7b954_nodered/projects/home-assistant-node-red-flows"]
+	path = a0d7b954_nodered/projects/home-assistant-node-red-flows
+	url = git@git.agdon.net:homeassistant-node-red-flows.git

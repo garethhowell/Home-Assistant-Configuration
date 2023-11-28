@@ -1,0 +1,14 @@
+load_main_panel:
+  widget_type: navigate
+  title: Living Room
+  icon_inactive: mdi-sofa
+  dashboard: LivingRoomPanel
+
+load_climate_panel:
+  widget_type: navigate
+  title: Climate
+  icon_inactive: mdi-temperature-celsius
+  dashboard: ClimatePanel
+
+layout:
+  - load_main_panel, load_climate_panel

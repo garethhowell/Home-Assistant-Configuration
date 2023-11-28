@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<airupnp>
+<common>
+<protocolInfo>
+<pcm>http-get:*:audio/L16;rate=44100;channels=2:DLNA.ORG_PN=LPCM;DLNA.ORG_OP=00;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=0d500000000000000000000000000000</pcm>
+<wav>http-get:*:audio/wav:DLNA.ORG_OP=00;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=0d500000000000000000000000000000</wav>
+<flac>http-get:*:audio/flac:DLNA.ORG_OP=00;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=0d500000000000000000000000000000</flac>
+<mp3>http-get:*:audio/mp3:DLNA.ORG_OP=00;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=0d500000000000000000000000000000</mp3>
+</protocolInfo>
+<enabled>1</enabled>
+<max_volume>100</max_volume>
+<codec>flc</codec>
+<metadata>1</metadata>
+<artwork></artwork>
+<latency>1000:2000</latency>
+<drift>0</drift>
+<upnp_max>1</upnp_max>
+<http_length>-1</http_length>
+<flush>1</flush>
+</common>
+<main_log>info</main_log>
+<upnp_log>info</upnp_log>
+<util_log>warn</util_log>
+<raop_log>info</raop_log>
+<log_limit>-1</log_limit>
+<max_players>32</max_players>
+<binding>?</binding>
+<ports>0:0</ports>
+<device>
+<udn>uuid:b90181b0-a4b4-32be-5cfe-327640b79984</udn>
+<name>[LG] webOS TV UM7400PLB+</name>
+<mac>bb:bb:c8:9e:41:66</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>uuid:RINCON_542A1B48F2EC01400</udn>
+<name>Sonos Roam+</name>
+<mac>bb:bb:6e:4a:78:3e</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>uuid:00000000-0000-1010-8000-d8d43c3cc5e7</udn>
+<name>Blu-ray Disc Player+</name>
+<mac>bb:bb:48:09:80:7b</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>uuid:RINCON_B8E9378C916001400</udn>
+<name>172.29.12.158 - Sonos Play:1+</name>
+<mac>bb:bb:60:b0:49:69</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>uuid:RINCON_B8E93789FD3001400</udn>
+<name>172.29.12.155 - Sonos Play:1+</name>
+<mac>bb:bb:93:d8:25:cd</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>uuid:4D454930-0100-1000-8001-80C755543627</udn>
+<name>43FX650_Series+</name>
+<mac>bb:bb:2d:36:a6:1f</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>uuid:RINCON_5CAAFD5BC31401400</udn>
+<name>Den+</name>
+<mac>bb:bb:29:35:80:81</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>uuid:RINCON_B8E93759BCA401400</udn>
+<name>Kitchen+</name>
+<mac>bb:bb:fd:14:e0:bd</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>uuid:RINCON_B8E9378C915601400</udn>
+<name>Varina&apos;s Office+</name>
+<mac>bb:bb:65:67:4e:2a</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>uuid:RINCON_5CAAFDA93EFA01400</udn>
+<name>Living Room+</name>
+<mac>bb:bb:d0:8d:2d:61</mac>
+<enabled>1</enabled>
+</device>
+</airupnp>

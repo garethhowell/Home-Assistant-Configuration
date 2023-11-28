@@ -1,0 +1,43 @@
+gareth_presence:
+  widget_type: device_tracker
+  title: Gareth
+  device: ghip7plus
+  enable: 1
+  icon_on: fa-male
+  icon_off: fa-male
+  icon_style_active: "color: #4bcdea"
+
+varina_presence:
+  widget_type: device_tracker
+  title: Varina
+  device: v_iphone
+  enable: 1
+  icon_on: fa-female
+  icon_off: fa-female
+  icon_style_active: "color: #ea4b82"
+
+mode:
+  widget_type: sensor
+  text_style: "text-transform: uppercase;font-size: 200%"
+  entity: input_select.house_mode
+
+weather:
+  widget_type: sensor
+  entity: weather.openweathermap
+
+ext_temp:
+  widget_type: sensor
+  entity: sensor.external_temperature_2
+  title: Temp
+  unit: "&deg;C"
+  enable: 1
+
+pressure:
+  widget_type: sensor
+  entity: sensor.openweathermap_pressure
+  title: Pressure
+  enable: 1
+
+layout:
+  - clock.clock(2x1), weather(2x2), ext_temp, pressure, gareth_presence, varina_presence
+  - mode(2x1)
