@@ -19,12 +19,10 @@ schedy_house: # This is our app instance name.
       return state('input_select.season')
 
     def gareth_location():
-      #return (state('device_tracker.ghip7plus'))
-      return (state('person.gareth'))
+      return (state('person.gareth_2'))
 
     def varina_location():
-      #return (state('device_tracker.v_iphone'))
-      return (state('person.varina'))
+      return (state('person.varina_2'))
 
     def ch_extended():
       return (state('input_boolean.ch_extended'))
@@ -60,12 +58,11 @@ schedy_house: # This is our app instance name.
     - input_boolean.simulate_bedtime
     - input_select.house_mode
     - input_select.season
-    - device_tracker.ghip7plus
-    - device_tracker.v_iphone # Varina's iPhone
-
+    - person.gareth_2
+    - person.varina_2
   schedule_prepend:
     # Heating on very low if we are away or it is summer season
-    - x: "10 if house_mode() == 'Away' or season() == 'Summer' else Next()"
+    - x: "4 if house_mode() == 'Away' or season() == 'Summer' else Next()"
 
   # default rule to apply if no other matches
   schedule_append:
@@ -78,10 +75,10 @@ schedy_house: # This is our app instance name.
         climate.bedroom_1_thermostat:
       schedule:
         # Nothing needed in Spring season
-        - x: "10 if season() == 'Spring' else Next()"
+        - x: "4 if season() == 'Spring' else Next()"
 
         # Knock back the target temps if we are both out of the house
-        - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+        - x: "15 if gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
         # Warm in mornings and evenings
         - v: 19.0
@@ -90,7 +87,7 @@ schedy_house: # This is our app instance name.
             - { start: "19:00", end: "22:30" }
 
             # Otherwise, low level overnight
-        - v: 17.5
+        - v: 17.0
           rules:
             - { start: "22:30", end: "07:00+1d" }
 
@@ -100,10 +97,7 @@ schedy_house: # This is our app instance name.
         climate.bedroom_2_thermostat:
       schedule:
         # Nothing needed in Spring
-        - x: "10 if season() == 'Spring' else Next()"
-
-        # Knock back the target temps if we are both out of the house
-        - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+        - x: "4 if season() == 'Spring' else Next()"
 
         # Low if Varina is not home
         - x: "15 if varina_location() == 'not_home' else Next()"
@@ -120,7 +114,7 @@ schedy_house: # This is our app instance name.
             # Otherwise, drop back if room is unoccupied
         - v: 21
           rules:
-            - x: "17.5 if bedroom_2_occupied() == 'off' else Next() "
+            - x: "17.0 if bedroom_2_occupied() == 'off' else Next() "
             - { start: "09:00", end: "22:30" }
 
     landing:
@@ -130,7 +124,7 @@ schedy_house: # This is our app instance name.
         - v: 20
           rules:
             # Knock back the target temps if we are both out of the house
-            - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+            - x: "15 if gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
             # Set at base level during the day and evening
             - { start: "07:00", end: "22:00" }
@@ -157,7 +151,7 @@ schedy_house: # This is our app instance name.
             - x: "Next() if season() == 'Spring' else Break()"
 
             # Knock back the target temps if we are both out of the house
-            - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+            - x: "15 if gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
             # Medium if the room is unoccupied
             - x: "17 if livingroom_occupied() == 'off' else Next() "
@@ -165,7 +159,7 @@ schedy_house: # This is our app instance name.
         # Heat all day in Winter season
         # Ignore occupancy in the early morning, just get the room warm
         # Knock back the target temps if we are both out of the house
-        - x: "15 if house_mode() == 'Home' and gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
+        - x: "15 if gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
         - v: 20
           rules:
@@ -173,10 +167,10 @@ schedy_house: # This is our app instance name.
         # Thereafter, drop back if the room is unoccupied
         - v: 20
           rules:
-            - x: "16 if livingroom_occupied() == 'off' else Next() "
+            - x: "17 if livingroom_occupied() == 'off' else Next() "
             - { start: "09:00", end: "17:00" }
 
         - v: 20
           rules:
-            - x: "17.5 if livingroom_occupied() == 'off' else Next() "
+            - x: "17 if livingroom_occupied() == 'off' else Next() "
             - { start: "17:00", end: "22:30" }
