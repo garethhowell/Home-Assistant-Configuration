@@ -3,9 +3,9 @@
   entities:
     switch.evening_lights:
       entity_id:
-        - switch.livingroom_standard_lamps
+      - switch.livingroom_standard_lamps
       friendly_name: Evening Lights
-      state: "on"
+      state: 'on'
   metadata: {}
 - id: c5e86fed0b854c1687c4e7de13dac632
   name: Goodnight
@@ -13,13 +13,22 @@
     input_boolean.simulate_bedtime:
       editable: false
       friendly_name: Simulate Bedtime
-      state: "on"
+      state: 'on'
     switch.evening_lights:
       entity_id:
-        - switch.livingroom_standard_lamps
-      state: "off"
-    switch.christmas_lights:
+      - switch.livingroom_standard_lamps
+      friendly_name: Evening Lights
+      state: 'off'
+    switch.christmas_lights_3:
       entity_id:
-        - switch.christmas_lights_3
-      state: "off"
-  metadata: {}
+      - switch.shack_xmas_lights_1
+      - switch.shack_xmas_lights_2
+      - switch.bedroom_2_xmas_lights_2
+      - switch.bedroom_3_xmas_lights_1
+      - switch.kitchen_xmas_lights_1_1
+      - switch.shed_xmas_lights_1
+      friendly_name: Christmas Lights
+      state: 'off'
+  metadata:
+    switch.christmas_lights_3:
+      entity_only: true
