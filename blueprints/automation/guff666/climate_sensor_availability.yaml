@@ -20,12 +20,19 @@ blueprint:
           entity:
             domain: climate
 
+variables:
+  sensor: !input temp_sensor
+
 trigger:
   - platform: state
     entity_id: !input temp_sensor
     to: "unavailable"
-    for: "00:00:15"
+    for: "00:05:00"
 
 action:
   - service: climate.turn_off
     target: !input target_thermostat
+  - service: notify.pushover
+    data:
+      message: Climate sensor {{ sensor }} has become unavailable
+      title: Home Assistant
