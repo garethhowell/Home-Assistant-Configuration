@@ -161,16 +161,16 @@ schedy_house: # This is our app instance name.
         # Knock back the target temps if we are both out of the house
         - x: "15 if gareth_location() == 'not_home' and varina_location() == 'not_home' and setback_disable() == 'off' else Next()"
 
-        - v: 20
+        - v: 19
           rules:
             - { start: "07:00", end: "09:00" }
         # Thereafter, drop back if the room is unoccupied
-        - v: 20
+        - v: 19
           rules:
             - x: "17 if livingroom_occupied() == 'off' else Next() "
-            - { start: "09:00", end: "17:00" }
+            - { start: "09:00", end: "18:00" }
 
         - v: 20
           rules:
             - x: "17 if livingroom_occupied() == 'off' else Next() "
-            - { start: "17:00", end: "22:30" }
+            - { start: "18:00", end: "22:30" }
