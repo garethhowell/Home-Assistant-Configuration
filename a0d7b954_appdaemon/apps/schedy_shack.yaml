@@ -1,0 +1,59 @@
+schedy_shack: # This is our app instance name.
+  module: hass_apps_loader
+  class: SchedyApp
+
+  debug: true
+
+  reset_at_startup: true
+
+  actor_type: thermostat
+
+  expression_environment: |
+    def house_mode():
+      return state("input_select.house_mode")
+
+    def season():
+      return state('input_select.season')
+
+    def gareth_location():
+      return (state('device_tracker.GH7pro'))
+
+    def shack_occupied():
+      return (state('input_boolean.shack_occupied'))
+
+  schedule_snippets:
+
+  watched_entities:
+    - input_boolean.house_vacant
+    - input_boolean.shack_occupied
+    - input_select.house_mode
+    - input_select.season
+    - device_tracker.GH7pro
+
+  schedule_prepend:
+    # Heating on very low if we are away or it is summer season
+    - x: "4 if house_mode() == 'Away' or season() == 'Summer' else Next()"
+
+  # default rule to apply if no other matches
+  schedule_append:
+    - v: 4
+
+  rooms:
+    shack:
+      rescheduling_delay: 60
+      actors:
+        climate.shack_thermostat:
+      schedule:
+        # Nothing needed during Spring
+        - x: "4 if season() == 'Spring' else Next()"
+        # Low level overnight
+        - v: 4
+          rules:
+            - { start: "23:00", end: "08:30+1d" }
+        # Knock target temp bak if the Shack is unoccupied
+        - x: "6 if gareth_location() == 'not_home' else Next()"
+        - x: "19 if shack_occupied() == 'on' else Next()"
+        # Otherwise, 4C
+        - v: 4
+          rules:
+            - { start: "08:30", end: "23:00" }

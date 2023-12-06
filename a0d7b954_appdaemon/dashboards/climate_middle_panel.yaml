@@ -1,0 +1,31 @@
+liv_thermostat:
+  widget_type: climate
+  entity: climate.livingroom_thermostat
+  title: "Living Room"
+  units: "&deg;C"
+  step: 1
+
+bed1_thermostat:
+  widget_type: climate
+  entity: climate.bedroom_1_thermostat
+  title: "Bedroom"
+  units: "&deg;C"
+  step: 1
+
+bed2_thermostat:
+  widget_type: climate
+  entity: climate.bedroom_2_thermostat
+  title: "Varina"
+  units: "&deg;C"
+  step: 1
+
+shack_thermostat:
+  widget_type: climate
+  entity: climate.shack_thermostat
+  title: "Shack"
+  units: "&deg;C"
+  step: 1
+
+layout:
+  - liv_thermostat(2x2), bed1_thermostat(2x2), bed2_thermostat(2x2), shack_thermostat(2x2)
+  -

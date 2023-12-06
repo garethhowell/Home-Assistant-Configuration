@@ -1,0 +1,11 @@
+{
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-red-configurable-ping": "~1.0.1",
+        "node-red-contrib-image-tools": "~2.0.4",
+        "node-red-contrib-streamdeck-ws": "~0.9.4"
+    }
+}

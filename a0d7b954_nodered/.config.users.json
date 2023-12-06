@@ -1,0 +1,53 @@
+{
+    "_": {
+        "editor": {
+            "view": {
+                "view-show-grid": true,
+                "view-snap-grid": true,
+                "view-grid-size": "20",
+                "view-node-status": true,
+                "view-node-show-label": true,
+                "view-show-tips": false,
+                "view-show-welcome-tours": true,
+                "view-store-position": false,
+                "view-store-zoom": false
+            },
+            "tours": {
+                "welcome": "3.1.0"
+            },
+            "dialog": {
+                "export": {
+                    "pretty": false
+                }
+            }
+        },
+        "menu-deploymenu-item-flow": true,
+        "menu-deploymenu-item-full": false,
+        "debug": {
+            "filter": "filterCurrent",
+            "filteredNodes": [
+                "9bd29009.94aca",
+                "3dc170e1.308168",
+                "9004e06d.b7e97",
+                "9db215fd.149e7",
+                "1d20401.cf9cc4",
+                "4f55617b2e801737",
+                "1e02c03bb06a4668",
+                "dbc8da2ed68bd709",
+                "0694ee274b595e47",
+                "16f019cb2244ed62",
+                "512d641902bb3e1c"
+            ]
+        },
+        "menu-menu-item-sidebar": true,
+        "git": {
+            "user": {
+                "name": "Gareth Howell",
+                "email": "gareth.howell@gmail.com"
+            },
+            "workflow": {
+                "mode": "manual"
+            }
+        }
+    }
+}
