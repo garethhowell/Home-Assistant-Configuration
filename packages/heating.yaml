@@ -166,7 +166,6 @@ binary_sensor:
           {% if states('input_boolean.livingroom_heat_demand') == 'on' or
             states('input_boolean.bedroom1_heat_demand') == 'on' or
             states('input_boolean.bedroom2_heat_demand') == 'on' or
-            states('input_boolean.central_heating_manual') == 'on' or
             states('input_boolean.heated_towelrail_heat_demand') == 'on'
           %}
             true
