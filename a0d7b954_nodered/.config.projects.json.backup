@@ -1,7 +1,0 @@
-{
-    "projects": {
-        "home-assistant-node-red-flows": {
-            "credentialSecret": "This is not a bad password is it?"
-        }
-    }
-}
