@@ -56,6 +56,10 @@
     - input_boolean.shack_occupied
     from: 'off'
     to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
   condition:
   - condition: template
     value_template: '{{ state_attr(''sun.sun'', ''elevation'') < 4 }}'
@@ -98,11 +102,20 @@
 - id: '1667735322577'
   alias: lights_out
   trigger:
-    platform: time
+  - platform: time
     at: '23:00:00'
   action:
-    service: scene.turn_on
+  - service: scene.turn_on
     entity_id: scene.goodnight
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: scene.turn_on
+    target:
+      entity_id: scene.goodnight
+    metadata: {}
 - id: '1667735322578'
   alias: Rainy Day
   trigger:

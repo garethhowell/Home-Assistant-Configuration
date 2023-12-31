@@ -30,21 +30,6 @@ smart_home:
       description: "Doorbell Binary Sensor"
       display_categories: DOORBELL
 
-    climate.bedroom_1_thermostat:
-      name: "Bedroom Temperature"
-
-    climate.bedroom_2_thermostat:
-      name: "Sewing Room Temperature"
-
-    climate.livingroom_thermostat:
-      name: "Livingroom Temperature"
-
-    climate.shack_thermostat:
-      name: "Shack Temperature"
-
-    light.shack_light:
-      name: "Shack Light"
-
     scene.goodnight:
       name: "Bedtime"
 
