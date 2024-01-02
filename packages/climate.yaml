@@ -109,7 +109,7 @@ template:
           {% else %}
           false
           {% endif %}
-        availability: "{{ states('sensor.external_temperature_2') | float >= -30.0 }}"
+        availability: "{{ not states('sensor.external_temperature_2') in ('unavailable', 'unknown') }}"
       - name: freezing_outside
         #friendly_name: "Freezing!"
         #entity_id: sensor.external_temperature_2
@@ -119,4 +119,4 @@ template:
           {% else %}
           false
           {% endif %}
-        availability: "{{ states('sensor.external_temperature_2') | float >= -30.0 }}"
+        availability: "{{ not states('sensor.external_temperature_2') in ('unavailable', 'unknown') }}"
