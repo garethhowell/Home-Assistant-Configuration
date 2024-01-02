@@ -7,7 +7,7 @@ amcrest: !include_dir_merge_list include/amcrest
 
 automation: !include automations.yaml
 
-binary_sensor: !include_dir_merge_list include/binary_sensor/legacy_format
+#binary_sensor: !include_dir_merge_list include/binary_sensor/legacy_format
 
 #remote_homeassistant:
 #  instances:
@@ -168,11 +168,11 @@ lovelace:
 # https://www.home-assistant.io/components/map/
 map:
 
-mqtt:
-  binary_sensor: !include_dir_merge_list include/binary_sensor/mqtt
-  sensor: !include_dir_merge_list include/sensor/mqtt
-  light: !include_dir_merge_list include/light/mqtt
-  text: !include_dir_merge_list include/text/mqtt
+#mqtt:
+#binary_sensor: !include_dir_merge_list include/binary_sensor/mqtt
+#sensor: !include_dir_merge_list include/sensor/mqtt
+#light: !include_dir_merge_list include/light/mqtt
+#text: !include_dir_merge_list include/text/mqtt
 
 # My Configuration
 # https://www.home-assistant.io/integrations/my/
@@ -200,7 +200,7 @@ scene: !include scenes.yaml
 
 script: !include scripts.yaml
 
-sensor: !include_dir_merge_list include/sensor/legacy_format
+#sensor: !include_dir_merge_list include/sensor/legacy_format
 
 # Sun
 sun:
