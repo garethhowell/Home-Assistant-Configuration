@@ -194,6 +194,7 @@ panel_iframe: !include_dir_merge_named include/panels/iframes
 
 recorder:
   db_url: mysql://homeassistant:D86pmj@core-mariadb/homeassistant?charset=utf8mb4
+  purge_keep_days: 90
 
 scene: !include scenes.yaml
 
