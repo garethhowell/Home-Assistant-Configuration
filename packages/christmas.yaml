@@ -1,0 +1,4 @@
+input_boolean:
+  christmas:
+    name: "Is it Christmas?"
+    initial: off

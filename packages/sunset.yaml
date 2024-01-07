@@ -1,0 +1,4 @@
+input_boolean:
+  sunset:
+    name: "Sunset"
+    initial: off

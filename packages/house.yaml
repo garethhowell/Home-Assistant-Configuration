@@ -16,6 +16,22 @@ input_boolean:
     initial: off
     icon: mdi:human-male-female
 
+  bedroom_2_occupied:
+    name: "Bedroom 2 Occupied"
+    initial: off
+
+  livingroom_occupied:
+    name: "Livingroom Occupied"
+    initial: off
+
+  loft_occupied:
+    name: "Loft Occupied"
+    initial: off
+
+  shack_occupied:
+    name: "Shack Occupied"
+    initial: off
+
 input_select:
   #
   # input_select to indicate that we are home
