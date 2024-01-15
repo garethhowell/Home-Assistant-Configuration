@@ -7,18 +7,6 @@ amcrest: !include_dir_merge_list include/amcrest
 
 automation: !include automations.yaml
 
-#binary_sensor: !include_dir_merge_list include/binary_sensor/legacy_format
-
-#remote_homeassistant:
-#  instances:
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzNTE3MThiNmQ5MGM0MTg2OTBmMDdmNzNiMTc3ODRiOSIsImlhdCI6MTY5MjM1MzQwNSwiZXhwIjoyMDA3NzEzNDA1fQ.W8N-Fyw2UgJ3cbFUpGV5agkxAjdKCgVVdAQHXN9FkYw
-
-# browser_mod
-# A Home Assistant integration to turn your browser into a controllable entity
-# - and also an audio player and a security camera (WIP).
-
-#browser_mod:
-
 # Simple integrations are retained in here.
 
 # The config component enables a set of additional capabilities to manage and
@@ -97,82 +85,14 @@ logger:
 
 # Lovelace
 lovelace:
-  mode: yaml
-  resources: [
-      { url: /hacsfiles/apexcharts-card/apexcharts-card.js, type: module },
-      { url: /hacsfiles/bar-card/bar-card.js, type: module },
-      { url: /hacsfiles/button-card/button-card.js, type: module },
-      #{
-      #  url: /hacsfiles/compact-custom-header/compact-custom-header.js,
-      #  type: module,
-      #},
-      { url: /hacsfiles/kiosk-mode/kiosk-mode.js, type: module },
-      { url: /hacsfiles/light-entity-card/light-entity-card.js, type: module },
-      { url: /hacsfiles/light-popup-card/light-popup-card.js, type: module },
-      { url: /hacsfiles/lovelace-auto-entities/auto-entities.js, type: module },
-      { url: /hacsfiles/lovelace-card-mod/card-mod.js, type: module },
-      { url: /hacsfiles/lovelace-layout-card/layout-card.js, type: module },
-      { url: /hacsfiles/lovelace-mushroom/mushroom.js, type: module },
-      {
-        url: /hacsfiles/lovelace-rpi-monitor-card/rpi-monitor-card.js,
-        type: module,
-      },
-      {
-        url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js,
-        type: module,
-      },
-      { url: /hacsfiles/state-switch/state-switch.js, type: module },
-      {
-        url: /hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js,
-        type: module,
-      },
-      {
-        url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js,
-        type: module,
-      },
-      {
-        url: /hacsfiles/mini-media-player/mini-media-player-bundle.js,
-        type: module,
-      },
-      { url: /hacsfiles/mushroom-strategy/mushroom-strategy.js, type: module },
-      { url: /hacsfiles/my-cards/my-cards.js, type: module },
-      {
-        url: /hacsfiles/octopus-energy-rates-card/octopus-energy-rates-card.js,
-        type: module,
-      },
-      { url: /hacsfiles/simple-thermostat/simple-thermostat.js, type: module },
-      {
-        url: /hacsfiles/simple-weather-card/simple-weather-card-bundle.js,
-        type: module,
-      },
-      { url: /hacsfiles/state-switch/state-switch.js, type: module },
-      { url: /hacsfiles/swipe-card/swipe-card.js, type: module },
-      {
-        url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js,
-        type: module,
-      },
-      { url: /hacsfiles/weather-card/weather-card.js, type: module },
-      {
-        url: /hacsfiles/weather-radar-card/weather-radar-card.js,
-        type: module,
-      },
-
-      { url: "/local/calendar-card.js?v=3.109.1", type: module },
-      { url: "/local/custom_icons.js?v=28082021", type: module },
-      { url: "/local/marked.min.js?v=4.0.12", type: module },
-      { url: "/local/vanilla-tilt.min.js?v=1.7.2", type: module },
-      { url: /local/font.css, type: css },
-    ]
+  mode: storage
 
 # Google Map
 # https://www.home-assistant.io/components/map/
 map:
 
-#mqtt:
-#binary_sensor: !include_dir_merge_list include/binary_sensor/mqtt
-#sensor: !include_dir_merge_list include/sensor/mqtt
-#light: !include_dir_merge_list include/light/mqtt
-#text: !include_dir_merge_list include/text/mqtt
+# Media source
+media_source:
 
 # My Configuration
 # https://www.home-assistant.io/integrations/my/
