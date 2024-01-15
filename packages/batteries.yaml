@@ -80,13 +80,13 @@ sensor:
         time_constant: 10
         precision: 1
 
-  - platform: filter
-    name: "filtered EmonTx1 Battery"
-    entity_id: sensor.emontx1_battery
-    filters:
-      - filter: lowpass
-        time_constant: 10
-        precision: 1
+  #  - platform: filter
+  #    name: "filtered EmonTx1 Battery"
+  #    entity_id: sensor.emontx1_battery
+  #    filters:
+  #      - filter: lowpass
+  #        time_constant: 10
+  #        precision: 1
 
   # Low batteries
   # The number of devices with 'Low Battery' binary_sensor 'on'
@@ -210,10 +210,9 @@ mqtt:
       device_class: voltage
       value_template: "{{ value | float | round(1) }}"
       expire_after: 300
-
-    - name: "EmonTx1 Battery"
-      state_topic: "emon/emontx1/battery"
-      unit_of_measurement: "V"
-      device_class: voltage
-      value_template: "{{ value | float | round(1) }}"
-      expire_after: 300
+#    - name: "EmonTx1 Battery"
+#      state_topic: "emon/emontx1/battery"
+#      unit_of_measurement: "V"
+#      device_class: voltage
+#      value_template: "{{ value | float | round(1) }}"
+#      expire_after: 300
