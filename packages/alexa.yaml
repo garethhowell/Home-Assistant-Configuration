@@ -35,3 +35,6 @@ smart_home:
 
     switch.livingroom_standard_lamps:
       name: "Livingroom lights"
+#notify:
+#- platform: alexa_media
+#  name: alexa_media

@@ -1,10 +1,4 @@
 ---
-alexa: !include alexa.yaml
-
-alert: !include_dir_merge_named include/alert
-
-amcrest: !include_dir_merge_list include/amcrest
-
 automation: !include automations.yaml
 
 # Simple integrations are retained in here.
@@ -57,13 +51,6 @@ homeassistant:
   # All complex integrations are contained in packages
   packages: !include_dir_named packages
 
-input_boolean: !include_dir_merge_named include/input_boolean
-
-input_button: !include_dir_merge_named include/input_button
-
-# IOS
-#ios:
-
 # The logbook component provides a different perspective on the history of
 # your house by showing all the changes that happened to your house in
 # reverse chronological order.
@@ -99,19 +86,6 @@ media_source:
 #
 my:
 
-notify: !include_dir_merge_list include/notify
-
-# The panel_iframe support allows you to add additional panels to your
-# Home Assistant frontend. The panels are listed in the sidebar and can
-# contain external resources like the web frontend of your router,
-# your monitoring system, or your media server.
-#
-# This configration loads up all my panels
-#
-# https://www.home-assistant.io/components/panel_iframe/
-#
-panel_iframe: !include_dir_merge_named include/panels/iframes
-
 recorder:
   db_url: mysql://homeassistant:D86pmj@core-mariadb/homeassistant?charset=utf8mb4
   purge_keep_days: 90
@@ -119,8 +93,6 @@ recorder:
 scene: !include scenes.yaml
 
 script: !include scripts.yaml
-
-#sensor: !include_dir_merge_list include/sensor/legacy_format
 
 # Sun
 sun:
@@ -131,10 +103,6 @@ sun:
 # https://www.home-assistant.io/components/system_health/
 #
 system_health:
-
-template:
-  - binary_sensor: !include_dir_merge_list include/binary_sensor/template
-  - sensor: !include_dir_merge_list include/sensor/template
 
 # Text to speech
 tts:
