@@ -3,38 +3,39 @@
 # https://www.home-assistant.io/integrations/alexa.smart_home
 #
 ---
-smart_home:
-  locale: en-GB
-  endpoint: https://api.eu.amazonalexa.com/v3/events
-  client_id: !secret alexa_smart_home_client_id
-  client_secret: !secret alexa_smart_home_client_secret
-  filter:
-    include_entities:
-      - binary_sensor.front_door_bell_human
-      - binary_sensor.front_door_bell_motion
-      - binary_sensor.front_door_bell_ring
-      - climate.bedroom_1_thermostat
-      - climate.bedroom_2_thermostat
-      - climate.livingroom_thermostat
-      - climate.shack_thermostat
-      - input_boolean.shack_occupied
-      - light.shack_light
-      - scene.evening
-      - scene.goodnight
-      - switch.livingroom_standard_lamps
-      - switch.phone_charger
+alexa:
+  smart_home:
+    locale: en-GB
+    endpoint: https://api.eu.amazonalexa.com/v3/events
+    client_id: !secret alexa_smart_home_client_id
+    client_secret: !secret alexa_smart_home_client_secret
+    filter:
+      include_entities:
+        - binary_sensor.front_door_bell_human
+        - binary_sensor.front_door_bell_motion
+        - binary_sensor.front_door_bell_ring
+        - climate.bedroom_1_thermostat
+        - climate.bedroom_2_thermostat
+        - climate.livingroom_thermostat
+        - climate.shack_thermostat
+        - input_boolean.shack_occupied
+        - light.shack_light
+        - scene.evening
+        - scene.goodnight
+        - switch.livingroom_standard_lamps
+        - switch.phone_charger
 
-  entity_config:
-    binary_sensor.front_door_bell_ring:
-      name: "Front Door"
-      description: "Doorbell Binary Sensor"
-      display_categories: DOORBELL
+    entity_config:
+      binary_sensor.front_door_bell_ring:
+        name: "Front Door"
+        description: "Doorbell Binary Sensor"
+        display_categories: DOORBELL
 
-    scene.goodnight:
-      name: "Bedtime"
+      scene.goodnight:
+        name: "Bedtime"
 
-    switch.livingroom_standard_lamps:
-      name: "Livingroom lights"
+      switch.livingroom_standard_lamps:
+        name: "Livingroom lights"
 #notify:
 #- platform: alexa_media
 #  name: alexa_media
