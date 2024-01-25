@@ -190,4 +190,10 @@ sensor:
       overall_wind_state:
         friendly_name: "Overall Wind State"
         value_template: |
-          {{ states('sensor.wind_state') }} gusting {{ states('sensor.gusting_wind_state') }}
+          {% set steady = states('sensor.wind_state') %}
+          {% set gust = states('sensor.gusting_wind_state') %}
+          {% if steady == gust %}
+            {{ steady }}
+          {% else %}
+            {{ steady }}, g. {{ gust }}
+          {% endif %}
