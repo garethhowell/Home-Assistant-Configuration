@@ -120,3 +120,74 @@ template:
           false
           {% endif %}
         availability: "{{ not states('sensor.external_temperature_2') in ('unavailable', 'unknown') }}"
+
+sensor:
+  - platform: template
+    sensors:
+      wind_state:
+        friendly_name: Wind State
+        value_template: |
+
+          {% set wind = states("sensor.istneo19_wind_speed") | int %}
+
+          {% if wind <= 2 %}
+              {% set b1 = "0. Calm" %}
+            {% elif wind <= 5 %}
+              {% set b1 = "1. Light air"  %}  
+            {% elif wind <= 11 %}
+              {% set b1 = "2. Light breeze"  %}  
+            {% elif wind <= 19 %}
+              {% set b1 = "3. Gentle breeze"  %}  
+            {% elif wind <= 28 %}
+              {% set b1 = "4. Moderate breeze"  %}  
+            {% elif wind <= 38 %}
+              {% set b1 = "5. Fresh breeze" %}  
+            {% elif wind <= 49 %}
+              {% set b1 = "6. Strong breeze" %}  
+            {% elif wind <= 61 %}
+              {% set b1 = "7. Near gale" %} 
+            {% elif wind <= 74 %}
+              {% set b1 = "8. Gale" %}  
+            {% elif wind <= 88 %}
+              {% set b1 = "9. Severe Gale" %}
+            {% else %}
+              {% set b1 = "10. Storm" %}
+            {% endif %}
+
+          {{ b1 }}
+
+      gusting_wind_state:
+        friendly_name: Gusting Wind State
+        value_template: |
+          {% set wind = states("sensor.istneo19_wind_gust") | int %}
+
+          {% if wind <= 2 %}
+              {% set b1 = "0. Calm" %}
+            {% elif wind <= 5 %}
+              {% set b1 = "1. Light air"  %}  
+            {% elif wind <= 11 %}
+              {% set b1 = "2. Light breeze"  %}  
+            {% elif wind <= 19 %}
+              {% set b1 = "3. Gentle breeze"  %}  
+            {% elif wind <= 28 %}
+              {% set b1 = "4. Moderate breeze"  %}  
+            {% elif wind <= 38 %}
+              {% set b1 = "5. Fresh breeze" %}  
+            {% elif wind <= 49 %}
+              {% set b1 = "6. Strong breeze" %}  
+            {% elif wind <= 61 %}
+              {% set b1 = "7. Near gale" %} 
+            {% elif wind <= 74 %}
+              {% set b1 = "8. Gale" %}  
+            {% elif wind <= 88 %}
+              {% set b1 = "9. Severe Gale" %}
+            {% else %}
+              {% set b1 = "10. Storm" %}
+            {% endif %}
+
+          {{ b1 }}
+
+      overall_wind_state:
+        friendly_name: "Overall Wind State"
+        value_template: |
+          {{ states('sensor.wind_state') }} gusting {{ states('sensor.gusting_wind_state') }}
