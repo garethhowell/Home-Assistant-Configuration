@@ -81,7 +81,10 @@
       hours: 0
       minutes: 5
       seconds: 0
-  condition: []
+  condition:
+  - condition: state
+    entity_id: light.shack_light
+    state: 'on'
   action:
   - service: light.turn_off
     data: {}
@@ -339,4 +342,20 @@
     data: {}
     target:
       entity_id: input_boolean.house_vacant
+  mode: single
+- id: '1705759720618'
+  alias: Notify of high winds
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.istneo19_wind_gust
+    above: 50
+  condition: []
+  action:
+  - service: notify.pushover
+    metadata: {}
+    data:
+      message: Wind gusts above 50 km/h
+      title: 19C High Wind Alert
   mode: single
