@@ -16,6 +16,7 @@ alexa:
         - binary_sensor.front_door_bell_ring
         - climate.bedroom_1_thermostat
         - climate.bedroom_2_thermostat
+        - climate.bedroom_3_thermostat
         - climate.livingroom_thermostat
         - climate.shack_thermostat
         - input_boolean.shack_occupied
