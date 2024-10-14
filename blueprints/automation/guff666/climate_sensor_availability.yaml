@@ -32,7 +32,7 @@ trigger:
 action:
   - service: climate.turn_off
     target: !input target_thermostat
-  - service: notify.pushover
-    data:
-      message: Climate sensor {{ sensor }} has become unavailable
-      title: Home Assistant
+  #- service: notify.pushover
+  #  data:
+  #    message: Climate sensor {{ sensor }} has become unavailable
+  #    title: Home Assistant
