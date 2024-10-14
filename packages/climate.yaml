@@ -61,6 +61,13 @@ mqtt:
       value_template: "{{ value | float | round(1) }}"
       expire_after: 300
 
+    - name: "Bedroom3 Temperature"
+      state_topic: "emon/emonth9/temperature"
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
+
     # Humidity
     - name: "Bedroom1 Humidity"
       state_topic: "emon/emonth5/humidity"
@@ -133,23 +140,23 @@ sensor:
           {% if wind <= 2 %}
               {% set b1 = "0. Calm" %}
             {% elif wind <= 5 %}
-              {% set b1 = "1. Light air"  %}  
+              {% set b1 = "1. Lght Air"  %}  
             {% elif wind <= 11 %}
-              {% set b1 = "2. Light breeze"  %}  
+              {% set b1 = "2. Lght Brze"  %}  
             {% elif wind <= 19 %}
-              {% set b1 = "3. Gentle breeze"  %}  
+              {% set b1 = "3. Gntle Brze"  %}  
             {% elif wind <= 28 %}
-              {% set b1 = "4. Moderate breeze"  %}  
+              {% set b1 = "4. Mod Brze"  %}  
             {% elif wind <= 38 %}
-              {% set b1 = "5. Fresh breeze" %}  
+              {% set b1 = "5. Frsh Brze" %}  
             {% elif wind <= 49 %}
-              {% set b1 = "6. Strong breeze" %}  
+              {% set b1 = "6. Strng Brze" %}  
             {% elif wind <= 61 %}
-              {% set b1 = "7. Near gale" %} 
+              {% set b1 = "7. Nr Gale" %} 
             {% elif wind <= 74 %}
               {% set b1 = "8. Gale" %}  
             {% elif wind <= 88 %}
-              {% set b1 = "9. Severe Gale" %}
+              {% set b1 = "9. Svr Gale" %}
             {% else %}
               {% set b1 = "10. Storm" %}
             {% endif %}
@@ -164,23 +171,23 @@ sensor:
           {% if wind <= 2 %}
               {% set b1 = "0. Calm" %}
             {% elif wind <= 5 %}
-              {% set b1 = "1. Light air"  %}  
+              {% set b1 = "1. Lght Air"  %}  
             {% elif wind <= 11 %}
-              {% set b1 = "2. Light breeze"  %}  
+              {% set b1 = "2. Lght Brze"  %}  
             {% elif wind <= 19 %}
-              {% set b1 = "3. Gentle breeze"  %}  
+              {% set b1 = "3. Gntle Brze"  %}  
             {% elif wind <= 28 %}
-              {% set b1 = "4. Moderate breeze"  %}  
+              {% set b1 = "4. Mod Brze"  %}  
             {% elif wind <= 38 %}
-              {% set b1 = "5. Fresh breeze" %}  
+              {% set b1 = "5. Frsh Brze" %}  
             {% elif wind <= 49 %}
-              {% set b1 = "6. Strong breeze" %}  
+              {% set b1 = "6. Strng Brze" %}  
             {% elif wind <= 61 %}
-              {% set b1 = "7. Near gale" %} 
+              {% set b1 = "7. Nr Gale" %} 
             {% elif wind <= 74 %}
               {% set b1 = "8. Gale" %}  
             {% elif wind <= 88 %}
-              {% set b1 = "9. Severe Gale" %}
+              {% set b1 = "9. Svr Gale" %}
             {% else %}
               {% set b1 = "10. Storm" %}
             {% endif %}
