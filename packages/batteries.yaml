@@ -73,8 +73,48 @@ sensor:
         precision: 1
 
   - platform: filter
+    name: "filtered Bedroom3 Battery"
+    entity_id: sensor.bedroom3_battery
+    filters:
+      - filter: lowpass
+        time_constant: 10
+        precision: 1
+
+  - platform: filter
     name: "filtered Shack Battery"
     entity_id: sensor.shack_battery
+    filters:
+      - filter: lowpass
+        time_constant: 10
+        precision: 1
+
+  - platform: filter
+    name: "filtered Shack Motion Battery"
+    entity_id: sensor.shack_motion_battery
+    filters:
+      - filter: lowpass
+        time_constant: 10
+        precision: 1
+
+  - platform: filter
+    name: "filtered Loft Motion Battery"
+    entity_id: sensor.loft_motion_battery
+    filters:
+      - filter: lowpass
+        time_constant: 10
+        precision: 1
+
+  - platform: filter
+    name: "filtered Livingroom Motion Battery"
+    entity_id: sensor.livingroom_motion_battery
+    filters:
+      - filter: lowpass
+        time_constant: 10
+        precision: 1
+
+  - platform: filter
+    name: "filtered Bedroom 2 Motion Battery"
+    entity_id: sensor.bedroom_2_motion_battery
     filters:
       - filter: lowpass
         time_constant: 10
@@ -199,6 +239,13 @@ mqtt:
 
     - name: "Bedroom2 Battery"
       state_topic: "emon/emonth7/battery"
+      unit_of_measurement: "V"
+      device_class: voltage
+      value_template: "{{ value | float | round(1) }}"
+      expire_after: 300
+
+    - name: "Bedroom3 Battery"
+      state_topic: "emon/emonth9/battery"
       unit_of_measurement: "V"
       device_class: voltage
       value_template: "{{ value | float | round(1) }}"
