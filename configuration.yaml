@@ -74,10 +74,6 @@ logger:
 lovelace:
   mode: storage
 
-# Google Map
-# https://www.home-assistant.io/components/map/
-map:
-
 # Media source
 media_source:
 
@@ -103,6 +99,9 @@ sun:
 # https://www.home-assistant.io/components/system_health/
 #
 system_health:
+
+tapo:
+  discovery: true
 
 # Text to speech
 tts:
