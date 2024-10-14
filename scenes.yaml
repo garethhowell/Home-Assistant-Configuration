@@ -1,12 +1,91 @@
 - id: 0ff39fe689d641f9b0650ae0a01f32d8
   name: Evening
   entities:
-    switch.evening_lights:
-      entity_id:
-      - switch.livingroom_standard_lamps
-      friendly_name: Evening Lights
+    light.tv_left_light:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - blink
+      - breathe
+      - okay
+      - channel_change
+      - finish_effect
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      effect:
+      color_mode: color_temp
+      brightness: 8
+      color_temp_kelvin: 2202
+      color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      do_not_disturb: true
+      linkquality: 255
+      friendly_name: TV Left Light
+      supported_features: 44
       state: 'on'
-  metadata: {}
+    light.credenza_lamp:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - blink
+      - breathe
+      - okay
+      - channel_change
+      - finish_effect
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      effect:
+      color_mode: color_temp
+      brightness: 79
+      color_temp_kelvin: 2202
+      color_temp: 454
+      hs_color:
+      - 29.79
+      - 84.553
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      do_not_disturb:
+      linkquality: 255
+      friendly_name: Credenza Lamp
+      supported_features: 44
+      state: 'on'
+    switch.livingroom_standard_lamps:
+      linkquality: 255
+      power_on_behavior: previous
+      update:
+        installed_version: 587765297
+        latest_version: 587765297
+        state: idle
+      update_available: false
+      friendly_name: Livingroom Standard Lamps
+      state: 'on'
+  metadata:
+    light.tv_left_light:
+      entity_only: true
+    light.credenza_lamp:
+      entity_only: true
+    switch.livingroom_standard_lamps:
+      entity_only: true
 - id: c5e86fed0b854c1687c4e7de13dac632
   name: Goodnight
   entities:
@@ -23,12 +102,113 @@
       entity_id:
       - switch.shack_xmas_lights_1
       - switch.shack_xmas_lights_2
-      - switch.bedroom_2_xmas_lights_2
+      - switch.bedroom_2_christmas_lights
       - switch.bedroom_3_xmas_lights_1
       - switch.kitchen_xmas_lights_1_1
       - switch.shed_xmas_lights_1
       friendly_name: Christmas Lights
       state: 'off'
+    light.livingroom_table_lamps:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - blink
+      - breathe
+      - channel_change
+      - finish_effect
+      - okay
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      entity_id:
+      - light.credenza_lamp
+      - light.tv_left_light
+      icon: mdi:lightbulb-group
+      friendly_name: Livingroom Table Lamps
+      supported_features: 44
+      state: 'off'
+    light.livingroom_lamp:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blink
+      - breathe
+      - okay
+      - channel_change
+      - finish_effect
+      - stop_effect
+      - colorloop
+      - stop_colorloop
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      color:
+        x: 0.354
+        y: 0.397
+      color_options:
+      linkquality: 95
+      power_on_behavior: previous
+      update:
+        installed_version: 318767730
+        latest_version: 587753009
+        state: available
+      update_available: true
+      friendly_name: Livingroom Lamp
+      supported_features: 44
+      state: 'off'
+    light.dining_room_pendant:
+      min_color_temp_kelvin: 2202
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - blink
+      - breathe
+      - okay
+      - channel_change
+      - finish_effect
+      - stop_effect
+      supported_color_modes:
+      - color_temp
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      do_not_disturb:
+      linkquality: 239
+      friendly_name: Dining Room Pendant
+      supported_features: 44
+      state: 'off'
   metadata:
     switch.christmas_lights_3:
+      entity_only: true
+    light.livingroom_table_lamps:
+      entity_only: true
+    light.livingroom_lamp:
+      entity_only: true
+    light.dining_room_pendant:
       entity_only: true
