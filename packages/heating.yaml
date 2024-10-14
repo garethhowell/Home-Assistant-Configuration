@@ -10,17 +10,17 @@ homeassistant:
     sensor.shack_temperature:
       friendly_name: "Shack Temperature"
 
-mqtt:
-  switch:
-    # Shelly switch controlling CH side of boiler
-    - name: Central Heating Boiler - CH
-      unique_id: central_heating_boiler_ch
-      payload_on: "on"
-      payload_off: "off"
-      qos: 1
-      state_topic: shellies/shellyswitch25-76CD68/relay/1
-      command_topic: shellies/shellyswitch25-76CD68/relay/1/command
-      json_attributes_topic: shellies/shellyswitch25-76CD68/info
+#mqtt:
+#  switch:
+#    # Shelly switch controlling CH side of boiler
+#    - name: Central Heating Boiler - CH
+#      unique_id: central_heating_boiler_ch
+#      payload_on: "on"
+#      payload_off: "off"
+#      qos: 1
+#      state_topic: shellies/shellyswitch25-76CD68/relay/1
+#      command_topic: shellies/shellyswitch25-76CD68/relay/1/command
+#      json_attributes_topic: shellies/shellyswitch25-76CD68/info
 
 # Shed Thermostats
 # Use generic_thermostat to keep temp between 6 and 24
@@ -112,6 +112,19 @@ climate:
     initial_hvac_mode: "heat"
     precision: 0.5
 
+  # Bedroom 3
+  - platform: generic_thermostat
+    name: "Bedroom 3 Thermostat"
+    heater: input_boolean.bedroom3_heat_demand
+    ac_mode: false
+    target_sensor: sensor.bedroom3_temperature
+    min_temp: 4
+    max_temp: 30
+    target_temp: 6
+    #    hot_tolerance: -1.5
+    initial_hvac_mode: "heat"
+    precision: 0.5
+
 input_boolean:
   # Buttons to manipulate living room temps up and down
   living_room_temperature_up:
@@ -146,6 +159,9 @@ input_boolean:
   bedroom2_heat_demand:
     name: "Bedroom 2 Heating"
     initial: off
+  bedroom3_heat_demand:
+    name: "Bedroom 3 Heating"
+    initial: off
   heated_towelrail_heat_demand:
     name: "Heated Towel Rail Heating"
     initial: off
@@ -156,16 +172,11 @@ binary_sensor:
     sensors:
       we_need_heat:
         friendly_name: "We need heat"
-        #  entity_id:
-        #    - input_boolean.livingroom_heat_demand
-        #    - input_boolean.bedroom1_heat_demand
-        #    - input_boolean.bedroom2_heat_demand
-        #    - input_boolean.central_heating_manual
-        #    - input_boolean.heated_towelrail_heat_demand
         value_template: >-
           {% if states('input_boolean.livingroom_heat_demand') == 'on' or
             states('input_boolean.bedroom1_heat_demand') == 'on' or
             states('input_boolean.bedroom2_heat_demand') == 'on' or
+            states('input_boolean.bedroom3_heat_demand') == 'on' or
             states('input_boolean.heated_towelrail_heat_demand') == 'on'
           %}
             true
