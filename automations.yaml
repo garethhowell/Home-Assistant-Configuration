@@ -61,38 +61,17 @@
       minutes: 0
       seconds: 10
   condition:
-  - condition: template
-    value_template: '{{ state_attr(''sun.sun'', ''elevation'') < 4 }}'
+  - condition: state
+    entity_id: input_boolean.sunset
+    state: 'on'
   action:
   - service: light.turn_on
     data: {}
     target:
       entity_id: light.shack_light
-- id: '1667735322575'
-  alias: Shack lights off when empty
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - input_boolean.shack_occupied
-    from: 'on'
-    to: 'off'
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-  condition:
-  - condition: state
-    entity_id: light.shack_light
-    state: 'on'
-  action:
-  - service: light.turn_off
-    data: {}
-    target:
-      entity_id: light.shack_light
-  mode: single
 - id: '1667735322576'
-  alias: Lights on at sunset
+  alias: Activate Evening at sunset
+  description: ''
   trigger:
   - platform: state
     entity_id:
@@ -103,7 +82,8 @@
   - service: scene.turn_on
     entity_id: scene.evening
 - id: '1667735322577'
-  alias: lights_out
+  alias: Activate Goodnight at 23:00
+  description: ''
   trigger:
   - platform: time
     at: '23:00:00'
@@ -195,7 +175,7 @@
   - service: switch.turn_on
     data: {}
     target:
-      entity_id: switch.central_heating_boiler_ch
+      device_id: c5672e03a7e1cb609a11b5473b7c8921
   - wait_for_trigger:
     - platform: state
       entity_id:
@@ -209,10 +189,10 @@
   - service: switch.turn_off
     data: {}
     target:
-      entity_id: switch.central_heating_boiler_ch
+      device_id: c5672e03a7e1cb609a11b5473b7c8921
   mode: single
 - id: '1671785551975'
-  alias: sunset
+  alias: Set/Unset Sunset
   description: Turn on input_boolean.sunset when the sun sets
   trigger:
   - platform: sun
@@ -220,21 +200,18 @@
     offset: '- 00:30:00'
   condition: []
   action:
-  - service: input_boolean.turn_on
-    data: {}
+  - data: {}
     target:
       entity_id: input_boolean.sunset
-  - condition: state
-    entity_id: sun.sun
-    state: above_horizon
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-  - service: input_boolean.turn_off
-    data: {}
+    action: input_boolean.turn_on
+  - wait_for_trigger:
+    - platform: sun
+      event: sunrise
+      offset: 00:30:00
+  - data: {}
     target:
       entity_id: input_boolean.sunset
+    action: input_boolean.turn_off
   mode: single
 - id: '1690796324661'
   alias: Weekly reboot
@@ -302,7 +279,7 @@
         - climate.shed_thermostat_high
         - climate.shed_thermostat_low
 - id: '1701181191797'
-  alias: house vacant
+  alias: Set house vacant
   description: ''
   trigger:
   - platform: state
@@ -323,7 +300,7 @@
       entity_id: input_boolean.house_vacant
   mode: single
 - id: '1701187246072'
-  alias: house not vacant
+  alias: Unset house vacant
   description: ''
   trigger:
   - platform: state
@@ -358,4 +335,84 @@
     data:
       message: Wind gusts above 50 km/h
       title: 19C High Wind Alert
+  mode: single
+- id: '1721905104119'
+  alias: Set Shack Occupied
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.shack_motion_occupancy
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition: []
+  action:
+  - target:
+      entity_id: input_boolean.shack_occupied
+    data: {}
+    action: input_boolean.turn_on
+  mode: single
+- id: '1724919702786'
+  alias: Shack Light Off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.shack_occupied
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - metadata: {}
+    data: {}
+    target:
+      device_id: d27b0cfc3c01bde7cc3ce352a7c8285e
+    action: light.turn_off
+  mode: single
+- id: '1725109481858'
+  alias: Unset Shack Occupied
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.shack_motion_occupancy
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition: []
+  action:
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.shack_occupied
+    data: {}
+  mode: single
+- id: '1726213788337'
+  alias: Alert on Master Alarm
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.master_alarm
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition: []
+  action:
+  - action: notify.pushover
+    metadata: {}
+    data:
+      message: Master Alarm sounding on hassio19c
+      title: Master Alarm
   mode: single
