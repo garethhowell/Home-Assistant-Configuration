@@ -15,7 +15,7 @@ zigbee2mqtt/log
 .cloud
 .vscode
 .Trash-*
-appdaemon/compiled
+appdaemon
 custom_components/
 deps/
 **/__pycache__
